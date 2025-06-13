@@ -22,7 +22,7 @@ const Pricing = () => {
           className="text-center max-w-3xl mx-auto mb-16"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-            Gelir Modelimiz
+            Fiyatlandırma
           </h2>
           <p className="mt-4 text-lg text-gray-600">
             İşletmenizin ihtiyaçlarına ve hedeflerine en uygun planı seçerek Menuland'in avantajlarından yararlanmaya başlayın.
