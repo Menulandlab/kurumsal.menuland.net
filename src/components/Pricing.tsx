@@ -21,6 +21,7 @@ const Pricing = () => {
           transition={{ duration: 0.5 }}
           className="text-center max-w-3xl mx-auto mb-16"
         >
+          {/* DEĞİŞİKLİK: Başlık güncellendi. */}
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
             Fiyatlandırma
           </h2>
@@ -72,9 +73,8 @@ const Pricing = () => {
             </div>
             <p className="mt-2 text-gray-500">Görünürlüğünüzü ve etkileşiminizi artırın.</p>
             <ul className="mt-8 space-y-4 text-gray-700 flex-grow">
-              {/* Profesyonel yorum: Tekrarlanan özellikleri belirtmek yerine bir üst paketi içerdiğini söylemek daha etkilidir. */}
               <li className="flex items-center gap-3"><CheckIcon /> <strong>Tüm Standart Özellikler</strong></li>
-              <li className="flex items-center gap-3"><CheckIcon /> Harita Pin Vurgulama</li>
+              {/* DEĞİŞİKLİK: Harita Pin Vurgulama buradan kaldırıldı. */}
               <li className="flex items-center gap-3"><CheckIcon /> Ayda 1 Kez Ana Sayfa Reklamı</li>
               <li className="flex items-center gap-3"><CheckIcon /> Ayda 1 Kez Hikaye Reklamı</li>
               <li className="flex items-center gap-3"><CheckIcon /> 7/24 Destek</li>
@@ -100,6 +100,8 @@ const Pricing = () => {
             <p className="mt-2 text-gray-500">Maksimum erişim ve etki için.</p>
             <ul className="mt-8 space-y-4 text-gray-700 flex-grow">
               <li className="flex items-center gap-3"><CheckIcon /> <strong>Tüm Premium Özellikler</strong></li>
+              {/* DEĞİŞİKLİK: Harita Pin Vurgulama buraya eklendi. */}
+              <li className="flex items-center gap-3"><CheckIcon /> Harita Pin Vurgulama</li>
               <li className="flex items-center gap-3"><CheckIcon /> Anlık Bildirim Reklamları</li>
               <li className="flex items-center gap-3"><CheckIcon /> Kategori Sponsorluğu</li>
             </ul>
