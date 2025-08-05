@@ -1,13 +1,16 @@
+"use client";
+
 // src/components/Hero.tsx
 
 import React from 'react';
+import { TypeAnimation } from 'react-type-animation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { MotionDiv } from './MotionDiv';
 
 const Hero = () => {
   return (
-    <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-28 overflow-hidden">
+    <section className="relative pt-24 pb-20 lg:pt-32 lg:pb-28 overflow-hidden">
       {/* Arka plan desenini açık gri yapıyoruz */}
       <div className="absolute inset-0 -z-10 h-full w-full bg-white bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:32px_32px]"></div>
 
@@ -19,9 +22,25 @@ const Hero = () => {
           className="max-w-3xl mx-auto"
         >
           {/* Metin renklerini koyu yapıyoruz */}
-          <h1 className="text-4xl md:text-6xl font-extrabold text-gray-900 leading-tight">
-            Menülerinizi Dijital Dünyaya Taşıyın
-          </h1>
+          <div className="min-h-[150px] sm:min-h-[180px] flex items-center justify-center">
+            <h1 className="text-5xl font-bold tracking-tight text-gray-900 sm:text-7xl">
+              <TypeAnimation
+                sequence={[
+                  "Menülerinizi Dijitalleştirin",
+                  1000,
+                  "Müşterilerinizi Etkileyin",
+                  1000,
+                  "Satışlarınızı Artırın",
+                  1000,
+                  "Menuland'e Hoş Geldiniz!",
+                  1000,
+                ]}
+                wrapper="span"
+                speed={50}
+                repeat={Infinity}
+              />
+            </h1>
+          </div>
           <p className="mt-4 text-lg md:text-xl text-gray-600">
             Menuland ile restoran, kafe ve barınızın menüsünü saniyeler içinde
             dijitalleştirin, müşteri etkileşiminizi artırın ve işletmenizi
