@@ -58,15 +58,48 @@ const faqData = [
     ]
   },
   {
-    category: "4- Reklam ve İşbirlikleri",
+    category: "4- Paketler ve Fiyatlandırma",
+    items: [
+      {
+        question: "Standart, Premium ve Pro paketleri arasındaki farklar nelerdir?",
+        answer: "Standart paket ücretsizdir ve temel işletme profili özellikleri sunar. Premium pakette kampanya oluşturma, reklam verme, detaylı analitik ve öncelikli destek gibi özellikler bulunur. Pro paket ise sınırsız kampanya, maksimum reklam alanı, rakip analizi, özel hesap yöneticisi gibi en ileri düzey özellikleri içerir."
+      },
+      {
+        question: "Paket ücretleri nedir?",
+        answer: "Standart paket tamamen ücretsizdir. Premium paket aylık 899₺ veya yıllık 8.990₺ (2 ay bedava), Pro paket ise aylık 1.499₺ veya yıllık 14.990₺'dir (2 ay bedava)."
+      },
+      {
+        question: "Yıllık ödemeye geçersem ne kadar tasarruf ederim?",
+        answer: "Yıllık ödeme seçeneğinde 2 ay bedava kazanırsınız. Premium pakette 1.798₺, Pro pakette ise 2.998₺ tasarruf edersiniz."
+      },
+      {
+        question: "Ücretsiz deneme süresi var mı?",
+        answer: "Evet! Premium pakette 14 gün, Pro pakette ise 7 gün ücretsiz deneme süresi bulunmaktadır. Deneme süresinde paketi test edebilir, isterseniz iptal edebilirsiniz."
+      },
+      {
+        question: "Paketimi nasıl yükseltebilirim veya değiştirebilirim?",
+        answer: "İşletme panelinizden istediğiniz zaman paketinizi yükseltebilir veya değiştirebilirsiniz. Paket değişikliklerinde kalan süreniz yeni pakete aktarılır."
+      },
+      {
+        question: "İptal ve iade politikanız nedir?",
+        answer: "Aboneliğinizi istediğiniz zaman iptal edebilirsiniz. İptal işleminden sonra mevcut dönem sonuna kadar tüm özelliklerden faydalanmaya devam edersiniz. Yıllık ödemelerde ilk 30 gün içinde tam iade yapılır."
+      }
+    ]
+  },
+  {
+    category: "5- Reklam ve İşbirlikleri",
     items: [
       {
         question: "Menuland işletmelere nasıl avantaj sağlar?",
         answer: "Menuland, işletmelerin daha fazla müşteriye ulaşmasını sağlarken, menülerini dijital ortamda kolayca paylaşmalarına yardımcı olur. Ayrıca, özel tanıtım ve reklam alanları ile işletmelerin öne çıkmasını destekler."
       },
       {
-        question: "Menuland’da reklam vermek istiyorum, ne yapmalıyım?",
-        answer: "İşletmeniz için Menuland’da reklam vermek isterseniz, Fiyatlandırma sayfamızı inceleyebilir veya bizimle iletişime geçebilirsiniz."
+        question: "Menuland'da reklam vermek istiyorum, ne yapmalıyım?",
+        answer: "İşletmeniz için Menuland'da reklam vermek isterseniz, Fiyatlandırma sayfamızı inceleyebilir veya bizimle iletişime geçebilirsiniz."
+      },
+      {
+        question: "Ek hizmetler nelerdir ve nasıl satın alabilirim?",
+        answer: "Profesyonel fotoğraf çekimi (2.500₺), menü dijitalleştirme (1.000₺), video tanıtım (5.000₺) ve sosyal medya yönetimi (3.500₺/ay) hizmetlerimiz bulunmaktadır. Bu hizmetler için bizimle iletişime geçebilirsiniz."
       },
       {
         question: "Menuland’ın sosyal medya hesapları var mı?",
