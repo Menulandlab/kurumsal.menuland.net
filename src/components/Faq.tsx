@@ -61,20 +61,12 @@ const faqData = [
     category: "4- Paketler ve Fiyatlandırma",
     items: [
       {
-        question: "Standart, Premium ve Pro paketleri arasındaki farklar nelerdir?",
-        answer: "Standart paket ücretsizdir ve temel işletme profili özellikleri sunar. Premium pakette kampanya oluşturma, reklam verme, detaylı analitik ve öncelikli destek gibi özellikler bulunur. Pro paket ise sınırsız kampanya, maksimum reklam alanı, rakip analizi, özel hesap yöneticisi gibi en ileri düzey özellikleri içerir."
+        question: "Temel ve Premium paketleri arasındaki farklar nelerdir?",
+        answer: "Temel paket (349₺/ay) işletme yönetimi ve QR menü sistemi sunar. Premium paket (649₺/ay) ise tüm temel özelliklere ek olarak rezervasyon sistemi, kampanya oluşturma, sınırsız hikaye paylaşımı, carousel reklam alanı (ayda 2 slot) ve öncelikli müşteri desteği gibi gelişmiş özellikleri içerir."
       },
       {
         question: "Paket ücretleri nedir?",
-        answer: "Standart paket tamamen ücretsizdir. Premium paket aylık 899₺ veya yıllık 8.990₺ (2 ay bedava), Pro paket ise aylık 1.499₺ veya yıllık 14.990₺'dir (2 ay bedava)."
-      },
-      {
-        question: "Yıllık ödemeye geçersem ne kadar tasarruf ederim?",
-        answer: "Yıllık ödeme seçeneğinde 2 ay bedava kazanırsınız. Premium pakette 1.798₺, Pro pakette ise 2.998₺ tasarruf edersiniz."
-      },
-      {
-        question: "Ücretsiz deneme süresi var mı?",
-        answer: "Evet! Premium pakette 14 gün, Pro pakette ise 7 gün ücretsiz deneme süresi bulunmaktadır. Deneme süresinde paketi test edebilir, isterseniz iptal edebilirsiniz."
+        answer: "Temel paket aylık 349₺, Premium paket ise aylık 649₺'dir. Her iki paket de işletmenizin ihtiyaçlarına göre seçilebilir."
       },
       {
         question: "Paketimi nasıl yükseltebilirim veya değiştirebilirim?",
@@ -82,7 +74,7 @@ const faqData = [
       },
       {
         question: "İptal ve iade politikanız nedir?",
-        answer: "Aboneliğinizi istediğiniz zaman iptal edebilirsiniz. İptal işleminden sonra mevcut dönem sonuna kadar tüm özelliklerden faydalanmaya devam edersiniz. Yıllık ödemelerde ilk 30 gün içinde tam iade yapılır."
+        answer: "Aboneliğinizi istediğiniz zaman iptal edebilirsiniz. İptal işleminden sonra mevcut dönem sonuna kadar tüm özelliklerden faydalanmaya devam edersiniz."
       }
     ]
   },

@@ -21,30 +21,22 @@ const MinusIcon = () => (
 interface FeatureRow {
   category?: string;
   feature: string;
-  standart: boolean | string;
+  temel: boolean | string;
   premium: boolean | string;
 }
 
 const features: FeatureRow[] = [
-  { category: "Temel Özellikler", feature: "İşletme Profili", standart: true, premium: true },
-  { feature: "Temel Bilgiler", standart: true, premium: true },
-  { feature: "Çalışma Saatleri", standart: true, premium: true },
-  { feature: "Kategori Sayısı", standart: "1", premium: "Sınırsız" },
-  { feature: "Fotoğraf Sayısı", standart: "3", premium: "Sınırsız" },
-  { feature: "Harita Gösterimi", standart: true, premium: true },
-  { feature: "Sosyal Medya Linkleri", standart: true, premium: true },
-  { feature: "Müşteri Yorumları Görüntüleme", standart: true, premium: true },
-  { feature: "İstatistikler", standart: "Temel", premium: "Detaylı (Dashboard)" },
-
-  { category: "Premium Avantajlar", feature: "Rezervasyon Sistemi", standart: false, premium: true },
-  { feature: "Kampanya Oluşturma", standart: false, premium: true },
-  { feature: "QR Menü Oluşturma", standart: false, premium: true },
-  { feature: "Hikaye Paylaşımı", standart: false, premium: "Sınırsız" },
-  { feature: "Carousel Reklam Alanı", standart: false, premium: "Ayda 2 Slot" },
-  { feature: "Müşteri Yorumlarına Yanıt", standart: false, premium: true },
-  { feature: "Premium İşletme Rozeti", standart: false, premium: true },
-  { feature: "Öncelikli Gösterim", standart: false, premium: true },
-  { feature: "Müşteri Desteği", standart: "Standart", premium: "Öncelikli" },
+  { category: "Temel Özellikler", feature: "İşletme Yönetimi", temel: true, premium: true },
+  { feature: "QR Menü Sistemi", temel: true, premium: true },
+  { feature: "Temel İstatistikler", temel: true, premium: true },
+  { feature: "Müşteri Desteği", temel: true, premium: true },
+  
+  { category: "Premium Özellikler", feature: "Rezervasyon Sistemi", temel: false, premium: true },
+  { feature: "Kampanya Oluşturma", temel: false, premium: true },
+  { feature: "Sınırsız Hikaye Paylaşımı", temel: false, premium: true },
+  { feature: "Carousel Reklam Alanı", temel: false, premium: "Ayda 2 Slot" },
+  { feature: "Öncelikli Müşteri Desteği", temel: false, premium: true },
+  { feature: "Detaylı Analitik ve Raporlama", temel: false, premium: true },
 ];
 
 const ComparisonTable = () => {
@@ -59,34 +51,41 @@ const ComparisonTable = () => {
           className="text-center max-w-3xl mx-auto mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-            Detaylı Kıyaslama Tablosu
+            Detaylı Paket Karşılaştırması
           </h2>
           <p className="mt-4 text-lg text-gray-600">
-            Paket özelliklerini detaylıca inceleyin.
+            Tüm paketlerin özelliklerini karşılaştırın ve işletmenize en uygun planı seçin.
           </p>
         </MotionDiv>
 
         {/* Mobil Görünüm - Kartlar */}
         <div className="lg:hidden space-y-6">
-          {['Standart', 'Premium'].map((planName, planIndex) => (
+          {['Temel', 'Premium'].map((planName, planIndex) => (
             <MotionDiv
               key={planName}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: planIndex * 0.1 }}
-              className={`bg-white rounded-xl shadow-lg p-6 ${planName === 'Premium' ? 'border-2 border-menuland' : 'border border-gray-200'
-                }`}
+              className={`bg-white rounded-xl shadow-lg p-6 ${
+                planName === 'Premium' ? 'border-2 border-menuland' : 'border border-gray-200'
+              }`}
             >
               <h3 className="text-2xl font-bold text-gray-900 mb-4 text-center uppercase">
-                {planName}
+                {planName} Paket
                 {planName === 'Premium' && (
-                  <span className="ml-2 text-xs bg-menuland text-white px-2 py-1 rounded">ÖNERİLEN</span>
+                  <span className="ml-2 text-xs bg-menuland text-white px-2 py-1 rounded">EN POPÜLER</span>
                 )}
               </h3>
+              <div className="text-center mb-6">
+                <span className="text-4xl font-bold text-gray-900">
+                  {planName === 'Temel' ? '349₺' : '649₺'}
+                </span>
+                <span className="text-gray-500">/ay</span>
+              </div>
               <div className="space-y-2 text-sm">
                 {features.map((feature, idx) => {
-                  const value = planName === 'Standart' ? feature.standart : feature.premium;
+                  const value = planName === 'Temel' ? feature.temel : feature.premium;
                   if (feature.category) {
                     return (
                       <div key={idx} className="font-bold text-gray-800 mt-4 mb-2 text-base border-b border-gray-200 pb-2">
@@ -101,21 +100,22 @@ const ComparisonTable = () => {
                         {typeof value === 'boolean' ? (
                           value ? <CheckIcon /> : <MinusIcon />
                         ) : (
-                          <span className={`${planName === 'Premium' ? 'text-menuland' : 'text-gray-900'}`}>{value}</span>
+                          <span className="text-menuland">{value}</span>
                         )}
                       </span>
                     </div>
                   );
                 })}
               </div>
-              <Link
+              <Link 
                 href={`/kayit?plan=${planName.toLowerCase()}`}
-                className={`mt-6 block w-full text-center font-bold py-3 px-6 rounded-lg transition-all duration-300 ${planName === 'Premium'
-                  ? 'bg-menuland text-white hover:bg-opacity-90'
-                  : 'bg-green-600 text-white hover:bg-green-700'
-                  }`}
+                className={`mt-6 block w-full text-center font-bold py-3 px-6 rounded-lg transition-all duration-300 ${
+                  planName === 'Premium' 
+                    ? 'bg-menuland text-white hover:bg-opacity-90' 
+                    : 'bg-gray-800 text-white hover:bg-gray-900'
+                }`}
               >
-                {planName === 'Standart' ? 'Ücretsiz Başla' : 'Premium\'a Geç'}
+                Planı Seç
               </Link>
             </MotionDiv>
           ))}
@@ -127,20 +127,20 @@ const ComparisonTable = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="hidden lg:block overflow-x-auto max-w-5xl mx-auto"
+          className="hidden lg:block overflow-x-auto"
         >
-          <table className="w-full bg-white rounded-xl shadow-lg overflow-hidden border-collapse">
+          <table className="w-full bg-white rounded-xl shadow-lg overflow-hidden">
             <thead>
               <tr className="bg-gray-100">
-                <th className="px-6 py-6 text-left text-sm font-bold text-gray-900 uppercase w-1/3">Özellik</th>
-                <th className="px-6 py-6 text-center text-sm font-bold text-gray-900 uppercase border-l border-gray-200 w-1/3">
-                  Standart<br />
-                  <span className="text-2xl font-extrabold text-green-600 mt-2 block">ÜCRETSİZ</span>
+                <th className="px-6 py-4 text-left text-sm font-bold text-gray-900 uppercase">Özellik</th>
+                <th className="px-6 py-4 text-center text-sm font-bold text-gray-900 uppercase border-l border-gray-200">
+                  Temel Paket<br />
+                  <span className="text-2xl font-extrabold text-gray-900 mt-1 block">349₺<span className="text-sm">/ay</span></span>
                 </th>
-                <th className="px-6 py-6 text-center text-sm font-bold text-gray-900 uppercase border-l-2 border-menuland bg-orange-50 w-1/3 relative">
-                  <div className="absolute top-0 left-0 w-full bg-menuland text-white text-[10px] py-1">EN ÇOK TERCİH EDİLEN</div>
-                  Premium<br />
-                  <span className="text-2xl font-extrabold text-menuland mt-2 block">499₺<span className="text-sm text-gray-600 font-normal">/ay</span></span>
+                <th className="px-6 py-4 text-center text-sm font-bold text-gray-900 uppercase border-l-2 border-menuland bg-orange-50">
+                  Premium Paket<br />
+                  <span className="text-xs bg-menuland text-white px-3 py-1 rounded-full mt-2 inline-block">🔥 EN POPÜLER</span><br />
+                  <span className="text-2xl font-extrabold text-menuland mt-1 block">649₺<span className="text-sm">/ay</span></span>
                 </th>
               </tr>
             </thead>
@@ -149,48 +149,48 @@ const ComparisonTable = () => {
                 if (feature.category) {
                   return (
                     <tr key={index} className="bg-gray-50">
-                      <td colSpan={3} className="px-6 py-3 text-left font-bold text-gray-800 uppercase text-sm border-t border-gray-200">
+                      <td colSpan={3} className="px-6 py-3 text-left font-bold text-gray-800 uppercase text-sm">
                         {feature.category}
                       </td>
                     </tr>
                   );
                 }
                 return (
-                  <tr key={index} className="border-t border-gray-200 hover:bg-gray-50 transition-colors">
-                    <td className="px-6 py-4 text-sm text-gray-700 font-medium">{feature.feature}</td>
+                  <tr key={index} className="border-t border-gray-200 hover:bg-gray-50">
+                    <td className="px-6 py-4 text-sm text-gray-700">{feature.feature}</td>
                     <td className="px-6 py-4 text-center border-l border-gray-200">
-                      {typeof feature.standart === 'boolean' ? (
-                        feature.standart ? <CheckIcon /> : <MinusIcon />
+                      {typeof feature.temel === 'boolean' ? (
+                        feature.temel ? <CheckIcon /> : <MinusIcon />
                       ) : (
-                        <span className="text-sm font-bold text-gray-700">{feature.standart}</span>
+                        <span className="text-sm font-semibold text-gray-900">{feature.temel}</span>
                       )}
                     </td>
-                    <td className="px-6 py-4 text-center border-l-2 border-menuland bg-orange-50/20">
+                    <td className="px-6 py-4 text-center border-l-2 border-menuland bg-orange-50/30">
                       {typeof feature.premium === 'boolean' ? (
                         feature.premium ? <CheckIcon /> : <MinusIcon />
                       ) : (
-                        <span className="text-sm font-bold text-menuland">{feature.premium}</span>
+                        <span className="text-sm font-semibold text-menuland">{feature.premium}</span>
                       )}
                     </td>
                   </tr>
                 );
               })}
               <tr className="bg-gray-100 border-t-2 border-gray-300">
-                <td className="px-6 py-6"></td>
-                <td className="px-6 py-6 text-center">
-                  <Link
-                    href="/kayit?plan=standart"
-                    className="inline-block w-full bg-green-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-green-700 transition-all duration-300 shadow-sm"
+                <td className="px-6 py-4"></td>
+                <td className="px-6 py-4 text-center">
+                  <Link 
+                    href="/kayit?plan=temel"
+                    className="inline-block bg-gray-800 text-white font-bold py-3 px-6 rounded-lg hover:bg-gray-900 transition-all duration-300"
                   >
-                    Ücretsiz Başla
+                    Planı Seç
                   </Link>
                 </td>
-                <td className="px-6 py-6 text-center bg-orange-50/20 border-l-2 border-menuland">
-                  <Link
+                <td className="px-6 py-4 text-center bg-orange-50/30">
+                  <Link 
                     href="/kayit?plan=premium"
-                    className="inline-block w-full bg-menuland text-white font-bold py-3 px-6 rounded-lg hover:bg-opacity-90 transition-all duration-300 shadow-md"
+                    className="inline-block bg-menuland text-white font-bold py-3 px-6 rounded-lg hover:bg-opacity-90 transition-all duration-300"
                   >
-                    Premium'a Geç
+                    Planı Seç
                   </Link>
                 </td>
               </tr>
@@ -207,8 +207,16 @@ const ComparisonTable = () => {
           className="mt-12 text-center"
         >
           <p className="text-sm text-gray-500">
-            * Fiyatlarımıza KDV dahildir. Yıllık ödemelerde 30 gün ücretsiz fırsatı uygulanır.
+            * Tüm fiyatlar KDV dahildir. Paketler istediğiniz zaman değiştirilebilir veya iptal edilebilir.
           </p>
+          <div className="mt-6">
+            <Link 
+              href="#pricing"
+              className="inline-block text-menuland font-semibold hover:underline"
+            >
+              ← Fiyatlandırma sayfasına dön
+            </Link>
+          </div>
         </MotionDiv>
       </div>
     </section>
