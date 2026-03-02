@@ -59,7 +59,7 @@ const Pricing = () => {
               <li className="flex items-start gap-2"><CheckIcon /> <span>Müşteri Desteği</span></li>
             </ul>
 
-            <Link href="/kayit?plan=temel" className="mt-8 block w-full text-center bg-gray-800 text-white font-bold py-4 px-8 rounded-lg hover:bg-gray-900 transition-all duration-300 shadow-md">
+            <Link href="https://isletme.menuland.net" target="_blank" rel="noopener noreferrer" className="mt-8 block w-full text-center bg-gray-800 text-white font-bold py-4 px-8 rounded-lg hover:bg-gray-900 transition-all duration-300 shadow-md">
               Planı Seç
             </Link>
           </MotionDiv>
@@ -97,7 +97,7 @@ const Pricing = () => {
               <li className="flex items-start gap-2 text-green-600"><CheckIcon /> <span><strong>Detaylı Analitik ve Raporlama</strong></span></li>
             </ul>
 
-            <Link href="/kayit?plan=premium" className="mt-8 block w-full text-center bg-menuland text-white font-bold py-4 px-8 rounded-lg hover:bg-opacity-90 transition-all duration-300 shadow-lg">
+            <Link href="https://isletme.menuland.net" target="_blank" rel="noopener noreferrer" className="mt-8 block w-full text-center bg-menuland text-white font-bold py-4 px-8 rounded-lg hover:bg-opacity-90 transition-all duration-300 shadow-lg">
               Planı Seç
             </Link>
           </MotionDiv>

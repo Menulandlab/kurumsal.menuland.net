@@ -43,7 +43,7 @@ const Footer = () => {
             <Link href="https://blog.menuland.net" target="_blank" rel="noopener noreferrer" className="hover:text-menuland transition-colors">
               Blog
             </Link>
-            <Link href="/kayit" className="hover:text-menuland transition-colors">
+            <Link href="https://isletme.menuland.net" target="_blank" rel="noopener noreferrer" className="hover:text-menuland transition-colors">
               İşletmeler İçin
             </Link>
             <Link href="/gizlilik-politikasi" className="hover:text-menuland transition-colors">

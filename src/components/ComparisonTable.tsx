@@ -108,7 +108,9 @@ const ComparisonTable = () => {
                 })}
               </div>
               <Link 
-                href={`/kayit?plan=${planName.toLowerCase()}`}
+                href="https://isletme.menuland.net"
+                target="_blank"
+                rel="noopener noreferrer"
                 className={`mt-6 block w-full text-center font-bold py-3 px-6 rounded-lg transition-all duration-300 ${
                   planName === 'Premium' 
                     ? 'bg-menuland text-white hover:bg-opacity-90' 
@@ -179,7 +181,9 @@ const ComparisonTable = () => {
                 <td className="px-6 py-4"></td>
                 <td className="px-6 py-4 text-center">
                   <Link 
-                    href="/kayit?plan=temel"
+                    href="https://isletme.menuland.net"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-block bg-gray-800 text-white font-bold py-3 px-6 rounded-lg hover:bg-gray-900 transition-all duration-300"
                   >
                     Planı Seç
@@ -187,7 +191,9 @@ const ComparisonTable = () => {
                 </td>
                 <td className="px-6 py-4 text-center bg-orange-50/30">
                   <Link 
-                    href="/kayit?plan=premium"
+                    href="https://isletme.menuland.net"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-block bg-menuland text-white font-bold py-3 px-6 rounded-lg hover:bg-opacity-90 transition-all duration-300"
                   >
                     Planı Seç

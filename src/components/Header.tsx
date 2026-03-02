@@ -58,8 +58,16 @@ const Header = () => {
             </Link>
           </nav>
 
-          {/* Masaüstü İndirme Butonu (Sadece orta ve büyük ekranlarda görünür) */}
-          <div className="hidden md:block">
+          {/* Masaüstü Butonlar (Sadece orta ve büyük ekranlarda görünür) */}
+          <div className="hidden md:flex items-center gap-3">
+            <Link
+              href="https://isletme.menuland.net"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-gray-100 text-gray-800 font-bold py-1.5 px-4 rounded-lg hover:bg-gray-200 transition-all duration-300 text-sm"
+            >
+              İşletme Paneli
+            </Link>
             <Link
               href="/indir"
               className="bg-menuland text-white font-bold py-1.5 px-4 rounded-lg hover:bg-opacity-90 transition-all duration-300 transform hover:scale-105 text-sm"
@@ -120,6 +128,9 @@ const Header = () => {
               </Link>
               <Link href="/#contact" onClick={() => setIsMenuOpen(false)} className="text-2xl font-bold text-gray-800 hover:text-menuland transition-colors">
                 İletişim
+              </Link>
+              <Link href="https://isletme.menuland.net" target="_blank" rel="noopener noreferrer" onClick={() => setIsMenuOpen(false)} className="text-2xl font-bold text-gray-800 hover:text-menuland transition-colors">
+                İşletme Paneli
               </Link>
             </nav>
             
