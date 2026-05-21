@@ -44,17 +44,20 @@ const Header = () => {
 
           {/* Masaüstü Navigasyon Linkleri (Sadece orta ve büyük ekranlarda görünür) */}
           <nav className="hidden md:flex items-center space-x-8">
-            <Link href="/#features" className="text-gray-600 hover:text-menuland transition-colors duration-300">
+            <Link href="/ozellikler" className="text-gray-600 hover:text-menuland transition-colors duration-300">
               Özellikler
+            </Link>
+            <Link href="/hizmetler" className="text-gray-600 hover:text-menuland transition-colors duration-300">
+              Hizmetler
+            </Link>
+            <Link href="/bolgeler" className="text-gray-600 hover:text-menuland transition-colors duration-300">
+              Bölgeler
+            </Link>
+            <Link href="/blog" className="text-gray-600 hover:text-menuland transition-colors duration-300">
+              Blog
             </Link>
             <Link href="/#pricing" className="text-gray-600 hover:text-menuland transition-colors duration-300">
               Fiyatlandırma
-            </Link>
-            <Link href="https://blog.menuland.net" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-menuland transition-colors duration-300">
-              Blog
-            </Link>
-            <Link href="/#contact" className="text-gray-600 hover:text-menuland transition-colors duration-300">
-              İletişim
             </Link>
           </nav>
 
@@ -116,18 +119,21 @@ const Header = () => {
             </div>
             
             {/* Mobil Menü Linkleri */}
-            <nav className="flex flex-col items-center justify-center text-center space-y-8 flex-grow">
-              <Link href="/#features" onClick={() => setIsMenuOpen(false)} className="text-2xl font-bold text-gray-800 hover:text-menuland transition-colors">
+            <nav className="flex flex-col items-center justify-center text-center space-y-6 flex-grow overflow-y-auto">
+              <Link href="/ozellikler" onClick={() => setIsMenuOpen(false)} className="text-2xl font-bold text-gray-800 hover:text-menuland transition-colors">
                 Özellikler
+              </Link>
+              <Link href="/hizmetler" onClick={() => setIsMenuOpen(false)} className="text-2xl font-bold text-gray-800 hover:text-menuland transition-colors">
+                Hizmetler
+              </Link>
+              <Link href="/bolgeler" onClick={() => setIsMenuOpen(false)} className="text-2xl font-bold text-gray-800 hover:text-menuland transition-colors">
+                Bölgeler
+              </Link>
+              <Link href="/blog" onClick={() => setIsMenuOpen(false)} className="text-2xl font-bold text-gray-800 hover:text-menuland transition-colors">
+                Blog
               </Link>
               <Link href="/#pricing" onClick={() => setIsMenuOpen(false)} className="text-2xl font-bold text-gray-800 hover:text-menuland transition-colors">
                 Fiyatlandırma
-              </Link>
-              <Link href="https://blog.menuland.net" target="_blank" rel="noopener noreferrer" onClick={() => setIsMenuOpen(false)} className="text-2xl font-bold text-gray-800 hover:text-menuland transition-colors">
-                Blog
-              </Link>
-              <Link href="/#contact" onClick={() => setIsMenuOpen(false)} className="text-2xl font-bold text-gray-800 hover:text-menuland transition-colors">
-                İletişim
               </Link>
               <Link href="https://isletme.menuland.net" target="_blank" rel="noopener noreferrer" onClick={() => setIsMenuOpen(false)} className="text-2xl font-bold text-gray-800 hover:text-menuland transition-colors">
                 İşletme Paneli

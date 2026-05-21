@@ -1,0 +1,10 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        "git remote": true,
+        "git checkout": true,
+        "/^python3 -c \"\nimport zlib, os\n\ndef read_obj\\(repo, sha\\):\n    path = os\\.path\\.join\\(repo, '\\.git', 'objects', sha\\[:2\\], sha\\[2:\\]\\)\n    return zlib\\.decompress\\(open\\(path,'rb'\\)\\.read\\(\\)\\)\n\ndef parse_tree\\(data\\):\n    # skip header 'tree SIZE\\\\x00'\n    null = data\\.index\\(b'\\\\x00'\\)\n    data = data\\[null\\+1:\\]\n    entries = \\[\\]\n    while data:\n        sp = data\\.index\\(b' '\\)\n        mode = data\\[:sp\\]\\.decode\\(\\)\n        data = data\\[sp\\+1:\\]\n        null = data\\.index\\(b'\\\\x00'\\)\n        name = data\\[:null\\]\\.decode\\(\\)\n        data = data\\[null\\+1:\\]\n        sha = data\\[:20\\]\\.hex\\(\\)\n        data = data\\[20:\\]\n        entries\\.append\\(\\(mode, name, sha\\)\\)\n    return entries\n\nrepo = '/Users/akinkbck/Desktop/menuland-website'\ntree_data = read_obj\\(repo, '877dc51151848f5527594499360fbf558cfa9352'\\)\nentries = parse_tree\\(tree_data\\)\nfor mode, name, sha in entries:\n    print\\(f'\\{sha\\}  \\{name\\}'\\)\n\"$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
+}

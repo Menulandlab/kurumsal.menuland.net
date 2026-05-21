@@ -77,12 +77,13 @@ const Hero = () => {
           className="mt-16 lg:mt-24"
         >
           <div className="relative mx-auto border-gray-200 bg-white border-[8px] rounded-t-xl w-full max-w-4xl h-[300px] md:h-[450px] lg:h-[550px] shadow-2xl">
-            <div className="rounded-lg overflow-hidden w-full h-full">
+            <div className="relative rounded-lg overflow-hidden w-full h-full">
               <Image
                 src="/img/anasayfa.png"
                 alt="Menuland Uygulama Arayüzü"
-                layout="fill"
-                objectFit="cover"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 896px"
                 priority
               />
             </div>

@@ -17,6 +17,7 @@ const Footer = () => {
                 src="/img/orduticaretodasi.png"
                 alt="Ordu Ticaret Odası"
                 fill
+                sizes="192px"
                 className="object-contain"
               />
             </div>
@@ -27,6 +28,7 @@ const Footer = () => {
                 src="/img/itucekirdek-menuland.png"
                 alt="İTÜ Çekirdek"
                 fill
+                sizes="240px"
                 className="object-contain"
               />
             </div>
@@ -38,9 +40,18 @@ const Footer = () => {
 
         {/* Telif Hakkı ve Linkler Alanı */}
         <div className="text-center text-gray-500">
-          <p>&copy; {new Date().getFullYear()} Menuland. Tüm Hakları Saklıdır.</p>
+          <p>&copy; {new Date().getFullYear()} MLD Yazılım. Tüm Hakları Saklıdır.</p>
           <div className="mt-4 flex flex-wrap justify-center gap-x-6 gap-y-2">
-            <Link href="https://blog.menuland.net" target="_blank" rel="noopener noreferrer" className="hover:text-menuland transition-colors">
+            <Link href="/ozellikler" className="hover:text-menuland transition-colors">
+              Özellikler
+            </Link>
+            <Link href="/hizmetler" className="hover:text-menuland transition-colors">
+              Hizmetler
+            </Link>
+            <Link href="/bolgeler" className="hover:text-menuland transition-colors">
+              Bölgeler
+            </Link>
+            <Link href="/blog" className="hover:text-menuland transition-colors">
               Blog
             </Link>
             <Link href="https://isletme.menuland.net" target="_blank" rel="noopener noreferrer" className="hover:text-menuland transition-colors">

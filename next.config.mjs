@@ -19,6 +19,22 @@ const nextConfig = {
       },
     ],
   },
+  async rewrites() {
+    return [
+      {
+        source: '/business/:id',
+        destination: 'https://api.service.menuland.net/business/:id',
+      },
+      {
+        source: '/.well-known/apple-app-site-association',
+        destination: 'https://api.service.menuland.net/.well-known/apple-app-site-association',
+      },
+      {
+        source: '/.well-known/assetlinks.json',
+        destination: 'https://api.service.menuland.net/.well-known/assetlinks.json',
+      },
+    ];
+  },
 };
 
 export default nextConfig;
