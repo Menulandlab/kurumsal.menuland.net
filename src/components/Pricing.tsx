@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { MotionDiv } from './MotionDiv';
+import { generateEventId, trackMetaEvent } from '@/utils/meta-pixel';
 
 const CheckIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5 text-green-600">
@@ -12,6 +13,17 @@ const CheckIcon = () => (
 
 const Pricing = () => {
   const [isYearly, setIsYearly] = useState(false);
+
+  const handleInitiateCheckout = (packageName: string, monthlyPrice: number, yearlyPrice: number) => {
+    const eventId = generateEventId();
+    const activePrice = isYearly ? yearlyPrice : monthlyPrice;
+    trackMetaEvent('InitiateCheckout', eventId, {
+      content_name: packageName,
+      value: activePrice,
+      currency: 'TRY',
+      content_category: 'Subscription'
+    });
+  };
 
   return (
     <section id="pricing" className="bg-white py-20 lg:py-28 overflow-hidden">
@@ -85,7 +97,7 @@ const Pricing = () => {
               Dijital menüye geçiş yapmak isteyen işletmeler için ideal başlangıç paketi.
             </p>
 
-            <Link href="https://isletme.menuland.net" target="_blank" className="mt-8 block w-full text-center bg-gray-900 text-white font-bold py-3 rounded-lg hover:bg-black transition-all">
+            <Link onClick={() => handleInitiateCheckout('Temel Paket', 349, 279)} href="https://isletme.menuland.net" target="_blank" className="mt-8 block w-full text-center bg-gray-900 text-white font-bold py-3 rounded-lg hover:bg-black transition-all">
               Satın Al
             </Link>
             <p className="text-[10px] text-gray-400 text-center mt-3">
@@ -134,7 +146,7 @@ const Pricing = () => {
               Müşteri etkileşimini artırmak ve tam kontrol sağlamak isteyenler için.
             </p>
 
-            <Link href="https://isletme.menuland.net" target="_blank" className="mt-8 block w-full text-center bg-orange-600 text-white font-bold py-3 rounded-lg hover:bg-orange-700 transition-all">
+            <Link onClick={() => handleInitiateCheckout('Premium Paket', 649, 519)} href="https://isletme.menuland.net" target="_blank" className="mt-8 block w-full text-center bg-orange-600 text-white font-bold py-3 rounded-lg hover:bg-orange-700 transition-all">
               Hemen Başla
             </Link>
             <p className="text-[10px] text-gray-400 text-center mt-3">
@@ -187,7 +199,7 @@ const Pricing = () => {
                     <div className="bg-orange-50 p-3 rounded-lg mt-6 mb-8 text-orange-800 text-xs text-center font-medium">
                         Her şube kendi aboneliğini alır, tüm şubeler aynı plan özelliklerinden yararlanır.
                     </div>
-                    <Link href="https://isletme.menuland.net" target="_blank" className="bg-gray-900 text-white font-bold py-3 rounded-lg text-center hover:bg-black transition-all mb-8">
+                    <Link onClick={() => handleInitiateCheckout('Temel Zincir', 279, 223)} href="https://isletme.menuland.net" target="_blank" className="bg-gray-900 text-white font-bold py-3 rounded-lg text-center hover:bg-black transition-all mb-8">
                         Şube Aboneliği Al
                     </Link>
                     <ul className="space-y-4 text-sm text-gray-600 border-t border-gray-100 pt-8">
@@ -217,7 +229,7 @@ const Pricing = () => {
                     <div className="bg-orange-50 p-3 rounded-lg mt-6 mb-8 text-orange-800 text-xs text-center font-medium">
                         Her şube kendi aboneliğini alır, tüm şubeler aynı plan özelliklerinden yararlanır.
                     </div>
-                    <Link href="https://isletme.menuland.net" target="_blank" className="bg-orange-600 text-white font-bold py-3 rounded-lg text-center hover:bg-orange-700 transition-all mb-8">
+                    <Link onClick={() => handleInitiateCheckout('Premium Zincir', 519, 415)} href="https://isletme.menuland.net" target="_blank" className="bg-orange-600 text-white font-bold py-3 rounded-lg text-center hover:bg-orange-700 transition-all mb-8">
                         Şube Aboneliği Al
                     </Link>
                     <ul className="space-y-4 text-sm text-gray-600 border-t border-gray-100 pt-8">

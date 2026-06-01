@@ -3,6 +3,7 @@
 import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { motion } from 'framer-motion';
+import { generateEventId, trackMetaEvent } from '@/utils/meta-pixel';
 
 // Formu Suspense içinde çağırmak en iyi pratiktir.
 const RegistrationFormContent = () => {
@@ -33,6 +34,28 @@ const RegistrationFormContent = () => {
     setIsSubmitting(true);
     setMessage('');
 
+    // Parse names for higher match quality
+    const nameParts = ownerName.trim().split(/\s+/);
+    const firstName = nameParts[0] || '';
+    const lastName = nameParts.slice(1).join(' ') || '';
+
+    // Trigger CompleteRegistration event (when B2B registration form is submitted)
+    const registrationEventId = generateEventId();
+    trackMetaEvent(
+      'CompleteRegistration',
+      registrationEventId,
+      {
+        content_name: plan,
+        content_category: 'B2B Registration'
+      },
+      {
+        email,
+        phone,
+        firstName,
+        lastName
+      }
+    );
+
     // SİZİN ADMIN PANELİNİZİN BEKLEDİĞİ JSON YAPISI
     const formData = {
       plan_type: plan.toLowerCase(),
@@ -54,6 +77,24 @@ const RegistrationFormContent = () => {
 
       if (response.ok) {
         setMessage('Başvurunuz başarıyla alındı! En kısa sürede sizinle iletişime geçeceğiz.');
+
+        // Trigger Lead event (when B2B form is successfully submitted)
+        const leadEventId = generateEventId();
+        trackMetaEvent(
+          'Lead',
+          leadEventId,
+          {
+            content_name: plan,
+            content_category: businessName
+          },
+          {
+            email,
+            phone,
+            firstName,
+            lastName
+          }
+        );
+
         // Başarı durumunda formu temizle
         setBusinessName('');
         setOwnerName('');
