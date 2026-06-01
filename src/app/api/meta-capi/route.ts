@@ -85,6 +85,7 @@ export async function POST(req: NextRequest) {
           },
         },
       ],
+      test_event_code: "TEST96992", // Temporary test event code for live testing
     };
 
     const pixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID || "1971172710431675";

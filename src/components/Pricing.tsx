@@ -97,9 +97,9 @@ const Pricing = () => {
               Dijital menüye geçiş yapmak isteyen işletmeler için ideal başlangıç paketi.
             </p>
 
-            <Link onClick={() => handleInitiateCheckout('Temel Paket', 349, 279)} href="https://isletme.menuland.net" target="_blank" className="mt-8 block w-full text-center bg-gray-900 text-white font-bold py-3 rounded-lg hover:bg-black transition-all">
+            <a onClick={() => handleInitiateCheckout('Temel Paket', 349, 279)} href="https://isletme.menuland.net" target="_blank" className="mt-8 block w-full text-center bg-gray-900 text-white font-bold py-3 rounded-lg hover:bg-black transition-all">
               Satın Al
-            </Link>
+            </a>
             <p className="text-[10px] text-gray-400 text-center mt-3">
               {isYearly ? "Yıllık ödeme • İstediğiniz zaman iptal edebilirsiniz" : "Her ay otomatik yenilenir • İstediğiniz zaman iptal edebilirsiniz"}
             </p>
@@ -146,9 +146,9 @@ const Pricing = () => {
               Müşteri etkileşimini artırmak ve tam kontrol sağlamak isteyenler için.
             </p>
 
-            <Link onClick={() => handleInitiateCheckout('Premium Paket', 649, 519)} href="https://isletme.menuland.net" target="_blank" className="mt-8 block w-full text-center bg-orange-600 text-white font-bold py-3 rounded-lg hover:bg-orange-700 transition-all">
+            <a onClick={() => handleInitiateCheckout('Premium Paket', 649, 519)} href="https://isletme.menuland.net" target="_blank" className="mt-8 block w-full text-center bg-orange-600 text-white font-bold py-3 rounded-lg hover:bg-orange-700 transition-all">
               Hemen Başla
-            </Link>
+            </a>
             <p className="text-[10px] text-gray-400 text-center mt-3">
               {isYearly ? "Yıllık ödeme • İstediğiniz zaman iptal edebilirsiniz" : "Her ay otomatik yenilenir • İstediğiniz zaman iptal edebilirsiniz"}
             </p>
@@ -199,9 +199,9 @@ const Pricing = () => {
                     <div className="bg-orange-50 p-3 rounded-lg mt-6 mb-8 text-orange-800 text-xs text-center font-medium">
                         Her şube kendi aboneliğini alır, tüm şubeler aynı plan özelliklerinden yararlanır.
                     </div>
-                    <Link onClick={() => handleInitiateCheckout('Temel Zincir', 279, 223)} href="https://isletme.menuland.net" target="_blank" className="bg-gray-900 text-white font-bold py-3 rounded-lg text-center hover:bg-black transition-all mb-8">
+                    <a onClick={() => handleInitiateCheckout('Temel Zincir', 279, 223)} href="https://isletme.menuland.net" target="_blank" className="bg-gray-900 text-white font-bold py-3 rounded-lg text-center hover:bg-black transition-all mb-8">
                         Şube Aboneliği Al
-                    </Link>
+                    </a>
                     <ul className="space-y-4 text-sm text-gray-600 border-t border-gray-100 pt-8">
                         <li className="flex items-center gap-3"><CheckIcon /> Sınırsız Kategori ve Ürün</li>
                         <li className="flex items-center gap-3"><CheckIcon /> QR Kod Oluşturucu</li>
@@ -229,9 +229,9 @@ const Pricing = () => {
                     <div className="bg-orange-50 p-3 rounded-lg mt-6 mb-8 text-orange-800 text-xs text-center font-medium">
                         Her şube kendi aboneliğini alır, tüm şubeler aynı plan özelliklerinden yararlanır.
                     </div>
-                    <Link onClick={() => handleInitiateCheckout('Premium Zincir', 519, 415)} href="https://isletme.menuland.net" target="_blank" className="bg-orange-600 text-white font-bold py-3 rounded-lg text-center hover:bg-orange-700 transition-all mb-8">
+                    <a onClick={() => handleInitiateCheckout('Premium Zincir', 519, 415)} href="https://isletme.menuland.net" target="_blank" className="bg-orange-600 text-white font-bold py-3 rounded-lg text-center hover:bg-orange-700 transition-all mb-8">
                         Şube Aboneliği Al
-                    </Link>
+                    </a>
                     <ul className="space-y-4 text-sm text-gray-600 border-t border-gray-100 pt-8">
                         <li className="flex items-center gap-3 font-bold"><CheckIcon /> Tüm Temel Paket Özellikleri</li>
                         <li className="flex items-center gap-3"><CheckIcon /> Rezervasyon Yönetimi</li>
