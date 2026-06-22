@@ -5,6 +5,7 @@ import { blogPosts } from '@/data/blog-posts';
 import { notFound } from 'next/navigation';
 import { MotionDiv } from '@/components/MotionDiv';
 import Link from 'next/link';
+import BlogImage from '@/components/BlogImage';
 
 export async function generateStaticParams() {
   return blogPosts.map((post) => ({
@@ -68,6 +69,16 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 leading-tight mb-8">
                 {post.title}
               </h1>
+              {post.image && (
+                <div className="mb-12 rounded-3xl overflow-hidden aspect-video relative shadow-lg bg-gray-50">
+                  <BlogImage 
+                    src={post.image} 
+                    alt={post.title} 
+                    className="w-full h-full object-cover"
+                    fallbackText={post.category}
+                  />
+                </div>
+              )}
               <div className="flex items-center gap-4 border-b border-gray-100 pb-8">
                 <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center font-bold text-gray-400">
                     {post.author.charAt(0)}

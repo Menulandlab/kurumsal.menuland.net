@@ -4,6 +4,7 @@ import Footer from '@/components/Footer';
 import { MotionDiv } from '@/components/MotionDiv';
 import Link from 'next/link';
 import { blogPosts } from '@/data/blog-posts';
+import BlogImage from '@/components/BlogImage';
 
 export default function BlogPage() {
   return (
@@ -43,10 +44,12 @@ export default function BlogPage() {
                   className="group"
                 >
                   <Link href={`/blog/${post.slug}`} className="block overflow-hidden rounded-2xl mb-6 aspect-video relative bg-gray-100">
-                    {/* Görsel placeholder - Gerçek projede Image bileşeni kullanılacak */}
-                    <div className="absolute inset-0 bg-gray-200 group-hover:scale-105 transition-transform duration-500 flex items-center justify-center text-gray-400 font-bold">
-                        {post.category}
-                    </div>
+                    <BlogImage 
+                      src={post.image} 
+                      alt={post.title} 
+                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 z-10"
+                      fallbackText={post.category}
+                    />
                   </Link>
                   <div className="flex items-center gap-3 mb-3">
                     <span className="text-xs font-bold text-orange-600 uppercase tracking-tighter bg-orange-50 px-2 py-0.5 rounded">

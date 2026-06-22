@@ -12,6 +12,61 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: "orduda-deniz-keyfi-bedava-ilce-ilce-ucretsiz-en-guzel-sahiller-ve-plajlar",
+    title: "Ordu’da Deniz Keyfi Bedava! İlçe İlçe Ücretsiz En Güzel Sahiller ve Plajlar",
+    excerpt: "Yaz sıcakları iyice bastırdığında, kendini Karadeniz'in serin sularına bırakmaktan daha iyi bir alternatif olamaz. Üstelik yeşille mavinin kucaklaştığı Ordu'da, cüzdanını hiç açmadan muhteşem koyların ve uçsuz bucaksız kumsalların tadını çıkarabilirsin!",
+    author: "Menuland Ekibi",
+    date: "2026-06-22T23:58:00+03:00",
+    image: "/img/blog/ordu-plajlari.jpg",
+    category: "Şehir Rehberi",
+    readTime: "5 dk",
+    content: `
+      <p>Yaz sıcakları iyice bastırdığında, kendini Karadeniz'in serin sularına bırakmaktan daha iyi bir alternatif olamaz. Üstelik yeşille mavinin kucaklaştığı Ordu'da, cüzdanını hiç açmadan muhteşem koyların ve uçsuz bucaksız kumsalların tadını çıkarabilirsin!</p>
+      <p>Havlunu kapıp yola çıkman için Ordu'nun en popüler sahil ilçelerini taradık ve Ünye, Fatsa, Altınordu ile Gülyalı hattında tamamen ücretsiz olarak denize girebileceğin en iyi yerleri senin için listeledik. Hazırsan, Ordu sahil turumuz başlıyor!</p>
+      
+      <h2>1. Altınordu: Şehrin Kalbinde Deniz Keyfi</h2>
+      <p>Ordu’nun merkez ilçesi Altınordu, hem şehir hayatından kopmak istemeyenler hem de akşamüstü iş çıkışı kendini hemen suya atmak isteyenler için harika seçenekler sunuyor.</p>
+      <ul>
+        <li><strong>Kumbaşı Sahili (Kumbaşı Belediye Plajı):</strong> Altınordu’nun en popüler noktalarından biri. Üstelik burası Mavi Bayraklı bir halk plajı! İncecik kumu ve geniş sahiliyle hem güneşlenmek hem de yürüyüş yapmak için ideal. Giriş tamamen ücretsiz, dilersen şemsiyeni kendin götürebilirsin.</li>
+        <li><strong>Cumhuriyet Sahili (Cumhuriyet Mahallesi Halk Plajı):</strong> Kent merkezine oldukça yakın olan bu sahil de tıpkı Kumbaşı gibi belediyenin titiz çalışmalarıyla Mavi Bayrak ödülüne layık görülen yerlerden. Ailelerin ve gençlerin uğrak noktası olan sahilde duş, soyunma kabini gibi imkanlar da ücretsiz sunuluyor.</li>
+        <li><strong>Bozukkale Feneri ve Sahili:</strong> Tarihi dokusuyla dikkat çeken Bozukkale bölgesi, daha sakin ve nostaljik bir ortam arayanların tercihi. Deniz fenerinin gölgesinde, Karadeniz’in hırçın ama bir o kadar da büyüleyici manzarasını izleyerek yüzebilirsin.</li>
+      </ul>
+
+      <h2>2. Gülyalı: Havalimanının Gölgesinde Mavi Bayrak</h2>
+      <p>Ordu'nun Giresun sınırına yakın ilçesi Gülyalı, özellikle geniş plajları ve temiz suyuyla son yılların yükselen yıldızı.</p>
+      <ul>
+        <li><strong>Eğrice Plajı:</strong> Gülyalı denince akla ilk gelen yerlerden biri şüphesiz Eğrice. Geniş kumsalı ve dalga kıranları sayesinde nispeten daha sakin bir deniz sunması burayı yüzmek için oldukça cazip kılıyor. Kamp sandalye ve masanı kapıp gelmek için biçilmiş kaftan.</li>
+        <li><strong>Mavi Dünya Plajı (Gülyalı Halk Plajı):</strong> Gülyalı’nın gururu! Ordu Büyükşehir Belediyesi'nin yenileme çalışmalarıyla modern bir görünüme kavuşan ve Mavi Bayrak alan bu plaja giriş tamamen ücretsiz. Sadece içerideki şezlong ve şemsiyelerden istersen sembolik ücretler ödeniyor, ancak kendi havlunu serip denizin tadını çıkarmak tamamen bedava.</li>
+      </ul>
+
+      <h2>3. Fatsa: Sakin Koylar ve Doğa Harikaları</h2>
+      <p>Fatsa, kayalık yapıların oluşturduğu doğal havuzları ve yeşilin her tonunu barındıran gizli koylarıyla tam bir keşif rotası.</p>
+      <ul>
+        <li><strong>Dolunay Plajı:</strong> Fatsa merkezine sadece 4 km mesafede bulunan bu sahil, hem kolay ulaşımı hem de ince kumuyla bilinir. Çevresindeki kafelerle canınız bir şeyler çektiğinde alternatif sunsa da plaj alanı halka açık ve ücretsizdir.</li>
+        <li><strong>Fatsa Çamlık Halk Plajı:</strong> Ağaçların gölgesinde piknik yapıp, ardından birkaç adımda denize girmek ister misin? Çamlık tam olarak böyle bir yer. Doğayla iç içe, gölgelik alanları bol ve denizi oldukça keyifli.</li>
+        <li><strong>Efirli Plajı (Perşembe-Fatsa Sınırı):</strong> Aslında Perşembe ilçesine bağlı olsa da Fatsa ve Altınordu'dan kolayca ulaşılan Efirli, Ordu'nun en eski ve en bilinen plajlarından biri. Nostaljik bir havası var ve yaz aylarında cıvıl cıvıl oluyor.</li>
+      </ul>
+
+      <h2>4. Ünye: Uçsuz Bucaksız Kumsallar</h2>
+      <p>Ordu’nun en uzun sahil şeritlerinden birine sahip olan Ünye, \"Karadeniz'in Egesi\" kıvamındaki geniş kumsallarıyla ünlü.</p>
+      <ul>
+        <li><strong>Uzunkum Plajı:</strong> Adının hakkını sonuna kadar veren, kilometrelerce uzanan incecik kumlu bir sahil. Su sporlarına da oldukça uygun olan bu plajda ücretsiz alanlarda havlunu serebilir, gün batımının muhteşem manzarasını izleyebilirsin.</li>
+        <li><strong>Ünye Feneraltı Plajı:</strong> Burası falezlerin ve doğal kaya oluşumlarının arasında yüzmek isteyen macera severlerin yeri. Deniz canlılarını gözlemlemek ve şnorkelle dalış yapmak istiyorsan, Feneraltı'nın kayalık suları seni büyüleyecek.</li>
+      </ul>
+
+      <h2>📌 Editörün Özel Notu: Perşembe (Vona) Hattındaki Efsanevi Noktalar</h2>
+      <p>Yazıyı hazırlarken Fatsa ile Altınordu arasında kalan, Ordu'nun en bakir koylarına ev sahipliği yapan Perşembe (Sakin Şehir) ilçesini atlamak olmazdı. İşte listede adı geçen ve mutlaka uğraman gereken o büyüleyici ücretsiz yerler:</p>
+      <ul>
+        <li><strong>Çaka Plajı (Beyaz Kum):</strong> Karadeniz’de olduğuna inanamayacağın, bembeyaz kumları olan bir doğa harikası. Tamamen taşsız, sığ ve berrak.</li>
+        <li><strong>Yason Burnu ve Yalancı Yason (Sülü Burnu):</strong> Mitolojik Argonotlar efsanesinin geçtiği, tarihi kilisesiyle ünlü Yason Burnu'nda denize girmek bambaşka bir deneyim. Hemen yanındaki Yalancı Yason (Sülü Burnu) ise taşlık yapısıyla suyun en berrak olduğu yerlerden biri. (Deniz ayakkabını unutma!)</li>
+        <li><strong>Hoynat Adası Karşısı:</strong> Türkiye’de tepeli karabataklerin yuva yaptığı nadir yerlerden olan Hoynat Adası’nın hemen karşısındaki küçük koylar, manzaraya karşı yüzmek için harika.</li>
+        <li><strong>Katran Kazanı & Çeşmeönü:</strong> Çeşmeönü, korunaklı yapısıyla dalgasız ve sakin bir deniz arayanların ilk adresi. Katran Kazanı ise kayaların dalgalarla aşınmasıyla oluşmuş saklı bir cennet köşesi.</li>
+      </ul>
+
+      <p><strong>Menuland Tavsiyesi:</strong> Karadeniz'in sağı solu belli olmaz; yüzerken belediyenin görevlendirdiği cankurtaranların olduğu bölgeleri tercih etmeye ve rüzgarlı günlerde dalgalara karşı dikkatli olmaya özen gösterin. İyi tatiller!</p>
+    `
+  },
+  {
     slug: "restoran-isletmeciliginde-dijitallesmenin-onemi",
     title: "Restoran İşletmeciliğinde Dijitalleşmenin Önemi",
     excerpt: "Geleneksel menülerden dijital QR menülere geçiş, işletmenize neler kazandırır? Maliyet analizi ve müşteri memnuniyeti.",
