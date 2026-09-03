@@ -68,6 +68,13 @@ export default function RootLayout({
   return (
     <html lang="tr">
       <body className={`${poppins.variable} font-poppins bg-white text-gray-800`}>
+        {/* Google AdSense */}
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3776725197972523"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
         {/* Meta Pixel Base Tracking */}
         <Script id="meta-pixel" strategy="afterInteractive">
           {`
