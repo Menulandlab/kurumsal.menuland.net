@@ -55,7 +55,10 @@ export default function Header() {
           </Link>
 
           {/* Masaüstü Navigasyon */}
-          <nav className="hidden md:flex items-center space-x-7 text-xs font-semibold text-zinc-600">
+          <nav className="hidden md:flex items-center space-x-6 text-xs font-semibold text-zinc-600">
+            <Link href="#experience" className="hover:text-[#FF4D00] transition-colors">
+              Uygulama
+            </Link>
             <Link href="#features" className="hover:text-[#FF4D00] transition-colors">
               Özellikler
             </Link>
@@ -65,12 +68,11 @@ export default function Header() {
             <Link href="#pricing" className="hover:text-[#FF4D00] transition-colors">
               Fiyatlandırma
             </Link>
-            <Link href="/blog" className="hover:text-[#FF4D00] transition-colors">
-              Blog &amp; Rehber
+            <Link href="#business" className="hover:text-[#FF4D00] transition-colors">
+              İşletmeler
             </Link>
-            <Link href="https://menuland.net/docs" target="_blank" className="hover:text-[#FF4D00] transition-colors flex items-center gap-1">
-              <span>Dokümanlar</span>
-              <span className="text-[9px] text-[#FF4D00] font-bold">↗</span>
+            <Link href="/blog" className="hover:text-[#FF4D00] transition-colors">
+              Blog
             </Link>
           </nav>
 
@@ -80,19 +82,17 @@ export default function Header() {
               href="https://isletme.menuland.net"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs font-bold text-zinc-700 hover:text-zinc-950 px-3.5 py-2 rounded-xl hover:bg-zinc-100 transition-colors"
+              className="text-xs font-bold text-zinc-700 hover:text-zinc-950 px-3 py-2 rounded-xl hover:bg-zinc-100 transition-colors"
             >
               İşletme Girişi
             </Link>
             <Link
-              href="https://isletme.menuland.net/register"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#download-app"
               className="inline-flex items-center gap-1.5 rounded-xl bg-[#FF4D00] px-4 py-2 text-xs font-bold text-white shadow-xs hover:bg-[#e04400] active:scale-98 transition-all"
             >
-              <span>Hemen Başvur</span>
+              <span>Uygulamayı İndir</span>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-3.5 h-3.5">
-                <path fillRule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z" clipRule="evenodd" />
+                <path fillRule="evenodd" d="M10 3a.75.75 0 0 1 .75.75v10.638l3.96-4.158a.75.75 0 1 1 1.08 1.04l-5.25 5.5a.75.75 0 0 1-1.08 0l-5.25-5.5a.75.75 0 1 1 1.08-1.04l3.96 4.158V3.75A.75.75 0 0 1 10 3Z" clipRule="evenodd" />
               </svg>
             </Link>
           </div>
@@ -153,34 +153,34 @@ export default function Header() {
                 </div>
                 
                 <nav className="flex flex-col space-y-4 pt-6 text-sm font-semibold text-zinc-800">
+                  <Link href="#experience" onClick={() => setIsMenuOpen(false)} className="hover:text-[#FF4D00] transition-colors py-1">
+                    Uygulama Deneyimi
+                  </Link>
                   <Link href="#features" onClick={() => setIsMenuOpen(false)} className="hover:text-[#FF4D00] transition-colors py-1">
                     Özellikler &amp; Bento Grid
                   </Link>
                   <Link href="#calculator" onClick={() => setIsMenuOpen(false)} className="hover:text-[#FF4D00] transition-colors py-1">
-                    Tasarruf Hesaplayıcı
+                    Tasarruf Hesaplayıcı (Sabit Paket)
                   </Link>
                   <Link href="#pricing" onClick={() => setIsMenuOpen(false)} className="hover:text-[#FF4D00] transition-colors py-1">
                     Paketler &amp; Fiyatlandırma
                   </Link>
-                  <Link href="/blog" onClick={() => setIsMenuOpen(false)} className="hover:text-[#FF4D00] transition-colors py-1">
-                    Blog
+                  <Link href="#business" onClick={() => setIsMenuOpen(false)} className="hover:text-[#FF4D00] transition-colors py-1">
+                    İşletmeler İçin
                   </Link>
-                  <Link href="https://menuland.net/docs" target="_blank" onClick={() => setIsMenuOpen(false)} className="hover:text-[#FF4D00] transition-colors py-1 flex items-center justify-between">
-                    <span>Dokümantasyon Portalı</span>
-                    <span className="text-xs text-[#FF4D00]">↗</span>
+                  <Link href="/blog" onClick={() => setIsMenuOpen(false)} className="hover:text-[#FF4D00] transition-colors py-1">
+                    Blog &amp; Rehber
                   </Link>
                 </nav>
               </div>
 
               <div className="pt-6 border-t border-zinc-100 space-y-2.5">
                 <Link
-                  href="https://isletme.menuland.net/register"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="#download-app"
                   onClick={() => setIsMenuOpen(false)}
                   className="w-full block text-center rounded-xl bg-[#FF4D00] text-white font-bold py-3 text-xs shadow-xs hover:bg-[#e04400] transition-all"
                 >
-                  Hemen Başvur (Ücretsiz)
+                  Uygulamayı İndir
                 </Link>
                 <Link
                   href="https://isletme.menuland.net"

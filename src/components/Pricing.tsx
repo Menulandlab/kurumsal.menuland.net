@@ -33,11 +33,17 @@ const Pricing = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center max-w-3xl mx-auto mb-12"
+          className="text-center max-w-3xl mx-auto mb-10"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-            İşletmeniz İçin En İyi Planı Seçin
+          <div className="inline-flex items-center gap-2 rounded-full bg-orange-50 border border-orange-200 px-3.5 py-1.5 text-xs font-bold text-[#FF4D00] mb-4">
+            <span>✨ Masa Sınırı Yok • Sabit Paket Fiyatı • Masa Başına 0 ₺</span>
+          </div>
+          <h2 className="text-3xl md:text-5xl font-black text-gray-900 tracking-tight">
+            Şeffaf ve Sabit Paket Fiyatları
           </h2>
+          <p className="mt-3 text-base text-gray-600 font-normal">
+            Masa sayınıza göre artmayan, sürpriz ek masrafı olmayan sabit abonelik.
+          </p>
         </MotionDiv>
 
         {/* Aylık / Yıllık Toggle */}

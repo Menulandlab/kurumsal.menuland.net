@@ -1,169 +1,217 @@
 "use client";
 
-import React, { useState } from 'react';
-import Link from 'next/link';
-import { motion } from 'framer-motion';
+import React, { useState } from "react";
+import Link from "next/link";
+import { motion } from "framer-motion";
 
 export default function RoiCalculator() {
-  const [tableCount, setTableCount] = useState<number>(24);
+  const [tableCount, setTableCount] = useState<number>(25);
   const [updateFrequency, setUpdateFrequency] = useState<number>(4);
+  const [selectedPlan, setSelectedPlan] = useState<"temel" | "premium">("temel");
 
-  // Ortalama lamine / kuşe menü baskı maliyeti (menü başına ~350 ₺)
-  const estimatedPrintingSavings = tableCount * updateFrequency * 350;
+  // Matbaa basım maliyeti: Masa başına lamine / deri ciltli menü maliyeti ortalama 140 ₺
+  const paperMenuCostPerTable = 140;
+  const annualPaperCost = tableCount * paperMenuCostPerTable * updateFrequency;
 
-  // Garson zaman tasarrufu (masada menü bekleme süresi ~%35 azalır)
-  const timeSavingsPercent = Math.min(45, Math.round(20 + (tableCount / 100) * 20));
+  // Menuland Sabit Paket Yıllık Maliyeti (Masa sayısına göre ASLA artmaz)
+  // Temel: 349 ₺/ay -> 4.188 ₺/yıl
+  // Premium: 649 ₺/ay -> 7.788 ₺/yıl
+  const menulandMonthlyCost = selectedPlan === "temel" ? 349 : 649;
+  const menulandAnnualCost = menulandMonthlyCost * 12;
+
+  // Net Tasarruf (İşletmenin cebinde kalan kâr)
+  const netSavings = Math.max(0, annualPaperCost - menulandAnnualCost);
 
   return (
-    <section id="calculator" className="py-24 lg:py-32 bg-white relative overflow-hidden">
-      {/* İnce ambient arka plan */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 w-[700px] h-[400px] bg-gradient-to-br from-orange-100/50 via-zinc-100/40 to-transparent blur-3xl rounded-full pointer-events-none" />
-
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
+    <section id="calculator" className="py-20 lg:py-28 bg-gradient-to-b from-white via-orange-50/30 to-white relative overflow-hidden">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
         
-        {/* Başlık */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-xs font-bold uppercase tracking-wider text-[#FF4D00]">
-            KAZANÇ VE VERİMLİLİK SİMÜLATÖRÜ
+        {/* Başlık ve Vurgu */}
+        <div className="text-center max-w-3xl mx-auto mb-14">
+          <span className="text-xs font-bold uppercase tracking-widest text-[#FF4D00]">
+            SABİT PAKET &amp; NET TASARRUF SİMÜLATÖRÜ
           </span>
-          <h2 className="mt-2 text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-zinc-900">
-            Menuland işletmenize ne kazandırır?
+          <h2 className="mt-2 text-3xl sm:text-5xl font-black tracking-tight text-zinc-900">
+            Masa sayısına göre değil, <br className="hidden sm:inline" />
+            <span className="text-[#FF4D00]">sabit paketle</span> tasarruf edin.
           </h2>
-          <p className="mt-4 text-base sm:text-lg text-zinc-600 font-normal leading-relaxed">
-            Fiziksel menü baskı masraflarından kurtulun, fiyatlarınızı anında güncelleyin ve Gel Al siparişleriyle cironuzu artırın.
+          <p className="mt-4 text-sm sm:text-base text-zinc-600 font-normal leading-relaxed">
+            Diğer sistemlerin aksine Menuland'de <strong>masa başına ekstra ücret veya komisyon YOKTUR</strong>. Fiyatlandırma sayfamızdaki sabit paketlerimizle ister 10 masanız olsun ister 100; tüm masalarınız ve menü güncellemeleriniz sınırsızdır.
           </p>
         </div>
 
-        {/* Hesaplayıcı Gövdesi */}
-        <div className="rounded-3xl border border-zinc-200 bg-zinc-50/70 p-6 sm:p-10 shadow-lg backdrop-blur-xs">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 items-center">
+        {/* Ana Hesaplama Kutusu */}
+        <div className="rounded-3xl border border-zinc-200/90 bg-white p-6 sm:p-10 shadow-xl shadow-orange-500/5">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             
-            {/* Sol Taraf: Sürgüler (Sliders) */}
-            <div className="lg:col-span-7 space-y-8">
+            {/* Sol Taraf: Kaydırıcılar (Sliders) ve Plan Seçimi */}
+            <div className="lg:col-span-7 space-y-7">
               
-              {/* Sürgü 1: Masa Sayısı */}
+              {/* Sabit Paket Seçimi */}
+              <div>
+                <label className="text-xs font-bold uppercase tracking-wider text-zinc-500 block mb-2">
+                  1. İncelemek İstediğiniz Sabit Menuland Paketi:
+                </label>
+                <div className="grid grid-cols-2 gap-3">
+                  <button
+                    type="button"
+                    onClick={() => setSelectedPlan("temel")}
+                    className={`rounded-2xl border p-3.5 text-left transition-all ${
+                      selectedPlan === "temel"
+                        ? "border-[#FF4D00] bg-orange-50/70 shadow-sm"
+                        : "border-zinc-200 hover:border-zinc-300"
+                    }`}
+                  >
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm font-bold text-zinc-900">Temel Paket</span>
+                      <span className="text-xs font-black text-[#FF4D00]">349 ₺ / ay</span>
+                    </div>
+                    <p className="text-[11px] text-zinc-500 mt-1">Sınırsız masa, QR menü, temel istatistik</p>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => setSelectedPlan("premium")}
+                    className={`rounded-2xl border p-3.5 text-left transition-all ${
+                      selectedPlan === "premium"
+                        ? "border-[#FF4D00] bg-orange-50/70 shadow-sm"
+                        : "border-zinc-200 hover:border-zinc-300"
+                    }`}
+                  >
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm font-bold text-zinc-900">Premium Paket</span>
+                      <span className="text-xs font-black text-[#FF4D00]">649 ₺ / ay</span>
+                    </div>
+                    <p className="text-[11px] text-zinc-500 mt-1">Garson çağır, sadakat, öncelikli destek</p>
+                  </button>
+                </div>
+              </div>
+
+              {/* Slider 1: Masa Sayısı */}
               <div>
                 <div className="flex justify-between items-center mb-2">
-                  <label className="text-sm sm:text-base font-bold text-zinc-900">
+                  <label htmlFor="table-range" className="text-sm font-bold text-zinc-800">
                     Restoran / Kafe Masa Sayınız:
                   </label>
-                  <span className="rounded-xl bg-white border border-zinc-200 px-3.5 py-1 text-sm sm:text-base font-black text-[#FF4D00] shadow-2xs">
+                  <span className="rounded-xl bg-orange-100 border border-orange-200 px-3 py-1 text-sm font-black text-[#FF4D00]">
                     {tableCount} Masa
                   </span>
                 </div>
                 <input
+                  id="table-range"
                   type="range"
-                  min={8}
-                  max={100}
-                  step={2}
+                  min="8"
+                  max="100"
+                  step="2"
                   value={tableCount}
                   onChange={(e) => setTableCount(Number(e.target.value))}
                   className="w-full h-2.5 bg-zinc-200 rounded-lg appearance-none cursor-pointer accent-[#FF4D00]"
                 />
-                <div className="flex justify-between text-[11px] text-zinc-400 mt-1">
+                <div className="flex justify-between text-[11px] font-medium text-zinc-400 mt-1.5">
                   <span>8 Masa</span>
                   <span>50 Masa</span>
                   <span>100 Masa</span>
                 </div>
               </div>
 
-              {/* Sürgü 2: Yıllık Menü / Fiyat Güncelleme Sayısı */}
+              {/* Slider 2: Güncelleme Sıklığı */}
               <div>
                 <div className="flex justify-between items-center mb-2">
-                  <label className="text-sm sm:text-base font-bold text-zinc-900">
-                    Yılda Kaç Kez Menü / Fiyat Değiştiriyorsunuz?
+                  <label htmlFor="frequency-range" className="text-sm font-bold text-zinc-800">
+                    Yılda Kaç Kez Menü / Fiyat Güncelliyorsunuz?
                   </label>
-                  <span className="rounded-xl bg-white border border-zinc-200 px-3.5 py-1 text-sm sm:text-base font-black text-[#FF4D00] shadow-2xs">
+                  <span className="rounded-xl bg-zinc-100 border border-zinc-200 px-3 py-1 text-sm font-black text-zinc-900">
                     {updateFrequency} Kez / Yıl
                   </span>
                 </div>
                 <input
+                  id="frequency-range"
                   type="range"
-                  min={1}
-                  max={12}
-                  step={1}
+                  min="1"
+                  max="12"
+                  step="1"
                   value={updateFrequency}
                   onChange={(e) => setUpdateFrequency(Number(e.target.value))}
                   className="w-full h-2.5 bg-zinc-200 rounded-lg appearance-none cursor-pointer accent-[#FF4D00]"
                 />
-                <div className="flex justify-between text-[11px] text-zinc-400 mt-1">
-                  <span>1 Kez (Mevsimlik)</span>
-                  <span>4 Kez (Dönemsel)</span>
+                <div className="flex justify-between text-[11px] font-medium text-zinc-400 mt-1.5">
+                  <span>1 Kez (Yıllık)</span>
+                  <span>4 Kez (Mevsimlik)</span>
                   <span>12 Kez (Aylık)</span>
                 </div>
               </div>
 
-              {/* Küçük Bilgi Notu */}
-              <div className="rounded-2xl border border-orange-100 bg-orange-50/50 p-4 text-xs text-zinc-600 leading-relaxed flex items-start gap-2.5">
-                <span className="text-base">💡</span>
-                <div>
-                  <span className="font-bold text-zinc-800">Biliyor muydunuz?</span>
-                  <p className="mt-0.5 text-zinc-600">
-                    Gıda girdi maliyetleri değiştikçe menülerinizi matbaaya göndermeden, panelinizden tek tıkla %5 veya %10 güncelleyebilir; tükenen ürünleri saniyeler içinde gizleyebilirsiniz.
-                  </p>
+              {/* Önemli Güvence Kutusu */}
+              <div className="rounded-2xl bg-zinc-50 border border-zinc-200 p-4 flex items-start gap-3">
+                <span className="text-xl">💡</span>
+                <div className="text-xs text-zinc-600 leading-relaxed">
+                  <strong className="text-zinc-900 font-bold block mb-0.5">Masa Başına Ek Maliyet: 0 ₺</strong>
+                  Masa sayınızı 10'dan 80'e çıkarsanız bile Menuland paket ücretiniz değişmez. Matbaaya binlerce lira ödemek yerine, panelinizden tek tıkla fiyatlarınızı saniyeler içinde güncelleyin.
                 </div>
               </div>
 
             </div>
 
-            {/* Sağ Taraf: Sonuç Kartı */}
-            <div className="lg:col-span-5">
-              <div className="rounded-2xl border border-zinc-200 bg-white p-6 sm:p-8 shadow-md flex flex-col justify-between space-y-6">
-                
-                <div>
-                  <span className="text-xs font-bold uppercase tracking-wider text-zinc-400">
-                    Tahmini Yıllık Tasarruf
+            {/* Sağ Taraf: Net Tasarruf ve Karşılaştırma Kartı */}
+            <div className="lg:col-span-5 rounded-3xl bg-zinc-900 p-6 sm:p-8 text-white shadow-xl relative overflow-hidden flex flex-col justify-between">
+              <div className="absolute top-0 right-0 h-40 w-40 bg-[#FF4D00]/20 rounded-full blur-2xl pointer-events-none" />
+
+              <div>
+                <span className="rounded-full bg-orange-500/20 border border-orange-500/30 px-3 py-1 text-[11px] font-bold text-[#FF4D00] inline-block mb-4">
+                  TAHMİNİ YILLIK NET KÂR
+                </span>
+
+                <div className="mt-1">
+                  <span className="text-3xl sm:text-5xl font-black tracking-tight text-white">
+                    ~{netSavings.toLocaleString("tr-TR")} ₺
                   </span>
-                  <motion.div
-                    key={estimatedPrintingSavings}
-                    initial={{ scale: 0.95, opacity: 0.8 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ duration: 0.3 }}
-                    className="mt-2 text-4xl sm:text-5xl font-black text-zinc-900 tracking-tight"
-                  >
-                    ~{estimatedPrintingSavings.toLocaleString('tr-TR')}{' '}
-                    <span className="text-2xl font-bold text-[#FF4D00]">₺ / yıl</span>
-                  </motion.div>
-                  <p className="mt-1 text-xs text-zinc-500">
-                    Sadece lamine kağıt menü ve matbaa masraflarından sağlanan net kazanç.
-                  </p>
+                  <span className="text-xs font-semibold text-zinc-400 block mt-1">
+                    Matbaa yerine Menuland ile işletmenizin cebinde kalan net tasarruf
+                  </span>
                 </div>
 
-                {/* Ek Göstergeler */}
-                <div className="space-y-3 pt-4 border-t border-zinc-100 text-xs">
-                  <div className="flex items-center justify-between">
-                    <span className="text-zinc-600 font-medium">Garson Menü Servis Yükü:</span>
-                    <span className="font-bold text-emerald-600">-%{timeSavingsPercent} Tasarruf</span>
+                {/* Karşılaştırma Tablosu */}
+                <div className="mt-6 pt-5 border-t border-zinc-800 space-y-3 text-xs">
+                  <div className="flex justify-between items-center">
+                    <span className="text-zinc-400">Klasik Matbaa Baskı Masrafı:</span>
+                    <span className="font-bold text-red-400 line-through">
+                      ~{annualPaperCost.toLocaleString("tr-TR")} ₺ / yıl
+                    </span>
                   </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-zinc-600 font-medium">Mevzuat Ceza Riski:</span>
-                    <span className="font-bold text-emerald-600">%0 (Tam Uyum)</span>
+
+                  <div className="flex justify-between items-center">
+                    <span className="text-zinc-400">Menuland Sabit Yıllık Ücreti:</span>
+                    <span className="font-bold text-emerald-400">
+                      {menulandAnnualCost.toLocaleString("tr-TR")} ₺ / yıl ({menulandMonthlyCost} ₺/ay)
+                    </span>
                   </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-zinc-600 font-medium">Yeni Gel Al Siparişleri:</span>
-                    <span className="font-bold text-[#FF4D00]">+%20 Ekstra Gelir</span>
+
+                  <div className="flex justify-between items-center pt-2 border-t border-zinc-800">
+                    <span className="text-zinc-300 font-semibold">Masa Başına Ek Fatura:</span>
+                    <span className="font-black text-[#FF4D00]">0 ₺ (SINIRSIZ)</span>
+                  </div>
+
+                  <div className="flex justify-between items-center">
+                    <span className="text-zinc-300 font-semibold">Mevzuat Uyumu:</span>
+                    <span className="font-bold text-emerald-400">%100 (Sıfır Ceza Riski)</span>
                   </div>
                 </div>
-
-                {/* Aksiyon Butonu */}
-                <div className="pt-2">
-                  <Link
-                    href="https://isletme.menuland.net/register"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-zinc-900 px-6 py-3.5 text-sm font-bold text-white shadow-xs hover:bg-[#FF4D00] transition-colors"
-                  >
-                    <span>Hemen Ücretsiz Başlayın</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
-                      <path fillRule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z" clipRule="evenodd" />
-                    </svg>
-                  </Link>
-                  <p className="mt-2 text-center text-[11px] text-zinc-400">
-                    Kredi kartı gerekmez • Aynı gün kurulum
-                  </p>
-                </div>
-
               </div>
+
+              {/* Aksiyon Butonu */}
+              <div className="mt-8 pt-4">
+                <Link
+                  href="#pricing"
+                  className="w-full flex items-center justify-center gap-2 rounded-xl bg-[#FF4D00] py-3.5 px-4 text-xs sm:text-sm font-bold text-white shadow-lg shadow-orange-500/30 hover:bg-orange-600 transition-all text-center"
+                >
+                  <span>Sabit Paketleri İncele</span>
+                  <span>↓</span>
+                </Link>
+                <p className="text-center text-[10px] text-zinc-400 mt-2">
+                  Taahhüt yok • Kredi kartı gerekmez • Anında kurulum
+                </p>
+              </div>
+
             </div>
 
           </div>

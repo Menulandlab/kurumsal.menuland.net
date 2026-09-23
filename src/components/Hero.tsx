@@ -1,358 +1,348 @@
 "use client";
 
-import React from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import { motion } from 'framer-motion';
+import React from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { motion } from "framer-motion";
 
 export default function Hero() {
   return (
-    <section className="relative pt-28 pb-20 lg:pt-36 lg:pb-32 overflow-hidden bg-white">
-      {/* İnce ve zarif arka plan ızgara deseni */}
-      <div className="absolute inset-0 -z-10 h-full w-full bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-70" />
+    <section className="relative pt-12 pb-20 lg:pt-16 lg:pb-32 overflow-hidden bg-gradient-to-b from-orange-50/40 via-white to-white">
+      {/* İnce Grid & Ambient Arka Plan Işığı */}
+      <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#00000008_1px,transparent_1px),linear-gradient(to_bottom,#00000008_1px,transparent_1px)] bg-[size:36px_36px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 h-[380px] w-[500px] sm:w-[700px] rounded-full bg-gradient-to-tr from-orange-300/25 to-amber-200/20 blur-3xl pointer-events-none" />
 
-      {/* Arka planda hafif Menuland turuncusu ambient ışıltı */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 w-[600px] h-[350px] bg-gradient-to-tr from-orange-200/40 via-[#FF4D00]/10 to-transparent blur-3xl rounded-full pointer-events-none" />
-
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Üst Bilgi Rozeti */}
-        <div className="flex justify-center mb-6">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+        
+        {/* Üst Başlık & Girişim Rozetleri */}
+        <div className="text-center max-w-3xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 rounded-full border border-orange-200 bg-orange-50/80 px-4 py-1.5 text-xs font-semibold text-[#FF4D00] shadow-xs backdrop-blur-xs"
+            className="inline-flex items-center gap-2 rounded-full border border-orange-200/90 bg-orange-50/90 px-3.5 py-1.5 text-xs font-semibold text-[#FF4D00] shadow-sm mb-6"
           >
             <span className="flex h-2 w-2 rounded-full bg-[#FF4D00] animate-pulse" />
-            <span>Türkiye'nin Yeni Nesil Restoran &amp; Kafe Ekosistemi</span>
-            <span className="hidden sm:inline text-orange-400">•</span>
-            <span className="hidden sm:inline text-zinc-600 font-medium">Aynı Gün Kurulum</span>
+            <span>Türkiye'nin Yeni Nesil Mobil Gastronomi &amp; Restoran Ekosistemi</span>
           </motion.div>
-        </div>
 
-        {/* Ana Başlık ve Açıklama */}
-        <div className="text-center max-w-4xl mx-auto">
           <motion.h1
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-zinc-950 leading-[1.1]"
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-zinc-900 leading-[1.08]"
           >
-            Menünüzü dijitale taşıyın,{' '}
-            <span className="relative whitespace-nowrap text-[#FF4D00]">
-              <span className="relative">masada ve pakette</span>
-            </span>{' '}
-            satışlarınızı artırın.
+            Şehrin tüm menüleri, <br className="hidden sm:inline" />
+            <span className="text-[#FF4D00]">lezzetleri ve indirimleri</span> <br className="hidden sm:inline" />
+            tek uygulamada.
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-6 text-base sm:text-xl text-zinc-600 max-w-2xl mx-auto leading-relaxed font-normal"
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="mt-6 text-base sm:text-xl text-zinc-600 font-normal leading-relaxed max-w-2xl mx-auto"
           >
-            Masa QR menüden Gel Al sipariş yönetimine, Ticaret Bakanlığı 14 alerjen mevzuatından PuanLand sadakat sistemine kadar restoranınızın tüm dijital operasyonu tek çatı altında.
+            Restorana gitmeden önce menüleri ve güncel fiyatları keşfedin; masada kameranızla temassız menüyü açıp 14 alerjeni filtreleyin, siparişlerinizle <strong>PuanLand</strong> kazanın.
           </motion.p>
 
-          {/* CTA Butonları */}
+          {/* İndirme Butonları & Hızlı Aksiyon */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center gap-3.5"
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="mt-8 flex flex-wrap items-center justify-center gap-3.5"
           >
+            {/* App Store */}
             <Link
-              href="https://isletme.menuland.net/register"
+              href="https://apps.apple.com/tr/app/menuland/id6618147785?l=tr"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-[#FF4D00] px-8 py-3.5 text-sm sm:text-base font-bold text-white shadow-lg shadow-orange-500/20 hover:bg-[#e04400] active:scale-98 transition-all"
+              className="inline-flex items-center transition-transform hover:scale-105"
             >
-              <span>İşletmenizi Hemen Ekleyin</span>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
-                <path fillRule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z" clipRule="evenodd" />
-              </svg>
+              <Image
+                src="/img/app-store-badge.svg"
+                alt="App Store'dan İndirin"
+                width={155}
+                height={52}
+                className="h-12 w-auto object-contain"
+                priority
+              />
             </Link>
 
+            {/* Google Play */}
+            <Link
+              href="https://play.google.com/store/apps/details?id=com.mycompany.menuland&pli=1"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center transition-transform hover:scale-105"
+            >
+              <Image
+                src="/img/google-play-badge.svg"
+                alt="Google Play'den İndirin"
+                width={155}
+                height={52}
+                className="h-12 w-auto object-contain"
+                priority
+              />
+            </Link>
+
+            {/* Restoranlar İçin Buton */}
             <Link
               href="#calculator"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl border border-zinc-200 bg-white px-7 py-3.5 text-sm sm:text-base font-semibold text-zinc-800 shadow-2xs hover:bg-zinc-50 hover:border-zinc-300 active:scale-98 transition-all"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-zinc-300 bg-white px-5 py-3 text-xs sm:text-sm font-bold text-zinc-800 shadow-sm hover:border-[#FF4D00] hover:text-[#FF4D00] transition-all"
             >
-              <span>Tasarruf Hesapla</span>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 text-zinc-400">
-                <path fillRule="evenodd" d="M10 3a.75.75 0 0 1 .75.75v10.638l3.96-4.158a.75.75 0 1 1 1.08 1.04l-5.25 5.5a.75.75 0 0 1-1.08 0l-5.25-5.5a.75.75 0 1 1 1.08-1.04l3.96 4.158V3.75A.75.75 0 0 1 10 3Z" clipRule="evenodd" />
-              </svg>
+              <span>Restoran Tasarrufu Hesapla</span>
+              <span>↓</span>
             </Link>
           </motion.div>
 
-          {/* Güven ve Mevzuat Vurguları */}
+          {/* Sosyal Kanıt & Mağaza Metrikleri */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="mt-8 flex flex-wrap items-center justify-center gap-6 text-xs font-medium text-zinc-500"
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="mt-6 flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-xs font-medium text-zinc-500"
           >
             <div className="flex items-center gap-1.5">
-              <svg className="w-4 h-4 text-emerald-600" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.052-.143Z" clipRule="evenodd" />
-              </svg>
-              <span>%0 Sipariş Komisyonu</span>
+              <span className="text-amber-400 font-bold text-sm">★★★★★</span>
+              <span className="font-semibold text-zinc-800">4.9 / 5.0</span>
+              <span>(App Store &amp; Play Store)</span>
             </div>
-            <div className="flex items-center gap-1.5">
-              <svg className="w-4 h-4 text-emerald-600" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.052-.143Z" clipRule="evenodd" />
-              </svg>
-              <span>Resmi Fiyat Etiketi Yönetmeliğine %100 Uyumlu</span>
+            <div className="hidden sm:inline-block h-3 w-px bg-zinc-300" />
+            <div className="flex items-center gap-1">
+              <span className="text-emerald-600 font-bold">✓</span>
+              <span>50.000+ Mobil İndirme</span>
             </div>
-            <div className="flex items-center gap-1.5">
-              <svg className="w-4 h-4 text-emerald-600" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.052-.143Z" clipRule="evenodd" />
-              </svg>
-              <span>Kredi Kartsız Anında Başlangıç</span>
+            <div className="hidden sm:inline-block h-3 w-px bg-zinc-300" />
+            <div className="flex items-center gap-1">
+              <span className="text-zinc-800 font-bold">150+</span>
+              <span>Anlaşmalı Restoran &amp; Kafe</span>
             </div>
           </motion.div>
         </div>
 
-        {/* Canlı Restoran Ekosistem Vitrini (Desktop Panel + Mobile QR Menu) */}
+        {/* Mobil Uygulama Çift Telefon Vitrini (Dual iPhone Showcase) */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.45 }}
-          className="relative mt-16 sm:mt-20 max-w-6xl mx-auto"
+          transition={{ duration: 0.7, delay: 0.35 }}
+          className="mt-14 sm:mt-20 relative max-w-4xl mx-auto"
         >
-          {/* Yüzen Bildirim 1: Garson Çağrısı (Sol Üst) */}
-          <motion.div
-            animate={{ y: [-4, 4, -4] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            className="hidden sm:flex absolute -top-6 -left-4 sm:left-4 z-30 items-center gap-2.5 rounded-2xl border border-zinc-200/80 bg-white/95 px-4 py-2.5 shadow-xl backdrop-blur-md"
-          >
-            <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-orange-100 text-[#FF4D00]">
-              🔔
-            </div>
-            <div>
-              <div className="flex items-center gap-1.5 text-xs font-bold text-zinc-900">
-                <span>Masa 4: Garson Çağrısı</span>
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-ping" />
+          {/* Çevrede Süzülen İnteraktif Mobil Etiketler */}
+          <div className="hidden md:block absolute -left-12 top-12 z-20">
+            <motion.div
+              animate={{ y: [0, -8, 0] }}
+              transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut" }}
+              className="flex items-center gap-2.5 rounded-2xl border border-zinc-200/90 bg-white/95 p-3.5 shadow-xl backdrop-blur-md"
+            >
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-orange-100 text-[#FF4D00] text-lg">
+                📍
               </div>
-              <span className="text-[11px] text-zinc-500">Mutfak &amp; Servis ekranına iletildi</span>
-            </div>
-          </motion.div>
+              <div>
+                <p className="text-xs font-bold text-zinc-900 leading-tight">Yakınımdaki Mekanlar</p>
+                <p className="text-[11px] text-zinc-500">Canlı harita &amp; güncel menüler</p>
+              </div>
+            </motion.div>
+          </div>
 
-          {/* Yüzen Bildirim 2: Gel Al Siparişi (Sağ Üst) */}
-          <motion.div
-            animate={{ y: [4, -4, 4] }}
-            transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-            className="hidden sm:flex absolute -top-8 -right-4 sm:right-6 z-30 items-center gap-2.5 rounded-2xl border border-zinc-200/80 bg-white/95 px-4 py-2.5 shadow-xl backdrop-blur-md"
-          >
-            <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-emerald-100 text-emerald-700 font-bold text-xs">
-              ₺
-            </div>
-            <div>
-              <div className="flex items-center gap-1.5 text-xs font-bold text-zinc-900">
-                <span>Yeni Gel Al: 575.00 ₺</span>
-                <span className="rounded bg-emerald-100 px-1.5 py-0.2 text-[9px] font-bold text-emerald-800">Onaylandı</span>
+          <div className="hidden md:block absolute -right-10 top-20 z-20">
+            <motion.div
+              animate={{ y: [0, 8, 0] }}
+              transition={{ repeat: Infinity, duration: 5, ease: "easeInOut", delay: 0.5 }}
+              className="flex items-center gap-2.5 rounded-2xl border border-zinc-200/90 bg-white/95 p-3.5 shadow-xl backdrop-blur-md"
+            >
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-100 text-emerald-600 text-lg">
+                🌾
               </div>
-              <span className="text-[11px] text-zinc-500">Hazırlanma süresi: ~15 dk</span>
-            </div>
-          </motion.div>
+              <div>
+                <p className="text-xs font-bold text-zinc-900 leading-tight">14 Alerjen &amp; Kalori</p>
+                <p className="text-[11px] text-emerald-600 font-semibold">%100 Mevzuat Uyumlu</p>
+              </div>
+            </motion.div>
+          </div>
 
-          {/* Yüzen Bildirim 3: 14 Alerjen Uyarısı (Sol Alt) */}
-          <motion.div
-            animate={{ y: [-3, 3, -3] }}
-            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-            className="hidden lg:flex absolute bottom-8 -left-8 z-30 items-center gap-2 rounded-2xl border border-emerald-200 bg-white/95 px-3.5 py-2 shadow-xl backdrop-blur-md"
-          >
-            <span className="text-emerald-600 text-sm font-bold">✓</span>
-            <span className="text-xs font-semibold text-zinc-800">
-              Ticaret Bakanlığı 14 Alerjen &amp; Kalori Uyumlu
-            </span>
-          </motion.div>
+          <div className="hidden md:block absolute -left-6 bottom-20 z-20">
+            <motion.div
+              animate={{ y: [0, 7, 0] }}
+              transition={{ repeat: Infinity, duration: 4.2, ease: "easeInOut", delay: 1 }}
+              className="flex items-center gap-2.5 rounded-2xl border border-zinc-200/90 bg-white/95 p-3.5 shadow-xl backdrop-blur-md"
+            >
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-100 text-amber-600 text-lg">
+                🎁
+              </div>
+              <div>
+                <p className="text-xs font-bold text-zinc-900 leading-tight">PuanLand Cüzdan</p>
+                <p className="text-[11px] text-zinc-500">+150 Puan kupona dönüştü</p>
+              </div>
+            </motion.div>
+          </div>
 
-          {/* Ana macOS Tarayıcı Çerçevesi (İşletme Yönetim Paneli) */}
-          <div className="rounded-2xl border border-zinc-300/80 bg-white shadow-2xl overflow-hidden ring-1 ring-zinc-900/5">
-            {/* Tarayıcı Üst Çubuğu */}
-            <div className="flex items-center justify-between border-b border-zinc-200 bg-zinc-100/90 px-4 py-3">
-              <div className="flex items-center gap-2">
-                <div className="h-3 w-3 rounded-full bg-red-400" />
-                <div className="h-3 w-3 rounded-full bg-amber-400" />
-                <div className="h-3 w-3 rounded-full bg-emerald-400" />
+          <div className="hidden md:block absolute -right-8 bottom-16 z-20">
+            <motion.div
+              animate={{ y: [0, -7, 0] }}
+              transition={{ repeat: Infinity, duration: 4.8, ease: "easeInOut", delay: 1.2 }}
+              className="flex items-center gap-2.5 rounded-2xl border border-zinc-200/90 bg-white/95 p-3.5 shadow-xl backdrop-blur-md"
+            >
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-rose-100 text-rose-600 text-lg">
+                🎡
               </div>
-              <div className="flex items-center gap-1.5 rounded-lg border border-zinc-200 bg-white px-3 py-1 text-xs font-mono text-zinc-600">
-                <span className="text-emerald-600 font-bold">🔒</span>
-                <span>isletme.menuland.net</span>
+              <div>
+                <p className="text-xs font-bold text-zinc-900 leading-tight">Ne Yesem? Çarkı</p>
+                <p className="text-[11px] text-zinc-500">Bugünün Önerisi: Trüflü Burger</p>
               </div>
-              <div className="w-12 text-right">
-                <span className="text-[10px] font-semibold text-emerald-600 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-md">Canlı Panel</span>
-              </div>
-            </div>
+            </motion.div>
+          </div>
 
-            {/* Panel İçeriği Mockup */}
-            <div className="bg-zinc-50 p-4 sm:p-8">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                
-                {/* Sol Taraf: Panel İstatistikleri ve Sipariş Kuyruğu (8 Kolon) */}
-                <div className="lg:col-span-8 space-y-4 sm:space-y-6">
-                  {/* Günlük Özet Kartları */}
-                  <div className="grid grid-cols-3 gap-3 sm:gap-4">
-                    <div className="rounded-xl border border-zinc-200 bg-white p-3.5 sm:p-4 shadow-2xs">
-                      <span className="text-[10px] sm:text-xs font-semibold uppercase text-zinc-400 tracking-wider">Bugün Toplam Ciro</span>
-                      <p className="mt-1 text-lg sm:text-2xl font-extrabold text-zinc-900">14.850 ₺</p>
-                      <span className="text-[10px] text-emerald-600 font-medium">+%18 dünden fazla</span>
+          {/* Telefon Vitrin Sahnesi (Dual Phone Display) */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-8 lg:gap-12">
+            
+            {/* 1. Telefon (Sol/Arka - Masada QR Menü & Alerjen) */}
+            <div className="w-[280px] sm:w-[310px] rounded-[44px] p-3 bg-zinc-900 shadow-2xl border-4 border-zinc-800/80 sm:rotate-[-4deg] sm:translate-y-6 hover:rotate-0 transition-transform duration-500">
+              {/* Dynamic Island */}
+              <div className="relative rounded-[36px] overflow-hidden bg-zinc-950 aspect-[9/19.5] border border-zinc-800">
+                <div className="absolute top-2.5 left-1/2 -translate-x-1/2 h-5 w-24 rounded-full bg-black z-30 flex items-center justify-center">
+                  <div className="h-2.5 w-2.5 rounded-full bg-zinc-800 mr-2" />
+                  <div className="h-2 w-2 rounded-full bg-blue-950" />
+                </div>
+
+                {/* Mobil QR Menü Ekranı */}
+                <div className="relative h-full w-full bg-zinc-50 p-3 pt-9 flex flex-col justify-between">
+                  <div>
+                    {/* Üst Mini Bar */}
+                    <div className="flex items-center justify-between border-b border-zinc-200 pb-2 mb-2">
+                      <div className="flex items-center gap-1.5">
+                        <span className="h-2 w-2 rounded-full bg-emerald-500 animate-ping" />
+                        <span className="text-[11px] font-bold text-zinc-800">Menuland Cafe</span>
+                      </div>
+                      <span className="rounded-full bg-orange-100 px-2 py-0.5 text-[9px] font-bold text-[#FF4D00]">
+                        Masa 4
+                      </span>
                     </div>
-                    <div className="rounded-xl border border-zinc-200 bg-white p-3.5 sm:p-4 shadow-2xs">
-                      <span className="text-[10px] sm:text-xs font-semibold uppercase text-zinc-400 tracking-wider">Aktif Masa</span>
-                      <p className="mt-1 text-lg sm:text-2xl font-extrabold text-zinc-900">18 / 24</p>
-                      <span className="text-[10px] text-orange-600 font-medium">Doluluk %75</span>
+
+                    {/* Alerjen Filtre Rozetleri */}
+                    <div className="flex gap-1.5 mb-3 overflow-x-auto no-scrollbar py-0.5">
+                      <span className="rounded-lg bg-zinc-900 px-2 py-1 text-[9px] font-bold text-white shrink-0">
+                        Tümü
+                      </span>
+                      <span className="rounded-lg bg-emerald-50 border border-emerald-200 px-2 py-1 text-[9px] font-bold text-emerald-700 shrink-0">
+                        🌱 Vegan
+                      </span>
+                      <span className="rounded-lg bg-amber-50 border border-amber-200 px-2 py-1 text-[9px] font-bold text-amber-700 shrink-0">
+                        🌾 Glutensiz
+                      </span>
                     </div>
-                    <div className="rounded-xl border border-zinc-200 bg-white p-3.5 sm:p-4 shadow-2xs">
-                      <span className="text-[10px] sm:text-xs font-semibold uppercase text-zinc-400 tracking-wider">Gel Al Siparişi</span>
-                      <p className="mt-1 text-lg sm:text-2xl font-extrabold text-zinc-900">32 Adet</p>
-                      <span className="text-[10px] text-emerald-600 font-medium">0 İptal</span>
+
+                    {/* Menü Kartı 1 */}
+                    <div className="rounded-2xl border border-zinc-200 bg-white p-2.5 shadow-sm mb-2">
+                      <div className="flex justify-between items-start">
+                        <div>
+                          <h4 className="text-xs font-bold text-zinc-900">Izgara Somon Kase</h4>
+                          <p className="text-[10px] text-zinc-500 mt-0.5">520 kcal • 350g • Kinoa</p>
+                        </div>
+                        <span className="text-xs font-black text-[#FF4D00]">420 ₺</span>
+                      </div>
+                      <div className="mt-2 flex gap-1">
+                        <span className="rounded bg-amber-100 px-1.5 py-0.5 text-[8px] font-bold text-amber-800">
+                          Glutensiz
+                        </span>
+                        <span className="rounded bg-zinc-100 px-1.5 py-0.5 text-[8px] font-semibold text-zinc-600">
+                          Balık Alerjeni
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Menü Kartı 2 */}
+                    <div className="rounded-2xl border border-zinc-200 bg-white p-2.5 shadow-sm">
+                      <div className="flex justify-between items-start">
+                        <div>
+                          <h4 className="text-xs font-bold text-zinc-900">Avokado Salatası</h4>
+                          <p className="text-[10px] text-zinc-500 mt-0.5">340 kcal • 260g • Chia</p>
+                        </div>
+                        <span className="text-xs font-black text-[#FF4D00]">290 ₺</span>
+                      </div>
+                      <div className="mt-2 flex gap-1">
+                        <span className="rounded bg-emerald-100 px-1.5 py-0.5 text-[8px] font-bold text-emerald-800">
+                          Vegan
+                        </span>
+                      </div>
                     </div>
                   </div>
 
-                  {/* Canlı Sipariş Listesi */}
-                  <div className="rounded-xl border border-zinc-200 bg-white p-4 shadow-2xs">
-                    <div className="flex items-center justify-between mb-3 border-b border-zinc-100 pb-2.5">
-                      <div className="flex items-center gap-2">
-                        <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-                        <h4 className="text-xs sm:text-sm font-bold text-zinc-900">Canlı Mutfak &amp; Masa Siparişleri</h4>
-                      </div>
-                      <span className="text-[11px] text-zinc-500 font-medium">Anlık Sesli İkaz Aktif</span>
-                    </div>
+                  {/* Garson Çağır Butonu */}
+                  <div className="mt-3 pt-2 border-t border-zinc-200 flex gap-1.5">
+                    <button className="flex-1 rounded-xl bg-zinc-100 border border-zinc-300 py-2 text-[10px] font-bold text-zinc-800">
+                      🛎️ Garson Çağır
+                    </button>
+                    <button className="flex-1 rounded-xl bg-[#FF4D00] py-2 text-[10px] font-bold text-white shadow-sm">
+                      🧾 Hesap İste
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <p className="text-center text-[11px] font-semibold text-zinc-400 mt-2">Masada Temassız QR Menü</p>
+            </div>
 
-                    <div className="space-y-2">
-                      <div className="flex items-center justify-between rounded-lg border border-orange-100 bg-orange-50/40 p-2.5 text-xs">
-                        <div className="flex items-center gap-2.5">
-                          <span className="rounded-md bg-[#FF4D00] px-2 py-0.5 text-[10px] font-bold text-white">Masa 4</span>
-                          <span className="font-semibold text-zinc-800">2x Serpme Kahvaltı, 2x Portakal Suyu</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <span className="text-[11px] font-bold text-zinc-900">550.00 ₺</span>
-                          <span className="rounded bg-amber-100 px-2 py-0.5 text-[10px] font-bold text-amber-800">Hazırlanıyor</span>
-                        </div>
-                      </div>
-
-                      <div className="flex items-center justify-between rounded-lg border border-zinc-100 bg-zinc-50/70 p-2.5 text-xs">
-                        <div className="flex items-center gap-2.5">
-                          <span className="rounded-md bg-zinc-900 px-2 py-0.5 text-[10px] font-bold text-white">Gel Al #108</span>
-                          <span className="font-semibold text-zinc-800">1x Izgara Somon Bowl, 1x San Sebastian</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <span className="text-[11px] font-bold text-zinc-900">615.00 ₺</span>
-                          <span className="rounded bg-emerald-100 px-2 py-0.5 text-[10px] font-bold text-emerald-800">Müşteri Yolda</span>
-                        </div>
-                      </div>
-
-                      <div className="flex items-center justify-between rounded-lg border border-zinc-100 bg-zinc-50/70 p-2.5 text-xs">
-                        <div className="flex items-center gap-2.5">
-                          <span className="rounded-md bg-[#FF4D00] px-2 py-0.5 text-[10px] font-bold text-white">Masa 9</span>
-                          <span className="font-semibold text-zinc-800">1x Trüflü Burger, 1x Patates</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <span className="text-[11px] font-bold text-zinc-900">465.00 ₺</span>
-                          <span className="rounded bg-zinc-200 px-2 py-0.5 text-[10px] font-bold text-zinc-700">Teslim Edildi</span>
-                        </div>
-                      </div>
-                    </div>
+            {/* 2. Telefon (Önde/Merkezde - Menuland Keşfet & Harita) */}
+            <div className="w-[300px] sm:w-[330px] rounded-[48px] p-3 bg-zinc-950 shadow-2xl border-4 border-zinc-700/80 sm:rotate-[2deg] hover:rotate-0 transition-transform duration-500 z-10">
+              <div className="relative rounded-[38px] overflow-hidden bg-white aspect-[9/19.5]">
+                {/* Dynamic Island */}
+                <div className="absolute top-2.5 left-1/2 -translate-x-1/2 h-5 w-26 rounded-full bg-black z-30 flex items-center justify-between px-3">
+                  <div className="h-2 w-2 rounded-full bg-zinc-800" />
+                  <div className="flex gap-1">
+                    <div className="h-1.5 w-1.5 rounded-full bg-[#FF4D00]" />
+                    <div className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
                   </div>
                 </div>
 
-                {/* Sağ Taraf: Masada Açılan Mobil QR Menü Önizlemesi (4 Kolon) */}
-                <div className="lg:col-span-4 flex flex-col justify-center items-center">
-                  <div className="relative w-full max-w-[260px] rounded-[32px] border-[6px] border-zinc-800 bg-zinc-900 p-2 shadow-xl ring-1 ring-zinc-900/10">
-                    {/* Telefon Çentiği */}
-                    <div className="absolute top-3 left-1/2 -translate-x-1/2 h-3.5 w-16 rounded-full bg-zinc-950 z-20 flex items-center justify-center">
-                      <div className="h-1.5 w-1.5 rounded-full bg-zinc-800 mr-1.5" />
-                      <div className="h-1 w-5 rounded-full bg-zinc-800" />
-                    </div>
-
-                    {/* Telefon Ekranı */}
-                    <div className="relative aspect-[9/18] w-full overflow-hidden rounded-[22px] bg-white text-[10px] p-3 flex flex-col justify-between">
-                      <div>
-                        {/* Üst Durum */}
-                        <div className="flex justify-between items-center text-[9px] text-zinc-500 pt-2 mb-2">
-                          <span>01:15</span>
-                          <span>5G • %81</span>
-                        </div>
-
-                        {/* Restoran & Masa Başlığı */}
-                        <div className="flex items-center justify-between border-b border-zinc-100 pb-2">
-                          <div>
-                            <p className="font-bold text-xs text-zinc-900">Menuland Cafe</p>
-                            <span className="text-[9px] text-emerald-600 font-semibold">✓ QR Menü Doğrulandı</span>
-                          </div>
-                          <span className="rounded-full bg-emerald-50 border border-emerald-200 px-2 py-0.5 text-[9px] font-bold text-emerald-700">Masa 4</span>
-                        </div>
-
-                        {/* Alerjen Filtreleri */}
-                        <div className="flex gap-1 my-2">
-                          <span className="rounded-full bg-zinc-900 text-white px-2 py-0.5 text-[8px] font-bold">Tümü</span>
-                          <span className="rounded-full bg-orange-50 text-orange-800 border border-orange-200 px-1.5 py-0.5 text-[8px] font-semibold">🌾 Glutensiz</span>
-                          <span className="rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 px-1.5 py-0.5 text-[8px] font-semibold">🌱 Vegan</span>
-                        </div>
-
-                        {/* Örnek Ürün Kartı */}
-                        <div className="rounded-lg border border-zinc-100 bg-zinc-50/70 p-2 space-y-1">
-                          <div className="flex justify-between items-start">
-                            <span className="font-bold text-zinc-900">Kahvaltı Tabağı</span>
-                            <span className="font-extrabold text-zinc-900">200 ₺</span>
-                          </div>
-                          <p className="text-[8px] text-zinc-500 leading-tight">690 kcal • 420g • Doğal zeytin, peynir, bal ve köy yumurtası</p>
-                          <div className="flex gap-1 pt-1">
-                            <span className="bg-red-100 text-red-700 px-1 rounded text-[7px] font-bold">Gluten</span>
-                            <span className="bg-red-100 text-red-700 px-1 rounded text-[7px] font-bold">Laktoz</span>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Telefon Alt Garson Çağır Butonu */}
-                      <div className="border-t border-zinc-100 pt-2 flex gap-1">
-                        <div className="flex-1 rounded-lg border border-zinc-300 py-1.5 text-center font-bold text-[9px] text-zinc-800">
-                          🛎️ Garson Çağır
-                        </div>
-                        <div className="flex-1 rounded-lg bg-[#FF4D00] py-1.5 text-center font-bold text-[9px] text-white">
-                          🧾 Hesap İste
-                        </div>
-                      </div>
-                    </div>
+                {/* Mobil Görsel veya UI */}
+                <div className="relative h-full w-full">
+                  <Image
+                    src="/img/menuland-home.jpg"
+                    alt="Menuland Mobil Uygulama Ana Sayfa"
+                    fill
+                    className="object-cover"
+                    priority
+                  />
+                  {/* Ekran Üzeri Parlama & Gradyan */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+                  <div className="absolute bottom-4 left-3 right-3 rounded-2xl bg-white/95 backdrop-blur-md p-3 border border-white/60 shadow-lg text-center">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#FF4D00]">Şehrin Lezzet Rehberi</span>
+                    <p className="text-xs font-extrabold text-zinc-900 mt-0.5">Yüzlerce Menü Parmaklarının Ucunda</p>
                   </div>
-                  <span className="mt-3 text-[11px] font-medium text-zinc-400">Masada müşterinin gördüğü temassız menü</span>
                 </div>
-
               </div>
+              <p className="text-center text-[11px] font-semibold text-zinc-300 mt-2">Menuland iOS &amp; Android Keşfet</p>
             </div>
+
           </div>
         </motion.div>
 
-        {/* Kurumsal Referanslar / Destekleyenler Bandı */}
-        <div className="mt-16 sm:mt-24 pt-10 border-t border-zinc-100">
-          <p className="text-center text-xs font-semibold uppercase tracking-widest text-zinc-400 mb-6">
-            GÜVENİLEN EKOSİSTEM &amp; İŞ BİRLİKLERİ
+        {/* Destekleyenler & Güven Rozetleri */}
+        <div className="mt-16 sm:mt-24 pt-8 border-t border-zinc-200/80">
+          <p className="text-center text-xs font-bold uppercase tracking-widest text-zinc-400 mb-6">
+            GÜVENİLEN GİRİŞİM EKOSİSTEMİ &amp; DESTEKÇİLER
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-14 opacity-75 grayscale hover:grayscale-0 transition-all duration-300">
-            <div className="flex items-center gap-2">
-              <Image
-                src="/img/itucekirdek-menuland.png"
-                alt="İTÜ Çekirdek Girişimi"
-                width={140}
-                height={40}
-                className="h-9 w-auto object-contain"
-              />
-            </div>
-            <div className="flex items-center gap-2">
-              <Image
-                src="/img/orduticaretodasi.png"
-                alt="Ordu Ticaret ve Sanayi Odası"
-                width={160}
-                height={40}
-                className="h-9 w-auto object-contain"
-              />
-            </div>
-            <div className="flex items-center gap-2 text-zinc-700 font-bold text-sm tracking-tight">
+          <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-16 opacity-75 grayscale hover:grayscale-0 transition-all duration-300">
+            <Image
+              src="/img/itucekirdek-menuland.png"
+              alt="İTÜ Çekirdek Girişimi"
+              width={140}
+              height={40}
+              className="h-9 w-auto object-contain"
+            />
+            <Image
+              src="/img/orduticaretodasi.png"
+              alt="Ordu Ticaret ve Sanayi Odası"
+              width={160}
+              height={40}
+              className="h-9 w-auto object-contain"
+            />
+            <div className="flex items-center gap-2 text-zinc-800 font-bold text-xs sm:text-sm">
               <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-zinc-900 text-white text-xs font-black">
                 M
               </span>
-              <span>150+ Anlaşmalı İşletme</span>
+              <span>150+ Aktif İşletme Menüsü</span>
             </div>
           </div>
         </div>
