@@ -64,10 +64,28 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const pixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID || "1971172710431675";
+  const gaId = process.env.NEXT_PUBLIC_GA_ID || "G-DVXKCWSF0W";
 
   return (
     <html lang="tr">
       <body className={`${poppins.variable} font-poppins bg-white text-gray-800`}>
+        {/* Google Analytics (gtag.js) */}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', '${gaId}', {
+              page_path: window.location.pathname,
+            });
+          `}
+        </Script>
+
         {/* Google AdSense */}
         <Script
           async
