@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { ArrowDownIcon, LightbulbIcon } from "./Icons";
 
 export default function RoiCalculator() {
   const [tableCount, setTableCount] = useState<number>(25);
@@ -143,7 +144,9 @@ export default function RoiCalculator() {
 
               {/* Önemli Güvence Kutusu */}
               <div className="rounded-2xl bg-zinc-50 border border-zinc-200 p-4 flex items-start gap-3">
-                <span className="text-xl">💡</span>
+                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-orange-100 text-[#FF4D00]">
+                  <LightbulbIcon className="w-4 h-4" />
+                </div>
                 <div className="text-xs text-zinc-600 leading-relaxed">
                   <strong className="text-zinc-900 font-bold block mb-0.5">Masa Başına Ek Maliyet: 0 ₺</strong>
                   Masa sayınızı 10'dan 80'e çıkarsanız bile Menuland paket ücretiniz değişmez. Matbaaya binlerce lira ödemek yerine, panelinizden tek tıkla fiyatlarınızı saniyeler içinde güncelleyin.
@@ -205,7 +208,7 @@ export default function RoiCalculator() {
                   className="w-full flex items-center justify-center gap-2 rounded-xl bg-[#FF4D00] py-3.5 px-4 text-xs sm:text-sm font-bold text-white shadow-lg shadow-orange-500/30 hover:bg-orange-600 transition-all text-center"
                 >
                   <span>Sabit Paketleri İncele</span>
-                  <span>↓</span>
+                  <ArrowDownIcon className="w-3.5 h-3.5" />
                 </Link>
                 <p className="text-center text-[10px] text-zinc-400 mt-2">
                   Taahhüt yok • Kredi kartı gerekmez • Anında kurulum

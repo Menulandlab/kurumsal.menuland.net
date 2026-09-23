@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import { StarIcon, CheckIcon } from './Icons';
 
 const testimonialsData = [
   {
@@ -70,11 +71,16 @@ export default function Testimonials() {
               <div>
                 {/* 5 Yıldız ve Doğrulandı Rozeti */}
                 <div className="flex items-center justify-between mb-4">
-                  <div className="flex gap-1 text-amber-400 text-sm">
-                    {"★★★★★"}
+                  <div className="flex items-center gap-0.5 text-amber-400">
+                    <StarIcon className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                    <StarIcon className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                    <StarIcon className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                    <StarIcon className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                    <StarIcon className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
                   </div>
                   <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 text-[10px] font-bold text-emerald-700">
-                    <span>✓ Doğrulanmış İşletme</span>
+                    <CheckIcon className="w-3 h-3 text-emerald-700" />
+                    <span>Doğrulanmış İşletme</span>
                   </span>
                 </div>
 

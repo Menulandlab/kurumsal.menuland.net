@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { ShieldCheckIcon, MapPinIcon, QrCodeIcon, GiftIcon, ZapIcon, CheckIcon, WheatIcon, LeafIcon } from "./Icons";
 
 export default function Features() {
   const [activeAllergenFilter, setActiveAllergenFilter] = useState<"all" | "glutenFree" | "vegan">("all");
@@ -61,7 +62,8 @@ export default function Features() {
           <div className="md:col-span-12 lg:col-span-7 rounded-3xl border border-zinc-200 bg-white p-6 sm:p-8 shadow-sm flex flex-col justify-between">
             <div>
               <div className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 border border-emerald-200 px-3 py-1 text-xs font-bold text-emerald-800 mb-4">
-                <span>🛡️ Ticaret Bakanlığı Fiyat Etiketi Yönetmeliği</span>
+                <ShieldCheckIcon className="w-4 h-4 text-emerald-700" />
+                <span>Ticaret Bakanlığı Fiyat Etiketi Yönetmeliği</span>
               </div>
               <h3 className="text-xl sm:text-2xl font-black text-zinc-900">
                 14 Alerjen, Kalori ve Gramaj Şeffaflığı
@@ -89,24 +91,26 @@ export default function Features() {
                     <button
                       type="button"
                       onClick={() => setActiveAllergenFilter("glutenFree")}
-                      className={`rounded-lg px-2.5 py-1 text-xs font-bold transition-all ${
+                      className={`rounded-lg px-2.5 py-1 text-xs font-bold transition-all flex items-center gap-1.5 ${
                         activeAllergenFilter === "glutenFree"
                           ? "bg-[#FF4D00] text-white"
                           : "bg-orange-50 border border-orange-200 text-[#FF4D00]"
                       }`}
                     >
-                      🌾 Glutensiz
+                      <WheatIcon className="w-3.5 h-3.5" />
+                      <span>Glutensiz</span>
                     </button>
                     <button
                       type="button"
                       onClick={() => setActiveAllergenFilter("vegan")}
-                      className={`rounded-lg px-2.5 py-1 text-xs font-bold transition-all ${
+                      className={`rounded-lg px-2.5 py-1 text-xs font-bold transition-all flex items-center gap-1.5 ${
                         activeAllergenFilter === "vegan"
                           ? "bg-emerald-600 text-white"
                           : "bg-emerald-50 border border-emerald-200 text-emerald-700"
                       }`}
                     >
-                      🌱 Vegan
+                      <LeafIcon className="w-3.5 h-3.5" />
+                      <span>Vegan</span>
                     </button>
                   </div>
                 </div>
@@ -148,7 +152,8 @@ export default function Features() {
           <div className="md:col-span-12 lg:col-span-5 rounded-3xl border border-zinc-200 bg-white p-6 sm:p-8 shadow-sm flex flex-col justify-between">
             <div>
               <div className="inline-flex items-center gap-1.5 rounded-full bg-orange-50 border border-orange-200 px-3 py-1 text-xs font-bold text-[#FF4D00] mb-4">
-                <span>📍 Mobil Şehir Radarı</span>
+                <MapPinIcon className="w-4 h-4 text-[#FF4D00]" />
+                <span>Mobil Şehir Radarı</span>
               </div>
               <h3 className="text-xl sm:text-2xl font-black text-zinc-900">
                 Haritada Canlı Restoran Keşfi
@@ -159,8 +164,8 @@ export default function Features() {
             </div>
 
             <div className="mt-6 rounded-2xl bg-zinc-100 p-4 border border-zinc-200 flex items-center gap-3">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#FF4D00] text-white text-xl">
-                🗺️
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#FF4D00] text-white">
+                <MapPinIcon className="w-6 h-6" />
               </div>
               <div>
                 <p className="text-xs font-bold text-zinc-900">150+ Noktada Canlı Menü</p>
@@ -172,8 +177,8 @@ export default function Features() {
           {/* Kart 3: Masa Bazlı Karekod */}
           <div className="md:col-span-6 lg:col-span-4 rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm flex flex-col justify-between">
             <div>
-              <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-zinc-100 text-lg mb-3">
-                📱
+              <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-zinc-100 text-zinc-800 mb-3">
+                <QrCodeIcon className="w-5 h-5" />
               </div>
               <h3 className="text-base sm:text-lg font-bold text-zinc-900">
                 Masa Bazlı Akıllı Karekod
@@ -184,15 +189,15 @@ export default function Features() {
             </div>
             <div className="mt-4 pt-3 border-t border-zinc-100 flex items-center justify-between text-xs font-bold text-[#FF4D00]">
               <span>Masa Başına Ek Maliyet Yok</span>
-              <span>✓ Sınırsız</span>
+              <span className="flex items-center gap-1"><CheckIcon className="w-3.5 h-3.5 text-emerald-600" /> Sınırsız</span>
             </div>
           </div>
 
           {/* Kart 4: PuanLand Sadakat Programı */}
           <div className="md:col-span-6 lg:col-span-4 rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm flex flex-col justify-between">
             <div>
-              <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-amber-100 text-lg mb-3">
-                🎁
+              <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-amber-100 text-amber-700 mb-3">
+                <GiftIcon className="w-5 h-5" />
               </div>
               <h3 className="text-base sm:text-lg font-bold text-zinc-900">
                 PuanLand Sadakat Ekosistemi
@@ -210,8 +215,8 @@ export default function Features() {
           {/* Kart 5: Gel Al & Ön Sipariş */}
           <div className="md:col-span-12 lg:col-span-4 rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm flex flex-col justify-between">
             <div>
-              <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-blue-100 text-lg mb-3">
-                ⚡
+              <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-blue-100 text-blue-700 mb-3">
+                <ZapIcon className="w-5 h-5" />
               </div>
               <h3 className="text-base sm:text-lg font-bold text-zinc-900">
                 Gel Al (Takeaway) Mutfak Paneli

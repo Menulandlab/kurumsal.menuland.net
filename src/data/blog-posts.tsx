@@ -54,7 +54,7 @@ export const blogPosts: BlogPost[] = [
         <li><strong>Ünye Feneraltı Plajı:</strong> Burası falezlerin ve doğal kaya oluşumlarının arasında yüzmek isteyen macera severlerin yeri. Deniz canlılarını gözlemlemek ve şnorkelle dalış yapmak istiyorsan, Feneraltı'nın kayalık suları seni büyüleyecek.</li>
       </ul>
 
-      <h2>📌 Editörün Özel Notu: Perşembe (Vona) Hattındaki Efsanevi Noktalar</h2>
+      <h2>Editörün Özel Notu: Perşembe (Vona) Hattındaki Efsanevi Noktalar</h2>
       <p>Yazıyı hazırlarken Fatsa ile Altınordu arasında kalan, Ordu'nun en bakir koylarına ev sahipliği yapan Perşembe (Sakin Şehir) ilçesini atlamak olmazdı. İşte listede adı geçen ve mutlaka uğraman gereken o büyüleyici ücretsiz yerler:</p>
       <ul>
         <li><strong>Çaka Plajı (Beyaz Kum):</strong> Karadeniz’de olduğuna inanamayacağın, bembeyaz kumları olan bir doğa harikası. Tamamen taşsız, sığ ve berrak.</li>

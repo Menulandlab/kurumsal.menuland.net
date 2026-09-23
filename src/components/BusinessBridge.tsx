@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { StorefrontIcon, ArrowRightIcon } from "./Icons";
 
 export default function BusinessBridge() {
   return (
@@ -17,7 +18,8 @@ export default function BusinessBridge() {
             {/* Sol Taraf: Metin & Avantajlar */}
             <div className="lg:col-span-8 space-y-5">
               <span className="inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-orange-500/10 px-3.5 py-1 text-xs font-bold text-[#FF4D00]">
-                <span>🏪 RESTORAN VE KAFELER İÇİN</span>
+                <StorefrontIcon className="w-4 h-4 text-[#FF4D00]" />
+                <span>RESTORAN VE KAFELER İÇİN</span>
               </span>
 
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight">
@@ -57,7 +59,7 @@ export default function BusinessBridge() {
                 className="w-full flex items-center justify-center gap-2 rounded-2xl bg-[#FF4D00] py-4 px-6 text-sm font-bold text-white shadow-xl shadow-orange-500/25 hover:bg-orange-600 transition-all text-center"
               >
                 <span>İşletme Girişi / Kayıt Ol</span>
-                <span>→</span>
+                <ArrowRightIcon className="w-4 h-4" />
               </a>
 
               <Link

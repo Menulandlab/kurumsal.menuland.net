@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { SmartphoneIcon, CheckIcon } from "./Icons";
 
 export default function AppDownloadBanner() {
   return (
@@ -18,7 +19,8 @@ export default function AppDownloadBanner() {
             {/* Sol Taraf: Metin ve İndirme Butonları */}
             <div className="lg:col-span-8 space-y-6 text-center lg:text-left">
               <span className="inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-orange-500/10 px-3 py-1 text-xs font-bold text-[#FF4D00]">
-                <span>📱 HEMEN ÜCRETSİZ İNDİRİN</span>
+                <SmartphoneIcon className="w-3.5 h-3.5 text-[#FF4D00]" />
+                <span>HEMEN ÜCRETSİZ İNDİRİN</span>
               </span>
 
               <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-white leading-tight">
@@ -63,10 +65,10 @@ export default function AppDownloadBanner() {
                 </Link>
               </div>
 
-              <div className="flex items-center justify-center lg:justify-start gap-6 text-xs text-zinc-400 font-medium pt-2">
-                <span>✓ Ücretsiz İndirme</span>
-                <span>✓ Reklamsız Deneyim</span>
-                <span>✓ Anında Kullanım</span>
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6 text-xs text-zinc-400 font-medium pt-2">
+                <span className="flex items-center gap-1.5"><CheckIcon className="w-3.5 h-3.5 text-emerald-500" /> Ücretsiz İndirme</span>
+                <span className="flex items-center gap-1.5"><CheckIcon className="w-3.5 h-3.5 text-emerald-500" /> Reklamsız Deneyim</span>
+                <span className="flex items-center gap-1.5"><CheckIcon className="w-3.5 h-3.5 text-emerald-500" /> Anında Kullanım</span>
               </div>
             </div>
 

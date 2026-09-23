@@ -40,16 +40,16 @@ export default function Header() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
           
           {/* Logo */}
-          <Link href="/" onClick={() => setIsMenuOpen(false)} className="flex items-center gap-2">
+          <Link href="/" onClick={() => setIsMenuOpen(false)} className="flex items-center gap-2.5">
             <Image
               src="/img/logo-dark.png"
               alt="Menuland Logo"
-              width={115}
-              height={32}
+              width={150}
+              height={42}
               priority
-              className="h-8 w-auto object-contain"
+              className="h-8 sm:h-9 w-auto object-contain"
             />
-            <span className="hidden sm:inline-block rounded-md bg-orange-50 border border-orange-200/60 px-1.5 py-0.5 text-[9px] font-bold text-[#FF4D00]">
+            <span className="hidden sm:inline-block rounded-md bg-orange-50 border border-orange-200/60 px-2 py-0.5 text-[10px] font-bold text-[#FF4D00]">
               KURUMSAL
             </span>
           </Link>
@@ -137,9 +137,9 @@ export default function Header() {
                   <Image
                     src="/img/logo-dark.png"
                     alt="Menuland Logo"
-                    width={110}
-                    height={30}
-                    className="h-7 w-auto object-contain"
+                    width={140}
+                    height={39}
+                    className="h-8 w-auto object-contain"
                   />
                   <button
                     type="button"
