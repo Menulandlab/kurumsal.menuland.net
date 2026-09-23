@@ -76,35 +76,24 @@ export default function AppDownloadBanner() {
             <div className="lg:col-span-4 flex justify-center">
               <div className="rounded-3xl border border-zinc-800 bg-zinc-900/90 p-6 text-center shadow-xl backdrop-blur-md max-w-[260px]">
                 {/* QR Çerçevesi */}
-                <div className="rounded-2xl bg-white p-3.5 shadow-inner mx-auto mb-4 flex items-center justify-center">
-                  {/* Modern QR Görünümü (SVG) */}
-                  <svg className="h-36 w-36 text-zinc-900" viewBox="0 0 100 100" fill="currentColor">
-                    {/* Basit ve Şık QR Deseni */}
-                    <rect x="0" y="0" width="30" height="30" rx="6" fill="#18181b" />
-                    <rect x="6" y="6" width="18" height="18" rx="3" fill="#ffffff" />
-                    <rect x="10" y="10" width="10" height="10" rx="2" fill="#FF4D00" />
-
-                    <rect x="70" y="0" width="30" height="30" rx="6" fill="#18181b" />
-                    <rect x="76" y="6" width="18" height="18" rx="3" fill="#ffffff" />
-                    <rect x="80" y="10" width="10" height="10" rx="2" fill="#FF4D00" />
-
-                    <rect x="0" y="70" width="30" height="30" rx="6" fill="#18181b" />
-                    <rect x="6" y="76" width="18" height="18" rx="3" fill="#ffffff" />
-                    <rect x="10" y="80" width="10" height="10" rx="2" fill="#FF4D00" />
-
-                    {/* Matris Noktaları */}
-                    <rect x="36" y="8" width="8" height="8" rx="2" />
-                    <rect x="52" y="8" width="8" height="8" rx="2" />
-                    <rect x="36" y="24" width="8" height="8" rx="2" />
-                    <rect x="44" y="38" width="12" height="12" rx="3" fill="#FF4D00" />
-                    <rect x="12" y="44" width="8" height="8" rx="2" />
-                    <rect x="24" y="52" width="8" height="8" rx="2" />
-                    <rect x="68" y="44" width="8" height="8" rx="2" />
-                    <rect x="82" y="52" width="8" height="8" rx="2" />
-                    <rect x="40" y="74" width="8" height="8" rx="2" />
-                    <rect x="56" y="82" width="8" height="8" rx="2" />
-                    <rect x="74" y="74" width="8" height="8" rx="2" />
-                  </svg>
+                <div className="rounded-2xl bg-white p-3.5 shadow-inner mx-auto mb-4 flex items-center justify-center relative">
+                  <Image
+                    src="/img/qr-download.png"
+                    alt="Menuland İndirme Karekodu"
+                    width={180}
+                    height={180}
+                    className="h-36 w-36 object-contain rounded-xl"
+                  />
+                  {/* Merkez Menuland Amblemi */}
+                  <div className="absolute inset-0 m-auto h-8 w-8 rounded-lg bg-white shadow-md border border-zinc-200 flex items-center justify-center p-1 pointer-events-none">
+                    <Image
+                      src="/img/logo-dark.png"
+                      alt="Menuland"
+                      width={24}
+                      height={24}
+                      className="h-full w-full object-contain"
+                    />
+                  </div>
                 </div>
 
                 <p className="text-xs font-bold text-white leading-tight">

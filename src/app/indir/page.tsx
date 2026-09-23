@@ -1,11 +1,25 @@
-// src/app/indir/page.tsx
+"use client";
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import DownloadFeatures from './DownloadFeatures';
 
+const APP_STORE_URL = "https://apps.apple.com/tr/app/menuland/id6618147785?l=tr";
+const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com.mycompany.menuland&pli=1";
+
 export default function DownloadPage() {
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const ua = navigator.userAgent || navigator.vendor;
+      if (/iPad|iPhone|iPod/.test(ua) && !(window as any).MSStream) {
+        window.location.replace(APP_STORE_URL);
+      } else if (/android/i.test(ua)) {
+        window.location.replace(PLAY_STORE_URL);
+      }
+    }
+  }, []);
+
   return (
     <div className="bg-white text-gray-900 min-h-screen">
       <div className="container mx-auto px-6 py-24">
@@ -20,9 +34,9 @@ export default function DownloadPage() {
             <div className="mt-12 flex flex-col sm:flex-row justify-center items-center gap-4">
                 {/* Google Play Badge */}
                 <Link 
-                  href="https://play.google.com/store/apps/details?id=com.mycompany.menuland&pli=1" // DEĞİŞİKLİK BURADA
-                  target="_blank" // Linkin yeni sekmede açılmasını sağlar
-                  rel="noopener noreferrer" // Güvenlik için eklenir
+                  href={PLAY_STORE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="transform hover:scale-105 transition-transform duration-300"
                 >
                     <Image
