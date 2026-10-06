@@ -49,10 +49,19 @@ const Contact = () => {
               <label htmlFor="message" className="sr-only">Mesajınız</label>
               <textarea id="message" name="message" placeholder="Mesajınız..." rows={5} className="w-full bg-slate-50 text-gray-900 rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-menuland focus:border-menuland transition" required></textarea>
             </div>
-            <div className="text-center">
-              <button type="submit" className="bg-menuland text-white font-bold py-3 px-8 rounded-lg hover:bg-opacity-90 transition-all duration-300">
+            <div className="text-center flex flex-col items-center gap-3">
+              <button type="submit" className="w-full sm:w-auto bg-menuland text-white font-bold py-3 px-8 rounded-lg hover:bg-opacity-90 transition-all duration-300">
                 Mesajı Gönder
               </button>
+              <div className="text-xs text-gray-500 font-medium">veya</div>
+              <a
+                href="https://wa.me/908508401302?text=Merhaba,%20Menuland%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold py-3 px-8 rounded-lg transition-all shadow-md hover:shadow-lg"
+              >
+                <span>WhatsApp ile Hızlı İletişim (0850 840 13 02)</span>
+              </a>
             </div>
           </form>
         </MotionDiv>

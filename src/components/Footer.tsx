@@ -63,6 +63,14 @@ const Footer = () => {
             <Link href="/kullanim-sartlari" className="hover:text-menuland transition-colors">
               Kullanım Şartları
             </Link>
+            <a
+              href="https://wa.me/908508401302?text=Merhaba,%20Menuland%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-emerald-600 font-semibold text-emerald-700 transition-colors"
+            >
+              WhatsApp: 0850 840 13 02
+            </a>
           </div>
         </div>
 
