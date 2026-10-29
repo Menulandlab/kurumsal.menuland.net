@@ -77,6 +77,8 @@ function BillingToggle({ billing, onChange }: { billing: Billing; onChange: (b: 
 
 function PlanCard({ plan, billing, delay }: { plan: Plan; billing: Billing; delay: number }) {
   const price = billing === "yearly" ? plan.yearly : plan.monthly;
+  // Meta'ya ödenecek gerçek tutar gider: yıllıkta tek seferlik toplam.
+  const charge = billing === "yearly" ? plan.yearlyTotal : plan.monthly;
   return (
     <Reveal
       delay={delay}
@@ -101,13 +103,20 @@ function PlanCard({ plan, billing, delay }: { plan: Plan; billing: Billing; dela
         <AnimatedPrice value={price} className="text-5xl font-extrabold tracking-tight text-stone-900" />
         <span className="text-stone-500">/ay</span>
       </div>
-      <p className="mt-1 h-5 text-sm text-stone-500">
+      <p className="mt-1.5 min-h-10 text-sm leading-5 text-stone-600">
         {billing === "yearly" ? (
           <>
-            <span className="line-through">{formatTRY(plan.monthly)}</span> yerine, yıllık ödemede
+            Yıllık <strong className="font-semibold text-stone-900">{formatTRY(plan.yearlyTotal)}</strong>, tek
+            seferde ödenir
+            <br />
+            <span className="line-through">{formatTRY(plan.monthly)}</span>/ay yerine
           </>
         ) : (
-          "Her ay yenilenir, istediğiniz zaman iptal edin"
+          <>
+            Her ay yenilenir
+            <br />
+            İstediğiniz zaman iptal edin
+          </>
         )}
       </p>
       <CtaLink
@@ -115,7 +124,7 @@ function PlanCard({ plan, billing, delay }: { plan: Plan; billing: Billing; dela
         variant={plan.highlighted ? "primary" : "dark"}
         size="lg"
         className="mt-7 w-full"
-        onClick={() => trackCheckout(`${plan.name} Paket`, price)}
+        onClick={() => trackCheckout(`${plan.name} Paket`, charge)}
       >
         {plan.cta}
       </CtaLink>
@@ -148,18 +157,29 @@ function ChainPricing({ billing }: { billing: Billing }) {
         <div className="grid flex-1 gap-3 sm:grid-cols-2 lg:max-w-xl">
           {plans.map((p) => {
             const price = billing === "yearly" ? p.chainYearly : p.chainMonthly;
+            const charge = billing === "yearly" ? p.chainYearlyTotal : p.chainMonthly;
             return (
               <div key={p.id} className="flex flex-col rounded-2xl border border-stone-200 bg-white p-5">
                 <p className="text-sm font-semibold text-stone-700">{p.name} zincir</p>
                 <p className="mt-1 flex flex-wrap items-baseline gap-x-1">
                   <AnimatedPrice value={price} className="text-3xl font-extrabold text-stone-900" />
-                  <span className="text-sm text-stone-500">/şube/ay</span>
+                  <span className="text-sm text-stone-600">/şube/ay</span>
+                </p>
+                <p className="mt-1 text-sm text-stone-600">
+                  {billing === "yearly" ? (
+                    <>
+                      Şube başı yıllık{" "}
+                      <strong className="font-semibold text-stone-900">{formatTRY(p.chainYearlyTotal)}</strong>
+                    </>
+                  ) : (
+                    "Her ay yenilenir"
+                  )}
                 </p>
                 <CtaLink
                   href={links.panel}
                   variant="outline"
                   className="mt-4"
-                  onClick={() => trackCheckout(`${p.name} Zincir`, price)}
+                  onClick={() => trackCheckout(`${p.name} Zincir`, charge)}
                 >
                   Şube aboneliği al
                 </CtaLink>

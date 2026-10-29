@@ -37,7 +37,7 @@ export const faqs = [
   },
   {
     q: "Yıllık ödemede indirim var mı?",
-    a: "Evet, yıllık ödemede %20 indirim uygulanır: Temel paket aylık 279 ₺'ye, Premium paket aylık 519 ₺'ye denk gelir.",
+    a: "Evet, yıllık ödemede %20 indirim uygulanır. Temel paket yıllık 3.350 ₺ (aylık 279 ₺'ye denk), Premium paket yıllık 6.230 ₺ (aylık 519 ₺'ye denk) olarak tek seferde ödenir.",
   },
   {
     q: "Taahhüt var mı, nasıl iptal ederim?",

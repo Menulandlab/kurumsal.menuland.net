@@ -34,9 +34,12 @@ export type Plan = {
   name: string;
   description: string;
   monthly: number;
+  // Yıllık ödemede aylık karşılık ve tek seferde ödenen toplam.
   yearly: number;
+  yearlyTotal: number;
   chainMonthly: number;
   chainYearly: number;
+  chainYearlyTotal: number;
   cta: string;
   highlighted?: boolean;
   features: string[];
@@ -60,6 +63,7 @@ export const premiumFeatures = [
   "Önceliklendirilmiş destek",
 ];
 
+// Yıllık toplamlar işletme panelindeki fiyat sayfasıyla aynı (fe.isletme.menuland.net src/app/pricing/page.tsx).
 export const plans: Plan[] = [
   {
     id: "temel",
@@ -67,8 +71,10 @@ export const plans: Plan[] = [
     description: "Dijital menüye geçmek isteyen işletmeler için başlangıç paketi.",
     monthly: 349,
     yearly: 279,
+    yearlyTotal: 3350,
     chainMonthly: 279,
     chainYearly: 223,
+    chainYearlyTotal: 2680,
     cta: "Temel ile başlayın",
     features: basicFeatures,
   },
@@ -78,8 +84,10 @@ export const plans: Plan[] = [
     description: "Rezervasyon, kampanya ve müşteri etkileşimini tek yerden yönetmek isteyenler için.",
     monthly: 649,
     yearly: 519,
+    yearlyTotal: 6230,
     chainMonthly: 519,
     chainYearly: 415,
+    chainYearlyTotal: 4984,
     cta: "Premium ile başlayın",
     highlighted: true,
     features: ["Temel paketteki her şey", ...premiumFeatures],

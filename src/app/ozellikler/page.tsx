@@ -397,7 +397,9 @@ function PlansSection() {
                 </span>
                 <span className="text-stone-600">/ay</span>
               </p>
-              <p className="mt-1 text-sm text-stone-600">Yıllık ödemede aylık {formatTRY(plan.yearly)}</p>
+              <p className="mt-1 text-sm text-stone-600">
+                Yıllık ödemede {formatTRY(plan.yearlyTotal)} (aylık {formatTRY(plan.yearly)})
+              </p>
               <ul className="mt-6 space-y-3 border-t border-stone-100 pt-6 text-[15px] text-stone-700">
                 {plan.features.map((f, i) => (
                   <li
