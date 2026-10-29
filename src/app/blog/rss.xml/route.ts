@@ -1,7 +1,8 @@
 import { blogPosts } from '@/data/blog-posts';
+import { SITE_URL } from '@/lib/site';
 
 export async function GET() {
-  const baseUrl = 'https://menuland.net';
+  const baseUrl = SITE_URL;
   
   const items = blogPosts.map((post) => `
     <item>

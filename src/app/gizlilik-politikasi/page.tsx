@@ -1,17 +1,25 @@
-// src/app/gizlilik-politikasi/page.tsx
+import type { Metadata } from "next";
+import { PageHeader } from "@/components/site/page-header";
+
+export const metadata: Metadata = {
+  title: "Gizlilik Politikası",
+  description:
+    "Menuland mobil uygulamasının kullanıcı verilerini nasıl topladığını, kullandığını, paylaştığını ve koruduğunu açıklayan gizlilik politikası.",
+  alternates: { canonical: "/gizlilik-politikasi" },
+};
 
 export default function PrivacyPolicyPage() {
   return (
-    <div className="bg-white py-12 lg:py-20">
-      <div className="container mx-auto px-6">
-        {/* prose sınıfı, içindeki tüm metin etiketlerini otomatik olarak biçimlendirir */}
-        <article className="prose lg:prose-xl max-w-4xl mx-auto">
-          <h1>Gizlilik Politikası</h1>
-          <p className="lead !text-sm !text-gray-500">
-            Yürürlük Tarihi: 17.12.2023
-            <br />
-            Son Güncelleme: 02.02.2025
-          </p>
+    <>
+      <PageHeader
+        eyebrow="Yasal"
+        title="Gizlilik Politikası"
+        description="Yürürlük Tarihi: 17.12.2023 · Son Güncelleme: 02.02.2025"
+        breadcrumb={[{ label: "Gizlilik Politikası" }]}
+      />
+
+      <div className="container-page py-12 sm:py-16">
+        <article className="prose prose-stone max-w-3xl prose-headings:tracking-tight prose-headings:text-stone-900 prose-h2:mt-12 prose-a:font-semibold prose-a:text-brand-700 prose-strong:text-stone-900">
           <p>
             Menuland (“Uygulama”, “Biz”, “Bize”, “Bizim”), kullanıcıların restoranlar, kafeler ve şehir rehberi özelliklerinden faydalanmasını sağlayan bir mobil uygulamadır. Kullanıcılarımızın gizliliği bizim için önemlidir ve bu gizlilik politikası, Menuland’in kullanıcı verilerini nasıl topladığını, kullandığını, paylaştığını ve koruduğunu açıklar.
           </p>
@@ -21,7 +29,7 @@ export default function PrivacyPolicyPage() {
 
           <h2>1. Toplanan Bilgiler</h2>
           <p>Menuland, kullanıcılarından aşağıdaki türde bilgileri toplayabilir:</p>
-          
+
           <h3>1.1. Kullanıcı Tarafından Sağlanan Bilgiler</h3>
           <ul>
             <li>Ad, soyad (eğer kullanıcı paylaşırsa)</li>
@@ -121,6 +129,6 @@ export default function PrivacyPolicyPage() {
           </p>
         </article>
       </div>
-    </div>
+    </>
   );
 }

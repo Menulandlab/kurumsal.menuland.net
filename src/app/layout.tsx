@@ -1,100 +1,91 @@
-import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Plus_Jakarta_Sans } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import Header from "@/components/Header";
-import Script from "next/script";
+import Footer from "@/components/Footer";
+import Providers from "@/components/Providers";
+import { SITE_URL, contact, links } from "@/lib/site";
 
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
-  variable: "--font-poppins",
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ["latin", "latin-ext"],
+  variable: "--font-jakarta",
+  display: "swap",
 });
 
-// METADATA BÖLÜMÜ GÜNCELLENDİ (Daha Sağlam Yöntemle)
+const title = "Menuland İşletme | Restoranlar için QR Menü, Gel-Al ve Rezervasyon Paneli";
+const description =
+  "Menünüzü dakikalar içinde dijitalleştirin: QR menü, 14 alerjen ve gramaj bilgisi, Gel-Al sipariş, rezervasyon ve kampanyalar tek panelde. Masa başına ücret yok, sabit aylık fiyat.";
+
 export const metadata: Metadata = {
-  // `metadataBase`, göreceli yolların (örn: /img/og-image.png) tam URL'e dönüştürülmesi için kullanılır.
-  metadataBase: new URL('https://www.menuland.net'),
-
-  title: "Menuland - Restoranlar İçin Dijital Menü Çözümleri",
-  description: "Menuland ile menünüzü dijitalleştirin, etkinliklerinizi duyurun ve müşteri etkileşiminizi artırın. Kafe, bar ve restoranlar için modern çözümler.",
-  
-  // Open Graph (Facebook, WhatsApp, LinkedIn vb. için)
+  metadataBase: new URL(SITE_URL),
+  title: { default: title, template: "%s | Menuland İşletme" },
+  description,
+  alternates: { canonical: "/" },
   openGraph: {
-    title: "Menuland - Dijital Dünyaya Açılan Kapınız",
-    description: "Menünüzü saniyeler içinde dijitalleştirin ve daha fazla müşteriye ulaşın.",
-    url: "https://www.menuland.net",
+    title: "Menuland İşletme | Menünüz, siparişleriniz ve müşterileriniz tek panelde",
+    description,
+    url: SITE_URL,
     siteName: "Menuland",
-    images: [
-      {
-        url: '/img/og-image.png', // Artık göreceli yol kullanıyoruz
-        width: 1200,
-        height: 630,
-        alt: 'Menuland Tanıtım Görseli',
-      },
-    ],
-    locale: 'tr_TR',
-    type: 'website',
+    images: [{ url: "/img/og-image.png", width: 1200, height: 630, alt: "Menuland İşletme Paneli" }],
+    locale: "tr_TR",
+    type: "website",
   },
-
-  // Twitter Kartı
   twitter: {
-    card: 'summary_large_image',
-    title: "Menuland - Dijital Dünyaya Açılan Kapınız",
-    description: "Menünüzü saniyeler içinde dijitalleştirin ve daha fazla müşteriye ulaşın.",
-    images: ['/img/og-image.png'], // Artık göreceli yol kullanıyoruz
+    card: "summary_large_image",
+    title: "Menuland İşletme",
+    description,
+    images: ["/img/og-image.png"],
   },
-
-  // İsteğe Bağlı: Robotlar için direktifler
   robots: {
     index: true,
     follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
+    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
   },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export const viewport: Viewport = {
+  themeColor: "#ff4d00",
+};
+
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Menuland",
+  legalName: contact.company,
+  url: SITE_URL,
+  logo: `${SITE_URL}/img/logo.png`,
+  email: contact.infoEmail,
+  contactPoint: {
+    "@type": "ContactPoint",
+    telephone: "+90-850-840-13-02",
+    contactType: "customer support",
+    areaServed: "TR",
+    availableLanguage: "Turkish",
+  },
+  sameAs: [links.appStore, links.googlePlay],
+};
+
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const pixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID || "1971172710431675";
   const gaId = process.env.NEXT_PUBLIC_GA_ID || "G-DVXKCWSF0W";
 
   return (
-    <html lang="tr">
-      <body className={`${poppins.variable} font-poppins bg-white text-gray-800`}>
+    <html lang="tr" className={jakarta.variable}>
+      <body>
         {/* Google Analytics (gtag.js) */}
-        <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
-          strategy="afterInteractive"
-        />
+        <Script src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`} strategy="afterInteractive" />
         <Script id="google-analytics" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-
-            gtag('config', '${gaId}', {
-              page_path: window.location.pathname,
-            });
+            gtag('config', '${gaId}', { page_path: window.location.pathname });
           `}
         </Script>
 
-        {/* Google AdSense */}
-        <Script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3776725197972523"
-          crossOrigin="anonymous"
-          strategy="afterInteractive"
-        />
         {/* Meta Pixel Base Tracking */}
-        <Script id="meta-pixel" strategy="afterInteractive">
+        <Script id="meta-pixel" strategy="lazyOnload">
           {`
             !function(f,b,e,v,n,t,s)
             {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -114,13 +105,25 @@ export default function RootLayout({
             width="1"
             style={{ display: "none" }}
             src={`https://www.facebook.com/tr?id=${pixelId}&ev=PageView&noscript=1`}
-            alt="Meta Pixel PageView"
+            alt=""
           />
         </noscript>
-        <Header />
-        <main className="pt-20">
-          {children}
-        </main>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
+
+        <Providers>
+          <a
+            href="#icerik"
+            className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:shadow-lg"
+          >
+            İçeriğe geç
+          </a>
+          <Header />
+          <main id="icerik">{children}</main>
+          <Footer />
+        </Providers>
       </body>
     </html>
   );

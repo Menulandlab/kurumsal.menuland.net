@@ -35,8 +35,7 @@ export const trackMetaEvent = async (
   // 1. Browser-Side tracking (Meta Pixel)
   if (typeof window !== "undefined" && (window as any).fbq) {
     try {
-      // Add test_event_code to customData temporarily for browser events to appear under Meta Test Events tab
-      const extendedData = { ...customData, test_event_code: "TEST96992" };
+      const extendedData = { ...customData };
       (window as any).fbq("track", eventName, extendedData, { eventID: eventId });
       
       if (process.env.NODE_ENV === "development") {

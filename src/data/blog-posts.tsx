@@ -129,7 +129,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "garson-cagirma-sistemleri-operasyonel-hiz",
     title: "Garson Çağırma Sistemleri: Operasyonel Hız",
-    excerpt: "Garson çağırma butonları servis hızınızı nasıl %40 artırabilir? Verimlilik analizi.",
+    excerpt: "Dijital garson çağırma, siparişlerin ve hesap isteklerinin masada beklemeden size ulaşmasını sağlar. Servis akışına etkileri.",
     author: "Akın Can Kabacık",
     date: "2024-05-12T09:15:00+03:00",
     image: "/img/blog/garson-cagirma.jpg",

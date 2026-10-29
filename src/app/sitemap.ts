@@ -1,9 +1,10 @@
 // src/app/sitemap.ts
 import { MetadataRoute } from 'next'
 import { blogPosts } from '@/data/blog-posts'
+import { SITE_URL } from '@/lib/site'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://www.menuland.net'
+  const baseUrl = SITE_URL
 
   // Dinamik blog yazıları
   const blogSitemap = blogPosts.map((post) => ({
@@ -26,6 +27,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: 'daily' as const,
       priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/gizlilik-politikasi`,
+      lastModified: new Date(),
+      changeFrequency: 'yearly' as const,
+      priority: 0.2,
+    },
+    {
+      url: `${baseUrl}/kullanim-sartlari`,
+      lastModified: new Date(),
+      changeFrequency: 'yearly' as const,
+      priority: 0.2,
     },
     {
       url: `${baseUrl}/hizmetler`,

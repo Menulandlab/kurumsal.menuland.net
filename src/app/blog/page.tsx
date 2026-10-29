@@ -1,101 +1,106 @@
-import React from 'react';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import { MotionDiv } from '@/components/MotionDiv';
-import Link from 'next/link';
-import { blogPosts } from '@/data/blog-posts';
-import BlogImage from '@/components/BlogImage';
+import type { Metadata } from "next";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { PageHeader } from "@/components/site/page-header";
+import { Reveal } from "@/components/site/section";
+import BlogImage from "@/components/BlogImage";
+import { blogPosts, type BlogPost } from "@/data/blog-posts";
+
+export const metadata: Metadata = {
+  title: "Blog",
+  description:
+    "QR menü, restoran işletmeciliği ve dijital pazarlama üzerine pratik yazılar; Menuland ekibinden ipuçları ve şehir rehberleri.",
+  alternates: {
+    canonical: "/blog",
+    types: { "application/rss+xml": "/blog/rss.xml" },
+  },
+};
+
+const formatDate = (iso: string) =>
+  new Date(iso).toLocaleDateString("tr-TR", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "Europe/Istanbul",
+  });
+
+function PostCard({ post, priority }: { post: BlogPost; priority: boolean }) {
+  const href = `/blog/${post.slug}`;
+  return (
+    <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-sm transition-[box-shadow,transform] duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-stone-900/5 has-[a:focus-visible]:ring-2 has-[a:focus-visible]:ring-brand-500 has-[a:focus-visible]:ring-offset-2">
+      <div className="relative aspect-video overflow-hidden bg-stone-100">
+        {/* Başlık hemen altında okunduğu için görsel süs sayılır; alt boş bırakıldı. */}
+        <BlogImage
+          src={post.image}
+          alt=""
+          sizes="(min-width: 1024px) 352px, (min-width: 640px) 50vw, 100vw"
+          priority={priority}
+          fallbackText={post.category}
+          className="transition-transform duration-500 group-hover:scale-[1.03]"
+        />
+      </div>
+
+      <div className="flex flex-1 flex-col p-6">
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs text-stone-600">
+          <span className="rounded-full bg-brand-50 px-2.5 py-1 font-semibold text-brand-800 ring-1 ring-brand-100">
+            {post.category}
+          </span>
+          <span className="whitespace-nowrap">
+            <time dateTime={post.date}>{formatDate(post.date)}</time>
+            <span aria-hidden> · </span>
+            {post.readTime} okuma
+          </span>
+        </div>
+
+        <h2 className="mt-4 text-xl font-bold leading-snug tracking-tight text-stone-900 transition-colors group-hover:text-brand-700">
+          {/* Kartın tamamı bu bağlantıyla tıklanır (after: katmanı). */}
+          <Link href={href} className="after:absolute after:inset-0 focus-visible:outline-none">
+            {post.title}
+          </Link>
+        </h2>
+
+        <p className="mt-3 line-clamp-3 text-[15px] leading-relaxed text-stone-600">{post.excerpt}</p>
+
+        <span
+          aria-hidden
+          className="mt-auto inline-flex items-center gap-1.5 pt-5 text-sm font-semibold text-brand-700"
+        >
+          Devamını oku
+          <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+        </span>
+      </div>
+    </article>
+  );
+}
 
 export default function BlogPage() {
+  const posts = [...blogPosts].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
   return (
     <>
-      <Header />
-      <main className="pt-24 min-h-screen bg-white">
-        {/* Blog Hero */}
-        <section className="bg-slate-50 py-20 border-b border-gray-100">
-          <div className="container mx-auto px-6">
-            <MotionDiv
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-center max-w-3xl mx-auto"
-            >
-              <span className="bg-orange-100 text-orange-600 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest mb-4 inline-block">
-                Menuland Akademi
-              </span>
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Restoran Başarı Rehberi</h1>
-              <p className="text-xl text-gray-600">
-                Sektörel trendler, teknolojik ipuçları ve işletmenizi büyütecek stratejiler.
-              </p>
-            </MotionDiv>
-          </div>
-        </section>
+      <PageHeader
+        title="Menuland Blog"
+        description="QR menü, restoran işletmeciliği ve dijital pazarlama üzerine pratik yazılar; arada şehir rehberleri ve sektörden notlar."
+      />
 
-        {/* Blog Posts Grid */}
-        <section className="py-20">
-          <div className="container mx-auto px-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-              {blogPosts.map((post, index) => (
-                <MotionDiv
-                  key={post.slug}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="group"
-                >
-                  <Link href={`/blog/${post.slug}`} className="block overflow-hidden rounded-2xl mb-6 aspect-video relative bg-gray-100">
-                    <BlogImage 
-                      src={post.image} 
-                      alt={post.title} 
-                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 z-10"
-                      fallbackText={post.category}
-                    />
-                  </Link>
-                  <div className="flex items-center gap-3 mb-3">
-                    <span className="text-xs font-bold text-orange-600 uppercase tracking-tighter bg-orange-50 px-2 py-0.5 rounded">
-                      {post.category}
-                    </span>
-                    <span className="text-xs text-gray-400">{post.readTime} okuma</span>
-                  </div>
-                  <h2 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-orange-600 transition-colors leading-tight">
-                    <Link href={`/blog/${post.slug}`}>
-                      {post.title}
-                    </Link>
-                  </h2>
-                  <p className="text-gray-600 text-sm mb-6 line-clamp-2 leading-relaxed">
-                    {post.excerpt}
-                  </p>
-                  <div className="flex items-center justify-between border-t border-gray-50 pt-4">
-                    <span className="text-xs font-semibold text-gray-500">{post.author}</span>
-                    <span className="text-xs text-gray-400">
-                        {new Date(post.date).toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' })}
-                    </span>
-                  </div>
-                </MotionDiv>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Newsletter CTA */}
-        <section className="bg-gray-900 py-20">
-            <div className="container mx-auto px-6 text-center text-white max-w-2xl">
-                <h3 className="text-3xl font-bold mb-4">Sektörden Geri Kalmayın</h3>
-                <p className="text-gray-400 mb-8">En yeni restoran teknolojileri ve başarı hikayeleri her hafta e-posta kutunuzda.</p>
-                <form className="flex flex-col sm:flex-row gap-3">
-                    <input 
-                        type="email" 
-                        placeholder="E-posta adresiniz" 
-                        className="flex-1 bg-white/10 border border-white/20 rounded-xl px-6 py-4 outline-none focus:border-orange-500 transition-colors"
-                    />
-                    <button className="bg-orange-600 hover:bg-orange-700 text-white font-bold px-8 py-4 rounded-xl transition-all">
-                        Abone Ol
-                    </button>
-                </form>
-            </div>
-        </section>
-      </main>
-      <Footer />
+      <section aria-label="Blog yazıları" className="py-16 sm:py-20">
+        <div className="container-page">
+          <ul role="list" className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+            {posts.map((post, i) => (
+              <li key={post.slug}>
+                {/* İlk satır ilk ekranda görünebilir; animasyonsuz basılır. */}
+                {i < 3 ? (
+                  <PostCard post={post} priority={i === 0} />
+                ) : (
+                  <Reveal delay={(i % 3) * 0.06} className="h-full">
+                    <PostCard post={post} priority={false} />
+                  </Reveal>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
     </>
   );
 }

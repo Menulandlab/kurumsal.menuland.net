@@ -1,31 +1,53 @@
-import Hero from "@/components/Hero";
-import AppExperience from "@/components/AppExperience";
-import Features from "@/components/Features";
-import RoiCalculator from "@/components/RoiCalculator";
-import Pricing from "@/components/Pricing";
-import ComparisonTable from "@/components/ComparisonTable";
-import BusinessBridge from "@/components/BusinessBridge";
-import Testimonials from "@/components/Testimonials";
-import AppDownloadBanner from "@/components/AppDownloadBanner";
-import Faq from "@/components/Faq";
-import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
+import Hero from "@/components/home/Hero";
+import ProofBar from "@/components/home/ProofBar";
+import Features from "@/components/home/Features";
+import HowItWorks from "@/components/home/HowItWorks";
+import AppReach from "@/components/home/AppReach";
+import RoiCalculator from "@/components/home/RoiCalculator";
+import Pricing from "@/components/home/Pricing";
+import Faq, { faqs } from "@/components/home/Faq";
+import FinalCta from "@/components/home/FinalCta";
+import { SITE_URL, plans } from "@/lib/site";
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "Menuland İşletme Paneli",
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web",
+    url: SITE_URL,
+    offers: plans.map((p) => ({
+      "@type": "Offer",
+      name: `${p.name} Paket`,
+      price: p.monthly,
+      priceCurrency: "TRY",
+    })),
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  },
+];
 
 export default function HomePage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Hero />
-      <AppExperience />
+      <ProofBar />
       <Features />
+      <HowItWorks />
+      <AppReach />
       <RoiCalculator />
       <Pricing />
-      <ComparisonTable />
-      <BusinessBridge />
-      <Testimonials />
-      <AppDownloadBanner />
       <Faq />
-      <Contact />
-      <Footer />
+      <FinalCta />
     </>
   );
 }

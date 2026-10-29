@@ -1,82 +1,121 @@
-import React from 'react';
-import Link from 'next/link';
-import Image from 'next/image'; // Image bileşenini kullanmak için import ediyoruz
+import Image from "next/image";
+import Link from "next/link";
+import { contact, links } from "@/lib/site";
 
-const Footer = () => {
+const columns = [
+  {
+    title: "Ürün",
+    items: [
+      { href: "/#ozellikler", label: "Özellikler" },
+      { href: "/#fiyatlar", label: "Fiyatlar" },
+      { href: "/ozellikler", label: "Tüm özellikler" },
+      { href: "/hizmetler", label: "Hizmetler" },
+      { href: "/bolgeler", label: "Bölgeler" },
+    ],
+  },
+  {
+    title: "Kaynaklar",
+    items: [
+      { href: "/blog", label: "Blog" },
+      { href: "/indir", label: "Mobil uygulama" },
+      { href: links.demoMenu, label: "Örnek QR menü" },
+      { href: links.panel, label: "İşletme paneli" },
+    ],
+  },
+  {
+    title: "Yasal",
+    items: [
+      { href: "/gizlilik-politikasi", label: "Gizlilik politikası" },
+      { href: "/kullanim-sartlari", label: "Kullanım şartları" },
+    ],
+  },
+];
+
+function FooterLink({ href, children }: { href: string; children: React.ReactNode }) {
+  const className = "inline-flex min-h-9 items-center text-sm text-stone-600 transition-colors hover:text-stone-900";
+  if (href.startsWith("http")) {
+    return (
+      <a href={href} target="_blank" rel="noopener noreferrer" className={className}>
+        {children}
+      </a>
+    );
+  }
   return (
-    <footer className="bg-slate-50 border-t border-gray-200 py-12">
-      <div className="container mx-auto px-6">
+    <Link href={href} className={className}>
+      {children}
+    </Link>
+  );
+}
 
-        {/* İş Birliklerimiz Alanı */}
-        <div className="text-center mb-8">
-          <p className="text-sm text-gray-600 mb-6 font-medium">İş Birliklerimiz</p>
-          <div className="flex flex-wrap justify-center items-center gap-8">
-            {/* Ordu Ticaret Odası */}
-            <div className="relative h-24 w-48 grayscale hover:grayscale-0 transition-all duration-300 opacity-80 hover:opacity-100">
-              <Image
-                src="/img/orduticaretodasi.png"
-                alt="Ordu Ticaret Odası"
-                fill
-                sizes="192px"
-                className="object-contain"
-              />
-            </div>
-
-            {/* İTÜ Çekirdek */}
-            <div className="relative h-16 w-60 grayscale hover:grayscale-0 transition-all duration-300 opacity-80 hover:opacity-100">
-              <Image
-                src="/img/itucekirdek-menuland.png"
-                alt="İTÜ Çekirdek"
-                fill
-                sizes="240px"
-                className="object-contain"
-              />
-            </div>
+export default function Footer() {
+  return (
+    <footer className="border-t border-stone-200 bg-stone-50">
+      <div className="container-page grid gap-12 py-14 lg:grid-cols-[1.3fr_2fr]">
+        <div className="max-w-sm">
+          <Image src="/img/logo-dark.png" alt="Menuland" width={514} height={143} className="h-8 w-auto" />
+          <p className="mt-4 text-sm leading-relaxed text-stone-600">
+            Restoran, kafe ve barlar için QR menü, Gel-Al sipariş, rezervasyon ve kampanya yönetimi.
+          </p>
+          <div className="mt-6 flex items-center gap-6">
+            <Image
+              src="/img/itucekirdek-menuland.png"
+              alt="İTÜ Çekirdek"
+              width={1773}
+              height={1300}
+              sizes="80px"
+              className="h-11 w-auto object-contain"
+            />
+            <Image
+              src="/img/orduticaretodasi.png"
+              alt="Ordu Ticaret ve Sanayi Odası"
+              width={1471}
+              height={315}
+              sizes="150px"
+              className="h-7 w-auto object-contain"
+            />
           </div>
         </div>
 
-        {/* Ayırıcı Çizgi */}
-        <div className="border-t border-gray-200 my-8"></div>
-
-        {/* Telif Hakkı ve Linkler Alanı */}
-        <div className="text-center text-gray-500">
-          <p>&copy; {new Date().getFullYear()} MLD Yazılım. Tüm Hakları Saklıdır.</p>
-          <div className="mt-4 flex flex-wrap justify-center gap-x-6 gap-y-2">
-            <Link href="/ozellikler" className="hover:text-menuland transition-colors">
-              Özellikler
-            </Link>
-            <Link href="/hizmetler" className="hover:text-menuland transition-colors">
-              Hizmetler
-            </Link>
-            <Link href="/bolgeler" className="hover:text-menuland transition-colors">
-              Bölgeler
-            </Link>
-            <Link href="/blog" className="hover:text-menuland transition-colors">
-              Blog
-            </Link>
-            <Link href="https://isletme.menuland.net" target="_blank" rel="noopener noreferrer" className="hover:text-menuland transition-colors">
-              İşletmeler İçin
-            </Link>
-            <Link href="/gizlilik-politikasi" className="hover:text-menuland transition-colors">
-              Gizlilik Politikası
-            </Link>
-            <Link href="/kullanim-sartlari" className="hover:text-menuland transition-colors">
-              Kullanım Şartları
-            </Link>
-            <a
-              href="https://wa.me/908508401302?text=Merhaba,%20Menuland%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-emerald-600 font-semibold text-emerald-700 transition-colors"
-            >
-              WhatsApp: 0850 840 13 02
-            </a>
+        <div className="grid grid-cols-2 gap-8 sm:grid-cols-[1fr_1fr_1fr_1.35fr]">
+          {columns.map((col) => (
+            <nav key={col.title} aria-label={col.title}>
+              <h2 className="text-sm font-semibold text-stone-900">{col.title}</h2>
+              <ul className="mt-3 space-y-1">
+                {col.items.map((item) => (
+                  <li key={item.label}>
+                    <FooterLink href={item.href}>{item.label}</FooterLink>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          ))}
+          <div>
+            <h2 className="text-sm font-semibold text-stone-900">İletişim</h2>
+            <ul className="mt-3 space-y-1">
+              <li>
+                <a href={links.whatsapp} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-9 items-center text-sm font-medium text-[#0F7A40] hover:underline">
+                  WhatsApp
+                </a>
+              </li>
+              <li>
+                <a href={contact.phoneHref} className="inline-flex min-h-9 items-center text-sm text-stone-600 hover:text-stone-900">
+                  {contact.phone}
+                </a>
+              </li>
+              <li>
+                <a href={`mailto:${contact.supportEmail}`} className="inline-flex min-h-9 items-center text-sm text-stone-600 hover:text-stone-900">
+                  {contact.supportEmail}
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
-
+      </div>
+      <div className="border-t border-stone-200">
+        <p className="container-page py-6 text-sm text-stone-500">
+          © {new Date().getFullYear()} {contact.company}. Tüm hakları saklıdır.
+        </p>
       </div>
     </footer>
   );
-};
-
-export default Footer;
+}

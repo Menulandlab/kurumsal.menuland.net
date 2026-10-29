@@ -66,7 +66,7 @@ export async function POST(req: NextRequest) {
           event_name: eventName,
           event_time: Math.floor(Date.now() / 1000),
           event_id: eventId,
-          event_source_url: reqHeaders.get("referer") || "https://www.menuland.net",
+          event_source_url: reqHeaders.get("referer") || "https://kurumsal.menuland.net",
           action_source: "website",
           user_data: {
             // Include hashed identifiers
@@ -85,7 +85,8 @@ export async function POST(req: NextRequest) {
           },
         },
       ],
-      test_event_code: "TEST96992", // Temporary test event code for live testing
+      // Test olayları yalnızca META_TEST_EVENT_CODE tanımlıysa gönderilir; yoksa olaylar canlı sayılır.
+      ...(process.env.META_TEST_EVENT_CODE ? { test_event_code: process.env.META_TEST_EVENT_CODE } : {}),
     };
 
     const pixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID || "1971172710431675";

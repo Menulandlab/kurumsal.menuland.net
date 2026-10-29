@@ -1,116 +1,158 @@
-import React from 'react';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import { blogPosts } from '@/data/blog-posts';
-import { notFound } from 'next/navigation';
-import { MotionDiv } from '@/components/MotionDiv';
-import Link from 'next/link';
-import BlogImage from '@/components/BlogImage';
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { ArrowLeft, ArrowRight } from "lucide-react";
+import { PageHeader } from "@/components/site/page-header";
+import { Reveal } from "@/components/site/section";
+import { CtaLink } from "@/components/site/cta-link";
+import BlogImage from "@/components/BlogImage";
+import { blogPosts } from "@/data/blog-posts";
+import { SITE_URL, links } from "@/lib/site";
+
+type Params = { params: { slug: string } };
+
+const getPost = (slug: string) => blogPosts.find((p) => p.slug === slug);
 
 export async function generateStaticParams() {
-  return blogPosts.map((post) => ({
-    slug: post.slug,
-  }));
+  return blogPosts.map((post) => ({ slug: post.slug }));
 }
 
-export default function BlogPostPage({ params }: { params: { slug: string } }) {
-  const post = blogPosts.find((p) => p.slug === params.slug);
+export async function generateMetadata({ params }: Params): Promise<Metadata> {
+  const post = getPost(params.slug);
+  if (!post) return {};
+
+  const path = `/blog/${post.slug}`;
+  return {
+    title: post.title,
+    description: post.excerpt,
+    alternates: { canonical: path },
+    openGraph: {
+      type: "article",
+      title: post.title,
+      description: post.excerpt,
+      url: path,
+      siteName: "Menuland",
+      locale: "tr_TR",
+      publishedTime: post.date,
+      authors: [post.author],
+      section: post.category,
+      images: post.image ? [{ url: post.image, alt: post.title }] : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.excerpt,
+      images: post.image ? [post.image] : undefined,
+    },
+  };
+}
+
+const formatDate = (iso: string) =>
+  new Date(iso).toLocaleDateString("tr-TR", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "Europe/Istanbul",
+  });
+
+export default function BlogPostPage({ params }: Params) {
+  const post = getPost(params.slug);
 
   if (!post) {
     notFound();
   }
 
-  // Google News Yapısal Verisi (JSON-LD)
+  const url = `${SITE_URL}/blog/${post.slug}`;
+  const isTeam = post.author === "Menuland Ekibi";
+
+  // Google News yapısal verisi (JSON-LD)
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "NewsArticle",
-    "headline": post.title,
-    "image": [
-      `https://menuland.net${post.image}`
+    headline: post.title,
+    description: post.excerpt,
+    image: post.image ? [`${SITE_URL}${post.image}`] : undefined,
+    datePublished: post.date,
+    dateModified: post.date,
+    mainEntityOfPage: url,
+    author: [
+      {
+        "@type": isTeam ? "Organization" : "Person",
+        name: post.author,
+        url: SITE_URL,
+      },
     ],
-    "datePublished": post.date,
-    "dateModified": post.date,
-    "author": [{
-        "@type": "Person",
-        "name": post.author,
-        "url": "https://menuland.net"
-      }]
+    publisher: {
+      "@type": "Organization",
+      name: "Menuland",
+      logo: { "@type": "ImageObject", url: `${SITE_URL}/img/logo.png` },
+    },
   };
+
+  // Bazı yazılarda özet, ilk paragrafla aynı; o durumda başlıkta tekrar göstermiyoruz.
+  const showExcerpt = !post.content.includes(post.excerpt);
 
   return (
     <>
-      <Header />
-      {/* Yapısal veriyi sayfaya gömüyoruz */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      
-      <main className="pt-24 min-h-screen bg-white">
-        <article className="py-20">
-          <div className="container mx-auto px-6 max-w-4xl">
-            {/* Post Header */}
-            <MotionDiv
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="mb-12"
-            >
-              <Link href="/blog" className="text-orange-600 font-bold text-sm mb-4 inline-block hover:underline">
-                ← Blog'a Dön
-              </Link>
-              <div className="flex items-center gap-4 mb-6 text-sm text-gray-500">
-                <span className="bg-orange-100 text-orange-600 px-3 py-1 rounded-full font-bold uppercase text-[10px]">
-                  {post.category}
-                </span>
-                <span>{new Date(post.date).toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
-                <span>•</span>
-                <span>{post.readTime} okuma</span>
-              </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 leading-tight mb-8">
-                {post.title}
-              </h1>
-              {post.image && (
-                <div className="mb-12 rounded-3xl overflow-hidden aspect-video relative shadow-lg bg-gray-50">
-                  <BlogImage 
-                    src={post.image} 
-                    alt={post.title} 
-                    className="w-full h-full object-cover"
-                    fallbackText={post.category}
-                  />
-                </div>
-              )}
-              <div className="flex items-center gap-4 border-b border-gray-100 pb-8">
-                <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center font-bold text-gray-400">
-                    {post.author.charAt(0)}
-                </div>
-                <div>
-                    <p className="text-sm font-bold text-gray-900">{post.author}</p>
-                    <p className="text-xs text-gray-500">Menuland Editörü</p>
-                </div>
-              </div>
-            </MotionDiv>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
-            {/* Post Content */}
-            <MotionDiv
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2 }}
-              className="prose prose-lg lg:prose-xl prose-orange max-w-none prose-headings:font-bold prose-a:text-orange-600 prose-img:rounded-3xl"
+      <article>
+        <PageHeader
+          eyebrow={post.category}
+          title={post.title}
+          description={showExcerpt ? post.excerpt : undefined}
+          breadcrumb={[{ href: "/blog", label: "Blog" }, { label: post.title }]}
+        >
+          <p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-stone-600">
+            <span className="font-semibold text-stone-900">{post.author}</span>
+            <span aria-hidden>·</span>
+            <time dateTime={post.date}>{formatDate(post.date)}</time>
+            <span aria-hidden>·</span>
+            <span>{post.readTime} okuma</span>
+          </p>
+        </PageHeader>
+
+        <div className="container-page py-12 sm:py-16">
+          <div className="max-w-3xl">
+            {post.image && (
+              <div className="relative mb-10 aspect-video overflow-hidden rounded-2xl bg-stone-100 ring-1 ring-stone-200 sm:mb-12">
+                <BlogImage
+                  src={post.image}
+                  alt={post.title}
+                  sizes="(min-width: 768px) 768px, 100vw"
+                  priority
+                  fallbackText={post.category}
+                />
+              </div>
+            )}
+
+            <div
+              className="prose prose-stone prose-lg max-w-none prose-headings:font-extrabold prose-headings:tracking-tight prose-headings:text-stone-900 prose-a:font-semibold prose-a:text-brand-700 prose-strong:text-stone-900 prose-img:rounded-2xl"
               dangerouslySetInnerHTML={{ __html: post.content }}
             />
-
-            {/* Post Footer / CTA */}
-            <div className="mt-20 p-10 bg-slate-50 rounded-3xl border border-gray-100 text-center">
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Bu özellikleri işletmenizde denemek ister misiniz?</h3>
-                <p className="text-gray-600 mb-8 max-w-xl mx-auto">Menuland ile saniyeler içinde kendi dijital menünüzü oluşturun, müşteri etkileşiminizi artırın.</p>
-                <Link href="https://isletme.menuland.net" className="inline-block bg-orange-600 text-white font-bold px-10 py-4 rounded-2xl hover:bg-orange-700 transition-all shadow-xl shadow-orange-100">
-                    Hemen Ücretsiz Başla
-                </Link>
-            </div>
           </div>
-        </article>
-      </main>
-      <Footer />
+        </div>
+      </article>
+
+      <aside aria-labelledby="yazi-cta-baslik" className="container-page pb-20 sm:pb-28">
+        <Reveal className="max-w-3xl rounded-3xl border border-brand-100 bg-gradient-to-br from-brand-50 via-white to-white p-8 sm:p-10">
+          <h2 id="yazi-cta-baslik" className="text-2xl font-extrabold tracking-tight text-stone-900 sm:text-3xl">
+            Menünüzü Menuland ile dijitale taşıyın
+          </h2>
+          <p className="mt-3 max-w-xl text-base leading-relaxed text-stone-600 sm:text-lg">
+            QR menü, Gel-Al sipariş, rezervasyon ve kampanyaları tek panelden yönetin.
+          </p>
+          <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+            <CtaLink href={links.panel}>
+              Hemen başlayın
+              <ArrowRight />
+            </CtaLink>
+            <CtaLink href="/blog" variant="outline">
+              <ArrowLeft />
+              Tüm yazılar
+            </CtaLink>
+          </div>
+        </Reveal>
+      </aside>
     </>
   );
 }
