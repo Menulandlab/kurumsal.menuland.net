@@ -1,8 +1,16 @@
 "use client";
 
-import { MotionConfig } from "motion/react";
+import { LazyMotion, MotionConfig } from "motion/react";
 
-// Ziyaretçi "hareketi azalt" ayarını açtıysa motion animasyonlarındaki kaydırma ve ölçek etkileri kapanır.
+const loadFeatures = () => import("@/lib/motion-features").then((mod) => mod.default);
+
+// LazyMotion: sayfalar hafif `m` bileşenlerini kullanır; animasyon motoru ilk boyamadan sonra gelir.
+// strict: yanlışlıkla tam boy `motion` bileşeni kullanılırsa geliştirmede hata verir.
+// reducedMotion: ziyaretçi "hareketi azalt" ayarını açtıysa kaydırma ve ölçek etkileri kapanır.
 export default function Providers({ children }: { children: React.ReactNode }) {
-  return <MotionConfig reducedMotion="user">{children}</MotionConfig>;
+  return (
+    <LazyMotion features={loadFeatures} strict>
+      <MotionConfig reducedMotion="user">{children}</MotionConfig>
+    </LazyMotion>
+  );
 }

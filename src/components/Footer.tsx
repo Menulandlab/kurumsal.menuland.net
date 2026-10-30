@@ -52,7 +52,7 @@ export default function Footer() {
     <footer className="border-t border-stone-200 bg-stone-50">
       <div className="container-page grid gap-12 py-14 lg:grid-cols-[1.3fr_2fr]">
         <div className="max-w-sm">
-          <Image src="/img/logo-dark.png" alt="Menuland" width={514} height={143} className="h-8 w-auto" />
+          <Image src="/img/logo-dark.png" alt="Menuland" width={514} height={143} sizes="120px" className="h-8 w-auto" />
           <p className="mt-4 text-sm leading-relaxed text-stone-600">
             Restoran, kafe ve barlar için QR menü, Gel-Al sipariş, rezervasyon ve kampanya yönetimi.
           </p>

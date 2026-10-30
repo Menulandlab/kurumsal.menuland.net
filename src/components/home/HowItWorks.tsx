@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "motion/react";
+import { m } from "motion/react";
 import { ClipboardList, MessageCircle, Printer, UserPlus } from "lucide-react";
 import { Reveal, SectionHeading } from "@/components/site/section";
 import { CtaLink } from "@/components/site/cta-link";
@@ -43,7 +43,7 @@ export default function HowItWorks() {
         <div className="relative mt-16">
           {/* Adımları bağlayan çizgi (masaüstü) */}
           <div aria-hidden className="absolute top-7 right-[16%] left-[16%] hidden h-px bg-stone-800 md:block">
-            <motion.div
+            <m.div
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
               viewport={{ once: true, amount: 0.6 }}
@@ -54,7 +54,7 @@ export default function HowItWorks() {
 
           <ol className="relative grid gap-10 md:grid-cols-3 md:gap-6">
             {steps.map((step, i) => (
-              <motion.li
+              <m.li
                 key={step.title}
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -70,7 +70,7 @@ export default function HowItWorks() {
                 </span>
                 <h3 className="mt-5 text-lg font-bold">{step.title}</h3>
                 <p className="mx-auto mt-2 max-w-xs text-[15px] leading-relaxed text-stone-300">{step.text}</p>
-              </motion.li>
+              </m.li>
             ))}
           </ol>
         </div>

@@ -1,19 +1,11 @@
-"use client";
-
 import Image from "next/image";
-import { motion } from "motion/react";
 import { ArrowRight, BellRing, Check, QrCode, ShieldCheck } from "lucide-react";
 import { AnimatedShinyText } from "@/components/ui/animated-shiny-text";
 import { CtaLink } from "@/components/site/cta-link";
 import { links } from "@/lib/site";
 
-// Hero metni ve ana görsel sunucuda görünür basılır (opacity:0 ile başlamaz).
-// Yalnızca süs amaçlı yüzen kartlar JavaScript yüklendikten sonra belirir.
-const floatIn = (delay: number) => ({
-  initial: { opacity: 0, y: 12, scale: 0.97 },
-  animate: { opacity: 1, y: 0, scale: 1 },
-  transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const, delay },
-});
+// Hero sunucu bileşeni: tarayıcıya JavaScript göndermez.
+// Metin ve ana görsel hemen görünür; süs amaçlı yüzen kartlar CSS animasyonuyla belirir (hydration beklemez).
 
 export default function Hero() {
   return (
@@ -82,18 +74,17 @@ export default function Hero() {
         <div className="relative mx-auto w-full max-w-[460px] lg:max-w-none">
           <div aria-hidden className="absolute inset-x-[12%] top-[10%] bottom-[8%] -z-10 rounded-[3rem] bg-gradient-to-br from-brand-200/70 via-brand-100/40 to-transparent blur-2xl" />
           <Image
-            src="/img/mockups/1-masadaqr.png"
+            src="/img/mockups/hero-qr-menu.png"
             alt="Menuland QR menüde bir ürün sayfası: fotoğraf, fiyat, kalori ve alerjen uyarıları"
-            width={2700}
-            height={3375}
+            width={1320}
+            height={2647}
             priority
-            sizes="(min-width: 1024px) 520px, (min-width: 640px) 460px, 90vw"
-            className="relative h-auto w-full drop-shadow-2xl"
+            sizes="(min-width: 1024px) 290px, (min-width: 640px) 270px, 58vw"
+            className="relative mx-auto h-auto w-[58%] max-w-[290px] drop-shadow-2xl"
           />
 
-          <motion.div
-            {...floatIn(0.5)}
-            className="absolute top-[18%] -left-2 w-56 rounded-2xl border border-stone-200 bg-white/95 p-3.5 shadow-xl backdrop-blur sm:-left-6"
+          <div
+            className="animate-float-in absolute top-[18%] -left-2 w-56 rounded-2xl border border-stone-200 bg-white/95 p-3.5 shadow-xl backdrop-blur sm:-left-6"
           >
             <div className="flex items-center gap-2.5">
               <span className="flex size-9 items-center justify-center rounded-xl bg-brand-100 text-brand-700">
@@ -108,11 +99,10 @@ export default function Hero() {
               <span className="text-stone-600">3 ürün</span>
               <span className="font-bold text-stone-900">575,00 ₺</span>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
-            {...floatIn(0.7)}
-            className="absolute right-0 bottom-[20%] w-52 rounded-2xl border border-stone-200 bg-white/95 p-3.5 shadow-xl backdrop-blur sm:-right-4"
+          <div
+            className="animate-float-in absolute right-0 bottom-[20%] [animation-delay:0.25s] w-52 rounded-2xl border border-stone-200 bg-white/95 p-3.5 shadow-xl backdrop-blur sm:-right-4"
           >
             <div className="flex items-center gap-2.5">
               <span className="flex size-9 items-center justify-center rounded-xl bg-emerald-100 text-emerald-700">
@@ -127,7 +117,7 @@ export default function Hero() {
                 </span>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

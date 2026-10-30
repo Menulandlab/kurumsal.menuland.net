@@ -73,9 +73,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="tr" className={jakarta.variable}>
       <body>
-        {/* Google Analytics (gtag.js) */}
-        <Script src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`} strategy="afterInteractive" />
-        <Script id="google-analytics" strategy="afterInteractive">
+        {/* Google Analytics (gtag.js). lazyOnload: sayfa yüklendikten sonra gelir, ilk açılışı yavaşlatmaz. */}
+        <Script src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`} strategy="lazyOnload" />
+        <Script id="google-analytics" strategy="lazyOnload">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
@@ -99,15 +99,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             fbq('track', 'PageView');
           `}
         </Script>
-        <noscript>
-          <img
-            height="1"
-            width="1"
-            style={{ display: "none" }}
-            src={`https://www.facebook.com/tr?id=${pixelId}&ev=PageView&noscript=1`}
-            alt=""
-          />
-        </noscript>
+        {/* Ham HTML olarak basılır: React <img>'yi önceden yüklemeye çalışıp her ziyaretçide ikinci bir PageView saydırmasın. */}
+        <noscript
+          dangerouslySetInnerHTML={{
+            __html: `<img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=${pixelId}&ev=PageView&noscript=1" />`,
+          }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}

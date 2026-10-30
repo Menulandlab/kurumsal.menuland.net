@@ -1,11 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Menu } from "lucide-react";
-import { Sheet, SheetClose, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { Menu, X } from "lucide-react";
 import { CtaLink } from "@/components/site/cta-link";
 import { links } from "@/lib/site";
 import { cn } from "@/lib/utils";
@@ -22,6 +21,7 @@ const nav = [
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const dialogRef = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -29,6 +29,15 @@ export default function Header() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  // Sayfa değişince mobil menüyü kapat.
+  useEffect(() => {
+    dialogRef.current?.close();
+  }, [pathname]);
+
+  // Mobil menü tarayıcının yerleşik <dialog> öğesi: odak tuzağı, Esc ile kapanma ve arka plan kilidi kendiliğinden gelir.
+  const openMenu = () => dialogRef.current?.showModal();
+  const closeMenu = () => dialogRef.current?.close();
 
   return (
     <header
@@ -41,7 +50,7 @@ export default function Header() {
     >
       <div className="container-page flex h-16 items-center justify-between gap-6">
         <Link href="/" className="flex shrink-0 items-center gap-2" aria-label="Menuland ana sayfa">
-          <Image src="/img/logo-dark.png" alt="Menuland" width={514} height={143} priority className="h-8 w-auto" />
+          <Image src="/img/logo-dark.png" alt="Menuland" width={514} height={143} sizes="120px" priority className="h-8 w-auto" />
           <span className="hidden rounded-md border border-brand-200 bg-brand-50 px-1.5 py-0.5 text-[11px] font-bold tracking-wide text-brand-700 sm:inline-block">
             İŞLETME
           </span>
@@ -70,43 +79,63 @@ export default function Header() {
           <CtaLink href={links.panel}>Hemen başlayın</CtaLink>
         </div>
 
-        <Sheet>
-          <SheetTrigger
-            className="inline-flex size-11 items-center justify-center rounded-xl text-stone-800 hover:bg-stone-100 lg:hidden"
-            aria-label="Menüyü aç"
-          >
-            <Menu className="size-6" />
-          </SheetTrigger>
-          <SheetContent side="right" className="w-[85%] max-w-sm gap-0 p-0">
-            <div className="flex h-16 items-center border-b border-stone-200 px-5">
-              <SheetTitle className="text-base font-semibold">Menü</SheetTitle>
-            </div>
-            <nav aria-label="Mobil menü" className="flex-1 overflow-y-auto px-3 py-4">
-              <ul className="space-y-1">
-                {nav.map((item) => (
-                  <li key={item.href}>
-                    <SheetClose
-                      render={<Link href={item.href} />}
-                      nativeButton={false}
-                      className="flex min-h-12 items-center rounded-xl px-3 text-base font-medium text-stone-800 hover:bg-stone-100"
-                    >
-                      {item.label}
-                    </SheetClose>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-            <div className="grid gap-2 border-t border-stone-200 p-4">
-              <CtaLink href={links.panel} size="lg">
-                Hemen başlayın
-              </CtaLink>
-              <CtaLink href={links.panel} variant="outline" size="lg">
-                Giriş yap
-              </CtaLink>
-            </div>
-          </SheetContent>
-        </Sheet>
+        <button
+          type="button"
+          onClick={openMenu}
+          aria-label="Menüyü aç"
+          aria-haspopup="dialog"
+          className="inline-flex size-11 items-center justify-center rounded-xl text-stone-800 hover:bg-stone-100 lg:hidden"
+        >
+          <Menu className="size-6" />
+        </button>
       </div>
+
+      <dialog
+        ref={dialogRef}
+        aria-label="Menü"
+        onClick={(e) => {
+          // Arka plana tıklayınca kapat.
+          if (e.target === e.currentTarget) closeMenu();
+        }}
+        className="mobile-nav fixed inset-y-0 right-0 left-auto m-0 h-dvh max-h-none w-[85%] max-w-sm bg-white p-0 shadow-2xl lg:hidden"
+      >
+        <div className="flex h-full flex-col">
+          <div className="flex h-16 items-center justify-between border-b border-stone-200 px-5">
+            <p className="text-base font-semibold text-stone-900">Menü</p>
+            <button
+              type="button"
+              onClick={closeMenu}
+              aria-label="Menüyü kapat"
+              className="inline-flex size-11 items-center justify-center rounded-xl text-stone-700 hover:bg-stone-100"
+            >
+              <X className="size-5" />
+            </button>
+          </div>
+          <nav aria-label="Mobil menü" className="flex-1 overflow-y-auto px-3 py-4">
+            <ul className="space-y-1">
+              {nav.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    onClick={closeMenu}
+                    className="flex min-h-12 items-center rounded-xl px-3 text-base font-medium text-stone-800 hover:bg-stone-100"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+          <div className="grid gap-2 border-t border-stone-200 p-4">
+            <CtaLink href={links.panel} size="lg">
+              Hemen başlayın
+            </CtaLink>
+            <CtaLink href={links.panel} variant="outline" size="lg">
+              Giriş yap
+            </CtaLink>
+          </div>
+        </div>
+      </dialog>
     </header>
   );
 }

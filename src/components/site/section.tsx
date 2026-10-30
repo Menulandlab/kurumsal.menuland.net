@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, type HTMLMotionProps } from "motion/react";
+import { m, type HTMLMotionProps } from "motion/react";
 import { cn } from "@/lib/utils";
 
 // Ekran altında kalan içerik için yumuşak giriş. İlk ekranda (hero) kullanılmaz:
@@ -12,7 +12,7 @@ export function Reveal({
   ...props
 }: HTMLMotionProps<"div"> & { delay?: number }) {
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.15 }}
@@ -21,7 +21,7 @@ export function Reveal({
       {...props}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }
 

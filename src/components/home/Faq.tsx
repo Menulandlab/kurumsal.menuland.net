@@ -1,4 +1,4 @@
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Disclosure } from "@/components/site/disclosure";
 import { Reveal, SectionHeading } from "@/components/site/section";
 import { contact } from "@/lib/site";
 
@@ -67,16 +67,13 @@ export default function Faq() {
           />
         </div>
         <Reveal>
-          <Accordion className="rounded-3xl border border-stone-200 bg-white px-6 sm:px-8">
-            {faqs.map((f, i) => (
-              <AccordionItem key={f.q} value={`sss-${i}`} className="border-stone-200">
-                <AccordionTrigger className="py-5 text-left text-base font-semibold text-stone-900 hover:no-underline">
-                  {f.q}
-                </AccordionTrigger>
-                <AccordionContent className="pb-5 text-[15px] leading-relaxed text-stone-600">{f.a}</AccordionContent>
-              </AccordionItem>
+          <div className="divide-y divide-stone-200 rounded-3xl border border-stone-200 bg-white px-6 sm:px-8">
+            {faqs.map((f) => (
+              <Disclosure key={f.q} summary={f.q} name="sss">
+                <p className="pb-5 text-[15px] leading-relaxed text-stone-600">{f.a}</p>
+              </Disclosure>
             ))}
-          </Accordion>
+          </div>
         </Reveal>
       </div>
     </section>

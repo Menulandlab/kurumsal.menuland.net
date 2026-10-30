@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, m } from "motion/react";
 import { Building2, Check, Minus, Phone } from "lucide-react";
 import { BorderBeam } from "@/components/ui/border-beam";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Disclosure } from "@/components/site/disclosure";
 import { Reveal, SectionHeading } from "@/components/site/section";
 import { CtaLink } from "@/components/site/cta-link";
 import { basicFeatures, formatTRY, links, plans, premiumFeatures, type Plan } from "@/lib/site";
@@ -26,7 +26,7 @@ function AnimatedPrice({ value, className }: { value: number; className?: string
   return (
     <span className={cn("relative inline-flex overflow-hidden whitespace-nowrap tabular-nums", className)}>
       <AnimatePresence initial={false} mode="popLayout">
-        <motion.span
+        <m.span
           key={value}
           initial={{ y: "60%", opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -34,19 +34,27 @@ function AnimatedPrice({ value, className }: { value: number; className?: string
           transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
         >
           {formatTRY(value)}
-        </motion.span>
+        </m.span>
       </AnimatePresence>
     </span>
   );
 }
 
+// Seçili sekmenin arkasındaki beyaz zemin CSS ile kayar (layoutId gerektirmez, motion'ın hafif paketi yeter).
 function BillingToggle({ billing, onChange }: { billing: Billing; onChange: (b: Billing) => void }) {
   const options: { id: Billing; label: string }[] = [
     { id: "monthly", label: "Aylık" },
     { id: "yearly", label: "Yıllık" },
   ];
   return (
-    <div role="radiogroup" aria-label="Ödeme dönemi" className="inline-flex rounded-xl bg-stone-100 p-1">
+    <div role="radiogroup" aria-label="Ödeme dönemi" className="relative grid grid-cols-2 rounded-xl bg-stone-100 p-1">
+      <span
+        aria-hidden
+        className={cn(
+          "absolute inset-y-1 left-1 w-[calc(50%-0.25rem)] rounded-lg bg-white shadow-sm transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]",
+          billing === "yearly" && "translate-x-full"
+        )}
+      />
       {options.map((o) => (
         <button
           key={o.id}
@@ -54,18 +62,11 @@ function BillingToggle({ billing, onChange }: { billing: Billing; onChange: (b: 
           role="radio"
           aria-checked={billing === o.id}
           onClick={() => onChange(o.id)}
-          className="relative flex h-10 items-center gap-2 rounded-lg px-5 text-sm font-semibold text-stone-600 transition-colors aria-checked:text-stone-900"
+          className="relative flex h-10 items-center justify-center gap-2 rounded-lg px-5 text-sm font-semibold text-stone-600 transition-colors aria-checked:text-stone-900"
         >
-          {billing === o.id && (
-            <motion.span
-              layoutId="billing-pill"
-              className="absolute inset-0 rounded-lg bg-white shadow-sm"
-              transition={{ type: "spring", stiffness: 500, damping: 40 }}
-            />
-          )}
-          <span className="relative">{o.label}</span>
+          {o.label}
           {o.id === "yearly" && (
-            <span className="relative rounded-md bg-emerald-100 px-1.5 py-0.5 text-[11px] font-bold text-emerald-800">
+            <span className="rounded-md bg-emerald-100 px-1.5 py-0.5 text-[11px] font-bold text-emerald-800">
               %20 indirim
             </span>
           )}
@@ -268,16 +269,11 @@ export default function Pricing() {
           </Reveal>
 
           <Reveal className="mt-8 rounded-3xl border border-stone-200 bg-white px-6 sm:px-8">
-            <Accordion>
-              <AccordionItem value="karsilastirma" className="border-0">
-                <AccordionTrigger className="py-5 text-base font-semibold text-stone-900 hover:no-underline">
-                  Paketleri ayrıntılı karşılaştırın
-                </AccordionTrigger>
-                <AccordionContent className="pb-6">
-                  <ComparisonTable />
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
+            <Disclosure summary="Paketleri ayrıntılı karşılaştırın">
+              <div className="pb-6">
+                <ComparisonTable />
+              </div>
+            </Disclosure>
           </Reveal>
         </div>
       </div>
