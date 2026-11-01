@@ -4,7 +4,7 @@ import { m } from "motion/react";
 import { ClipboardList, MessageCircle, Printer, UserPlus } from "lucide-react";
 import { Reveal, SectionHeading } from "@/components/site/section";
 import { CtaLink } from "@/components/site/cta-link";
-import { links } from "@/lib/site";
+import { links, whatsappLink } from "@/lib/site";
 
 const steps = [
   {
@@ -79,7 +79,7 @@ export default function HowItWorks() {
           <CtaLink href={links.panel} size="lg">
             Hesabınızı açın
           </CtaLink>
-          <CtaLink href={links.whatsapp} variant="light" size="lg">
+          <CtaLink href={whatsappLink("KRM-NASIL")} variant="light" size="lg">
             <MessageCircle />
             Kurulumda yardım alın
           </CtaLink>

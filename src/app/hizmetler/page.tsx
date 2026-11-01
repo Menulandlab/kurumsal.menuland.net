@@ -21,7 +21,7 @@ import {
 import { PageHeader } from "@/components/site/page-header";
 import { Reveal, SectionHeading } from "@/components/site/section";
 import { CtaLink } from "@/components/site/cta-link";
-import { contact, formatTRY, links, plans } from "@/lib/site";
+import { contact, formatTRY, links, plans, whatsappLink } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Hizmetler",
@@ -100,7 +100,7 @@ const supportItems = [
   {
     icon: Mail,
     title: "E-posta desteği",
-    text: `${contact.supportEmail} adresine 7/24 yazabilirsiniz. Premium pakette talepleriniz önceliklendirilir.`,
+    text: `${contact.supportEmail} adresine dilediğiniz zaman yazabilirsiniz; Pazartesi–Cumartesi 09.00–18.00 arasında yanıtlıyoruz. Premium pakette talepleriniz önceliklendirilir.`,
   },
   {
     icon: Building2,
@@ -185,7 +185,7 @@ function PageCta() {
               Hemen başlayın
               <ArrowRight />
             </CtaLink>
-            <CtaLink href={links.whatsapp} variant="whatsapp" size="lg">
+            <CtaLink href={whatsappLink("KRM-HIZMET")} variant="whatsapp" size="lg">
               <MessageCircle />
               WhatsApp'tan yazın
             </CtaLink>

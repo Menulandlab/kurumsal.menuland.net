@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { contact, links } from "@/lib/site";
+import { contact, links, whatsappLink } from "@/lib/site";
 
 const columns = [
   {
@@ -93,7 +93,7 @@ export default function Footer() {
             <h2 className="text-sm font-semibold text-stone-900">İletişim</h2>
             <ul className="mt-3 space-y-1">
               <li>
-                <a href={links.whatsapp} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-9 items-center text-sm font-medium text-[#0F7A40] hover:underline">
+                <a href={whatsappLink("KRM-ALT")} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-9 items-center text-sm font-medium text-[#0F7A40] hover:underline">
                   WhatsApp
                 </a>
               </li>

@@ -11,7 +11,7 @@ import {
 import { PageHeader } from "@/components/site/page-header";
 import { Reveal, SectionHeading } from "@/components/site/section";
 import { CtaLink } from "@/components/site/cta-link";
-import { contact, links, stats } from "@/lib/site";
+import { contact, links, stats, whatsappLink } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Hizmet Bölgeleri",
@@ -82,7 +82,7 @@ function PageCta() {
               Hemen başlayın
               <ArrowRight />
             </CtaLink>
-            <CtaLink href={links.whatsapp} variant="whatsapp" size="lg">
+            <CtaLink href={whatsappLink("KRM-BOLGE2")} variant="whatsapp" size="lg">
               <MessageCircle />
               WhatsApp'tan yazın
             </CtaLink>
@@ -109,7 +109,7 @@ export default function BolgelerPage() {
             Hemen başlayın
             <ArrowRight />
           </CtaLink>
-          <CtaLink href={links.whatsapp} variant="outline" size="lg">
+          <CtaLink href={whatsappLink("KRM-BOLGE1")} variant="outline" size="lg">
             <MessageCircle />
             Şehrinizi sorun
           </CtaLink>

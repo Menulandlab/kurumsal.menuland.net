@@ -7,7 +7,7 @@ import { BorderBeam } from "@/components/ui/border-beam";
 import { Disclosure } from "@/components/site/disclosure";
 import { Reveal, SectionHeading } from "@/components/site/section";
 import { CtaLink } from "@/components/site/cta-link";
-import { basicFeatures, formatTRY, links, plans, premiumFeatures, type Plan } from "@/lib/site";
+import { basicFeatures, formatTRY, links, plans, premiumFeatures, whatsappLink, type Plan } from "@/lib/site";
 import { generateEventId, trackMetaEvent } from "@/utils/meta-pixel";
 import { cn } from "@/lib/utils";
 
@@ -262,7 +262,7 @@ export default function Pricing() {
               <h3 className="text-xl font-bold">6 ve üzeri şubeniz mi var?</h3>
               <p className="mt-1.5 text-[15px] text-stone-300">Size özel fiyat, entegrasyon ve destek planı hazırlayalım.</p>
             </div>
-            <CtaLink href={links.whatsapp} variant="light" size="lg" className="shrink-0">
+            <CtaLink href={whatsappLink("KRM-FIYAT")} variant="light" size="lg" className="shrink-0">
               <Phone />
               Bizimle görüşün
             </CtaLink>

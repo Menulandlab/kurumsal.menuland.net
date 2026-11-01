@@ -34,7 +34,7 @@ import {
 import { PageHeader } from "@/components/site/page-header";
 import { Reveal, SectionHeading } from "@/components/site/section";
 import { CtaLink } from "@/components/site/cta-link";
-import { formatTRY, links, plans } from "@/lib/site";
+import { formatTRY, links, plans, whatsappLink } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -447,7 +447,7 @@ function PageCta() {
               Hemen başlayın
               <ArrowRight />
             </CtaLink>
-            <CtaLink href={links.whatsapp} variant="whatsapp" size="lg">
+            <CtaLink href={whatsappLink("KRM-OZELLIK")} variant="whatsapp" size="lg">
               <MessageCircle />
               WhatsApp'tan yazın
             </CtaLink>

@@ -2,7 +2,7 @@ import { ArrowRight, Mail, MessageCircle, Phone } from "lucide-react";
 import { Spotlight } from "@/components/ui/spotlight-new";
 import { Reveal } from "@/components/site/section";
 import { CtaLink } from "@/components/site/cta-link";
-import { contact, links } from "@/lib/site";
+import { contact, links, whatsappLink } from "@/lib/site";
 
 const warm = (a: number) => `hsla(20, 100%, 60%, ${a})`;
 
@@ -33,7 +33,7 @@ export default function FinalCta() {
               Hemen başlayın
               <ArrowRight />
             </CtaLink>
-            <CtaLink href={links.whatsapp} variant="whatsapp" size="lg">
+            <CtaLink href={whatsappLink("KRM-SON")} variant="whatsapp" size="lg">
               <MessageCircle />
               WhatsApp'tan yazın
             </CtaLink>

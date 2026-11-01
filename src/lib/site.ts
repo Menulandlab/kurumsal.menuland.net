@@ -8,9 +8,24 @@ export const links = {
   demoMenu: "https://menulandcafe.menuland.net",
   appStore: "https://apps.apple.com/tr/app/menuland/id6618147785?l=tr",
   googlePlay: "https://play.google.com/store/apps/details?id=com.mycompany.menuland&pli=1",
-  whatsapp:
-    "https://wa.me/908508401302?text=Merhaba,%20Menuland%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum.",
 };
+
+// WhatsApp mesajının sonundaki kod, yazanın hangi butondan geldiğini gösterir.
+// Diğer sitelerdeki kodlar: WEB-* (menuland.net), PNL-* (işletme paneli), MLD-* (mldyazilim.com).
+export type WhatsappCode =
+  | "KRM-ALT" // her sayfanın altbilgisi
+  | "KRM-NASIL" // ana sayfa, "Nasıl çalışır" bölümü
+  | "KRM-FIYAT" // ana sayfa, fiyatların altı
+  | "KRM-SON" // ana sayfa, en alttaki çağrı kutusu
+  | "KRM-HIZMET" // /hizmetler
+  | "KRM-OZELLIK" // /ozellikler
+  | "KRM-BOLGE1" // /bolgeler, üstteki buton
+  | "KRM-BOLGE2"; // /bolgeler, alttaki buton
+
+export function whatsappLink(code: WhatsappCode) {
+  const text = `Merhaba, Menuland hakkında bilgi almak istiyorum.\n\n(Kod: ${code})`;
+  return `https://wa.me/908508401302?text=${encodeURIComponent(text)}`;
+}
 
 export const contact = {
   phone: "0850 840 13 02",
@@ -50,7 +65,7 @@ export const basicFeatures = [
   "QR kod oluşturucu",
   "Temel istatistikler",
   "İşletme bilgileri yönetimi",
-  "7/24 e-posta desteği",
+  "E-posta desteği",
 ];
 
 export const premiumFeatures = [
