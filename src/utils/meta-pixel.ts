@@ -1,3 +1,5 @@
+import { kayitliTercih } from "@/lib/cerezTercihi";
+
 /**
  * Generate a unique Event ID for deduplication (matches client and server events)
  */
@@ -32,6 +34,16 @@ export const trackMetaEvent = async (
   customData: CustomData = {},
   userData: UserData = {}
 ) => {
+  // KVKK: reklam çerezlerine onay verilmediyse ne piksel ne de sunucu tarafı (CAPI) olayı gönderilir.
+  // Yerel geliştirme ve önizleme adreslerinden de Meta'ya olay gitmez.
+  if (
+    typeof window === "undefined" ||
+    kayitliTercih()?.reklam !== true ||
+    !/(^|\.)menuland\.net$/.test(window.location.hostname)
+  ) {
+    return;
+  }
+
   // 1. Browser-Side tracking (Meta Pixel)
   if (typeof window !== "undefined" && (window as any).fbq) {
     try {

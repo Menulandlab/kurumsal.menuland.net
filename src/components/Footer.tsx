@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { contact, links, whatsappLink } from "@/lib/site";
+import CookiePreferencesButton from "@/components/CookiePreferencesButton";
 
 const columns = [
   {
@@ -86,6 +87,11 @@ export default function Footer() {
                     <FooterLink href={item.href}>{item.label}</FooterLink>
                   </li>
                 ))}
+                {col.title === "Yasal" && (
+                  <li>
+                    <CookiePreferencesButton />
+                  </li>
+                )}
               </ul>
             </nav>
           ))}

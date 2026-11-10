@@ -1,10 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
-import Script from "next/script";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Providers from "@/components/Providers";
+import CookieConsent from "@/components/CookieConsent";
 import { SITE_URL, contact, links } from "@/lib/site";
 
 const jakarta = Plus_Jakarta_Sans({
@@ -67,44 +67,10 @@ const organizationJsonLd = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  const pixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID || "1971172710431675";
-  const gaId = process.env.NEXT_PUBLIC_GA_ID || "G-DVXKCWSF0W";
-
   return (
     <html lang="tr" className={jakarta.variable}>
       <body>
-        {/* Google Analytics (gtag.js). lazyOnload: sayfa yüklendikten sonra gelir, ilk açılışı yavaşlatmaz. */}
-        <Script src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`} strategy="lazyOnload" />
-        <Script id="google-analytics" strategy="lazyOnload">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${gaId}', { page_path: window.location.pathname });
-          `}
-        </Script>
-
-        {/* Meta Pixel Base Tracking */}
-        <Script id="meta-pixel" strategy="lazyOnload">
-          {`
-            !function(f,b,e,v,n,t,s)
-            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-            n.queue=[];t=b.createElement(e);t.async=!0;
-            t.src=v;s=b.getElementsByTagName(e)[0];
-            s.parentNode.insertBefore(t,s)}(window, document,'script',
-            'https://connect.facebook.net/en_US/fbevents.js');
-            fbq('init', '${pixelId}');
-            fbq('track', 'PageView');
-          `}
-        </Script>
-        {/* Ham HTML olarak basılır: React <img>'yi önceden yüklemeye çalışıp her ziyaretçide ikinci bir PageView saydırmasın. */}
-        <noscript
-          dangerouslySetInnerHTML={{
-            __html: `<img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=${pixelId}&ev=PageView&noscript=1" />`,
-          }}
-        />
+        {/* Google Analytics ve Meta pikseli yalnızca çerez onayından sonra yüklenir (CookieConsent). */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
@@ -121,6 +87,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <main id="icerik">{children}</main>
           <Footer />
         </Providers>
+        <CookieConsent />
       </body>
     </html>
   );

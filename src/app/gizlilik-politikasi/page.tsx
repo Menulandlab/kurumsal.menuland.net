@@ -98,6 +98,9 @@ export default function PrivacyPolicyPage() {
           <p>
             Menuland, kullanıcı deneyimini geliştirmek için çerezler ve benzeri takip teknolojilerini kullanır. Kullanıcılar tarayıcı ayarlarından çerezleri devre dışı bırakabilirler, ancak bu durumda bazı hizmetler düzgün çalışmayabilir.
           </p>
+          <p>
+            Ziyaretleri ölçmek için kullanılan Google Analytics ve reklamlarımızın etkisini ölçmek için kullanılan Meta pikseli yalnızca onay vermeniz hâlinde çalışır. Tercihinizi sayfanın altındaki &quot;Çerez tercihleri&quot; bağlantısından istediğiniz zaman değiştirebilirsiniz.
+          </p>
 
           <h2>8. Kullanıcı Hakları</h2>
           <p>Menuland, kullanıcıların kişisel verilerine erişim, düzeltme, silme veya işlenmesini kısıtlama hakkını tanır. Kullanıcılar aşağıdaki haklara sahiptir:</p>
