@@ -90,9 +90,13 @@ export async function POST(req: NextRequest) {
     };
 
     const pixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID || "1971172710431675";
-    const capiToken =
-      process.env.META_CAPI_ACCESS_TOKEN ||
-      "EAANZB07lve7EBRuFltCQVqU0upobmT0CjwMt44ln4BvNZCPXlUxeo5Bo3G3JrUFlzKRZCvjHd6NEHZAmqnfSDP1aWqd5eh84JdKnOuYkW1AyGJV2iJvfRrkMAqjl6IfKufNhSDP2ZBctmRIMBcb7p5rJHhHsijeyzMLhEiGesABS9xY6YtrnJUkZCzZAGu16gZDZD";
+    // Erişim anahtarı yalnızca Vercel ortam değişkeninden okunur. Depo herkese açık olduğu için koda yazılmaz
+    // (11.11.2026'ya kadar yedek olarak kodda duruyordu; o anahtar Meta'da iptal edilmeli).
+    const capiToken = process.env.META_CAPI_ACCESS_TOKEN;
+    if (!capiToken) {
+      console.error("[Meta CAPI] META_CAPI_ACCESS_TOKEN tanımlı değil; olay gönderilmedi.");
+      return NextResponse.json({ success: false, skipped: "token_missing" }, { status: 503 });
+    }
 
     const metaEndpoint = `https://graph.facebook.com/v19.0/${pixelId}/events?access_token=${capiToken}`;
 
