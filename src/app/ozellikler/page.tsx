@@ -174,12 +174,12 @@ const groups: FeatureGroup[] = [
     id: "yonetim",
     label: "Yönetim ve raporlama",
     title: "İşletmenizi tek yerden yönetin",
-    description: "Hangi ürünün ilgi gördüğünü izleyin, şubelerinizi ve müşteri geri bildirimlerini aynı panelden takip edin.",
+    description: "Menünüzün ne zaman ve kaç kez açıldığını izleyin, şubelerinizi ve müşteri geri bildirimlerini aynı panelden takip edin.",
     items: [
       {
         icon: BarChart3,
         title: "İstatistikler",
-        text: "Menünüzün kaç kez görüntülendiğini ve hangi ürünlerin ilgi gördüğünü takip edin. Premium pakette raporlar daha ayrıntılıdır.",
+        text: "Menünüzün kaç kez ve en çok hangi saatlerde görüntülendiğini takip edin. Premium pakette raporlar daha ayrıntılıdır.",
       },
       {
         icon: MessageSquareText,

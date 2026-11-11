@@ -51,8 +51,8 @@ const steps = [
     text: "Menuland uygulamasını kullanan Ordulular sizi menünüzle birlikte şehir ve ilçe aramalarında ve haritada görür. Menünüzdeki ürünler “Ne Yesem?” önerilerinde de çıkabilir.",
   },
   {
-    title: "Müşteriler uygulamadan size ulaşır.",
-    text: "Gel-Al siparişini ve rezervasyonu açtığınızda bu talepler uygulamadan gelir. Yorum yazan ve rezervasyonu onaylanan kullanıcılar PuanLand puanı kazanır.",
+    title: "Uygulamadan gelen talepler panelinize düşer.",
+    text: "Gel-Al siparişini ya da rezervasyonu açarsanız uygulamadan gelen talepler panelinize düşer. Yorum yazan ve rezervasyonu onaylanan kullanıcılar PuanLand puanı kazanır.",
   },
   {
     title: "Hepsini panelinizde görürsünüz.",
@@ -92,7 +92,7 @@ const panelFeatures = [
   },
   {
     title: "İstatistik",
-    text: "Menünüzün kaç kez görüntülendiğini ve hangi ürünlerin ilgi gördüğünü panelden takip edersiniz.",
+    text: "Menünüzün kaç kez ve en çok hangi saatlerde görüntülendiğini panelden takip edersiniz.",
   },
 ];
 
@@ -108,7 +108,7 @@ const appFeatures = [
   },
   {
     title: "PuanLand",
-    text: "Kullanıcılar yorum yazarak ve onaylanan rezervasyonlarla puan kazanır. Bu puanları işletmelerin PuanLand kampanyalarında kullanırlar.",
+    text: "Kullanıcılar yorum yazarak ve onaylanan rezervasyonlarla puan kazanır. Bu puanları işletmelerin PuanLand kampanyalarında kullanabilirler.",
   },
   {
     title: "Kampanyalar ve etkinlikler",
