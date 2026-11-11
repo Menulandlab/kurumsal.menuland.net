@@ -336,7 +336,7 @@ export default function OrduPage() {
               id="ordu-uygulama-baslik"
               align="left"
               eyebrow="Menuland uygulaması"
-              title="Uygulamayı kullanan Ordulular işletmenizi keşfeder"
+              title="Ordulular işletmenizi uygulamada keşfedebilir"
               description="Menuland'e eklenen işletmeler iOS ve Android'deki Menuland uygulamasında da listelenir. Bunun için ayrıca bir şey yapmanız gerekmez."
             />
             <Reveal>
