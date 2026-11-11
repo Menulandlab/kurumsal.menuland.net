@@ -12,6 +12,7 @@ const columns = [
       { href: "/ozellikler", label: "Tüm özellikler" },
       { href: "/hizmetler", label: "Hizmetler" },
       { href: "/bolgeler", label: "Bölgeler" },
+      { href: "/ordu-qr-menu", label: "Ordu QR menü" },
     ],
   },
   {

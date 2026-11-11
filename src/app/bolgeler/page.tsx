@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import type { LucideIcon } from "lucide-react";
 import {
   ArrowRight,
@@ -174,10 +175,19 @@ export default function BolgelerPage() {
                 kampanyalar ve etkinlikler uygulamada duyurulur, müşteriler PuanLand puanlarını bu işletmelerde
                 harcar.
               </p>
-              <CtaLink href={links.panel} variant="dark" size="lg" className="mt-6">
-                İşletmenizi ekleyin
-                <ArrowRight />
-              </CtaLink>
+              <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
+                <CtaLink href={links.panel} variant="dark" size="lg">
+                  İşletmenizi ekleyin
+                  <ArrowRight />
+                </CtaLink>
+                <Link
+                  href="/ordu-qr-menu"
+                  className="inline-flex min-h-11 items-center gap-1.5 font-semibold text-brand-700 underline-offset-4 hover:text-brand-800 hover:underline"
+                >
+                  Ordu'da QR menü ve yerinde kurulum
+                  <ArrowRight className="size-4" aria-hidden />
+                </Link>
+              </div>
             </div>
             <dl className="flex flex-col-reverse gap-1 rounded-2xl bg-stone-50 p-6 lg:p-8">
               <dt className="text-sm text-stone-600">Ordu'da Menuland'de listelenen mekan</dt>
