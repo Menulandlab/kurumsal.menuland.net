@@ -62,7 +62,6 @@ const services: Service[] = [
     title: "Garson çağırma ve hesap isteme",
     text: "Müşteri QR menüdeki düğmeyle garson çağırır ya da hesabı ister; bildirim panelinize düşer.",
     points: ["Garson çağır ve hesap iste düğmeleri", "Düğmeleri menü ayarlarından açıp kapatma"],
-    premium: true,
   },
   {
     icon: CalendarCheck,

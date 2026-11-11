@@ -33,7 +33,7 @@ export const faqs = [
   },
   {
     q: "Temel ve Premium paket arasındaki fark nedir?",
-    a: "Temel paket (349 ₺/ay) sınırsız ürün, QR menü ve temel istatistikleri içerir. Premium paket (649 ₺/ay) bunlara ek olarak rezervasyon, kampanya ve etkinlik yönetimi, garson çağırma bildirimleri, gelişmiş raporlama ve öncelikli destek sunar.",
+    a: "Temel paket (349 ₺/ay) sınırsız ürün, QR menü, garson çağırma ile hesap isteme bildirimleri ve temel istatistikleri içerir. Premium paket (649 ₺/ay) bunlara ek olarak rezervasyon, kampanya ve etkinlik yönetimi, gelişmiş raporlama ve öncelikli destek sunar.",
   },
   {
     q: "Yıllık ödemede indirim var mı?",

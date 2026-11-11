@@ -136,7 +136,6 @@ const groups: FeatureGroup[] = [
         icon: BellRing,
         title: "Garson çağırma ve hesap isteme",
         text: "Müşteri QR menüdeki düğmeyle garson çağırır ya da hesabı ister, bildirim panelinize düşer. Düğmeleri menü ayarlarından açıp kapatabilirsiniz.",
-        premium: true,
       },
     ],
   },

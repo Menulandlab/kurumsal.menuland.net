@@ -87,8 +87,8 @@ const panelFeatures = [
     text: "İndirimlerinizi ve etkinliklerinizi panelden oluşturur, Menuland uygulamasında duyurursunuz.",
   },
   {
-    title: "Garson çağırma",
-    text: "Müşteri QR menüdeki düğmeyle garson çağırır ya da hesabı ister. Bildirim panelinize düşer.",
+    title: "Garson çağırma ve hesap isteme",
+    text: "Müşteri QR menüdeki düğmeyle garson çağırır ya da hesabı ister ve bildirim panelinize düşer. Bu özellik Temel pakete dahildir.",
   },
   {
     title: "İstatistik",
@@ -128,7 +128,7 @@ const setupSteps = [
   },
   {
     title: "Paneli telefonunuzda birlikte kullanmaya başlarız.",
-    text: "Fiyat değiştirmeyi ve tükenen ürünü gizlemeyi birlikte deneriz. Sonrasında takıldığınız her yerde WhatsApp'tan bize yazabilirsiniz.",
+    text: "Fiyat değiştirmeyi, tükenen ürünü gizlemeyi ve garson çağırma bildirimini birlikte deneriz. Sonrasında takıldığınız her yerde WhatsApp'tan bize yazabilirsiniz.",
   },
 ];
 

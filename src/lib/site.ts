@@ -62,9 +62,12 @@ export type Plan = {
   features: string[];
 };
 
+// Paket özellikleri işletme panelindeki fiyat sayfasıyla aynı (fe.isletme.menuland.net src/app/pricing/page.tsx).
+// Garson çağırma ve hesap isteme 5.11.2026'dan beri Temel pakette (panel ac518d1); Premium bunu "Temel paketteki her şey" ile içerir.
 export const basicFeatures = [
   "Sınırsız kategori ve ürün",
   "QR kod oluşturucu",
+  "Garson çağırma ve hesap isteme",
   "Temel istatistikler",
   "İşletme bilgileri yönetimi",
   "E-posta desteği",
@@ -75,7 +78,6 @@ export const premiumFeatures = [
   "Kampanya oluşturma",
   "Etkinlik yönetimi",
   "Müşteri yorumları ve analizi",
-  "Garson çağırma bildirimleri",
   "Gelişmiş raporlama",
   "Önceliklendirilmiş destek",
 ];
