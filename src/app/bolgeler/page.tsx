@@ -12,12 +12,12 @@ import {
 import { PageHeader } from "@/components/site/page-header";
 import { Reveal, SectionHeading } from "@/components/site/section";
 import { CtaLink } from "@/components/site/cta-link";
-import { contact, links, stats, whatsappLink } from "@/lib/site";
+import { contact, formatTRY, links, plans, stats, whatsappLink } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Hizmet Bölgeleri",
   description:
-    "Menuland QR menü ve işletme paneli Türkiye'nin her ilinde kullanılabilir. Mobil uygulamadaki keşif ağımız Ordu'da aktif; İstanbul, Ankara, İzmir ve diğer şehirlere açılmayı planlıyoruz.",
+    "Menuland QR menü ve işletme paneli Türkiye'nin her ilinde kullanılabilir. Ordu dışındaki işletmelerde kurulumu uzaktan yapıyoruz: menünüzü biz giriyoruz. Mobil uygulamadaki keşif ağımız Ordu'da aktif.",
   alternates: { canonical: "/bolgeler" },
 };
 
@@ -34,8 +34,32 @@ const everywhere: { icon: LucideIcon; title: string; text: string }[] = [
   },
   {
     icon: Headset,
-    title: "Uzaktan kurulum desteği",
-    text: "Kurulumda WhatsApp, telefon ve e-posta üzerinden yardımcı oluyoruz; yerinde ziyaret gerekmez.",
+    title: "Uzaktan kurulum",
+    text: "Ordu dışındaki işletmelerde menünüzü biz giriyoruz ve paneli görüntülü görüşmede birlikte kuruyoruz; yerinde ziyaret gerekmez.",
+  },
+];
+
+// Uzaktan kurulum akışı: CEO dosyaları ceo/uzaktan-kurulum.md (karar k13). Menü girişi ücretsiz: kurucu kararı k14, 12.11.2026.
+const remoteSteps = [
+  {
+    title: "WhatsApp'tan yazın",
+    text: "İşletmenizin adını ve şehrini yazın. Pazartesi–Cumartesi 09.00–18.00 arasında yanıtlıyoruz.",
+  },
+  {
+    title: "Kısa bir tanışma",
+    text: "10 dakikalık bir görüntülü görüşmede masa sayınızı, menünüzü ve menünüzün hangi dillerde açılmasını istediğinizi konuşuyoruz.",
+  },
+  {
+    title: "Menünüzü gönderin",
+    text: "Menünüzün fotoğrafları, PDF'i ya da Excel listesi yeterli. Ürünleri ve fiyatları panele biz giriyoruz; alerjen ve içerik bilgisini sizden aldığımız haliyle yazıyoruz.",
+  },
+  {
+    title: "Taslağı onaylayın",
+    text: "Menünüzün bağlantısını gönderiyoruz. Düzeltilecek yerleri yazmanız yeterli; değişiklikleri biz yapıyoruz.",
+  },
+  {
+    title: "Birlikte kuruyoruz",
+    text: "20–30 dakikalık görüntülü görüşmede panele girişi, fiyat değiştirmeyi ve garson çağırmayı birlikte deniyoruz. QR kodlarınızın baskıya hazır PDF'ini de gönderiyoruz.",
   },
 ];
 
@@ -61,7 +85,7 @@ const faqs = [
   },
   {
     q: "Kurulum için yanıma gelmeniz gerekiyor mu?",
-    a: "Hayır. Kurulumu panelden kendiniz yapabilirsiniz; takıldığınız yerde WhatsApp, telefon veya e-postayla uzaktan destek veriyoruz.",
+    a: "Hayır. Ordu'da kurulumu işletmenize gelerek yapıyoruz; diğer illerde aynı kurulumu uzaktan yapıyoruz. Menünüzü WhatsApp'tan gönderirsiniz, panele biz gireriz ve panelin kullanımını görüntülü görüşmede birlikte yaparız. Dilerseniz hesabınızı açıp menünüzü kendiniz de girebilirsiniz.",
   },
 ];
 
@@ -146,6 +170,48 @@ export default function BolgelerPage() {
               </li>
             ))}
           </ul>
+        </div>
+      </section>
+
+      <section id="uzaktan-kurulum" aria-labelledby="uzaktan-kurulum-baslik" className="scroll-mt-24 border-t border-stone-200 py-16 sm:py-20">
+        <div className="container-page">
+          <SectionHeading
+            id="uzaktan-kurulum-baslik"
+            align="left"
+            eyebrow="Ordu dışındaki işletmeler"
+            title="Uzaktan kurulum: menünüzü biz giriyoruz"
+            description="Ordu dışındaki işletmelerde kurulumu uzaktan yapıyoruz. Menünüzü WhatsApp'tan göndermeniz yeterli; ürünlerinizi ve fiyatlarınızı panele biz giriyoruz. Menü girişi şu an ücretsiz."
+          />
+          <Reveal className="mt-12">
+            <ol className="grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+              {remoteSteps.map((s, i) => (
+                <li key={s.title} className="border-t border-stone-300 pt-6">
+                  <span aria-hidden className="block text-4xl font-extrabold tracking-tight text-brand-500 tabular-nums">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="mt-4 text-lg font-bold text-stone-900">{s.title}</h3>
+                  <p className="mt-2 text-[15px] leading-relaxed text-stone-600">{s.text}</p>
+                </li>
+              ))}
+            </ol>
+          </Reveal>
+          <Reveal className="mt-12 flex flex-col gap-6 border-t border-stone-200 pt-8 lg:flex-row lg:items-center lg:justify-between">
+            <p className="max-w-2xl text-[15px] leading-relaxed text-stone-600">
+              Fiyatlar Ordu'dakiyle aynıdır: Temel paket aylık {formatTRY(plans[0].monthly)}, Premium paket aylık{" "}
+              {formatTRY(plans[1].monthly)}. Yıllık pakette, ilk ödemeden sonraki 60 gün içinde vazgeçerseniz
+              ödediğiniz bedelin tamamını iade ediyoruz.
+            </p>
+            <div className="flex flex-col gap-3 sm:flex-row sm:shrink-0">
+              <CtaLink href={whatsappLink("KRM-UZAKTAN")} variant="whatsapp" size="lg">
+                <MessageCircle />
+                WhatsApp'tan başvurun
+              </CtaLink>
+              <CtaLink href={links.panel} variant="outline" size="lg">
+                Kendim başlayacağım
+                <ArrowRight />
+              </CtaLink>
+            </div>
+          </Reveal>
         </div>
       </section>
 

@@ -22,7 +22,8 @@ export type WhatsappCode =
   | "KRM-BOLGE1" // /bolgeler, üstteki buton
   | "KRM-BOLGE2" // /bolgeler, alttaki buton
   | "KRM-ORDU1" // /ordu-qr-menu (Ordu açılış sayfası), üstteki buton
-  | "KRM-ORDU2"; // /ordu-qr-menu (Ordu açılış sayfası), alttaki buton
+  | "KRM-ORDU2" // /ordu-qr-menu (Ordu açılış sayfası), alttaki buton
+  | "KRM-UZAKTAN"; // /bolgeler, "Uzaktan kurulum" bölümü (Ordu dışındaki işletmeler)
 
 export function whatsappLink(code: WhatsappCode) {
   const text = `Merhaba, Menuland hakkında bilgi almak istiyorum.\n\n(Kod: ${code})`;
