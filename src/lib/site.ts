@@ -38,13 +38,19 @@ export const contact = {
   company: "MLD Yazılım",
 };
 
-// Kaynaklar: App Store TR herkese açık puanı (29.10.2026, 13 değerlendirme);
-// işletme ve QR menü sayıları menuland_service veritabanı (17.10.2026).
+// Kaynaklar:
+// - appStoreRating: App Store Türkiye herkese açık puanı, 23.11.2026'da 5,0 (13 değerlendirme).
+// - listedBusinesses: menuland.net'te yayında olan onaylı ve aktif işletmeler (API /businesses), 23.11.2026'da
+//   3.978; aşağı yuvarlanıp "+" ile yazılır. İşletme panelinin giriş ekranında da aynı sayı var.
+// - qrMenuViews: menuland_service veritabanı qr_menu_views, 1 Eylül–23 Kasım 2026, demo menüler hariç 31.603
+//   (demolarla 34.360); aşağı yuvarlanır. 17.10.2026'da 18.000 idi.
+// - orduVenues: yalnızca Ordu'ya özel sayfalarda (/bolgeler, /ordu-qr-menu); menuland_service veritabanı (17.10.2026).
 export const stats = {
   appStoreRating: 5.0,
   appStoreRatingCount: 13,
+  listedBusinesses: 3900,
   orduVenues: 340,
-  qrMenuViews: 18000,
+  qrMenuViews: 31000,
 };
 
 export type Plan = {

@@ -15,10 +15,10 @@ const items = [
     static: true,
   },
   {
-    value: stats.orduVenues,
+    value: stats.listedBusinesses,
     decimals: 0,
     suffix: "+",
-    label: "Ordu'da Menuland'de listelenen mekan",
+    label: "Menuland'de listelenen işletme",
   },
   {
     value: stats.qrMenuViews,
